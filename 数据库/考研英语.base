@@ -1,0 +1,15 @@
+views:
+  - type: table
+    name: 表格
+    filters:
+      and:
+        - file.hasTag("考研英语")
+    order:
+      - file.name
+      - 创建时间
+      - 考试科目
+      - 课程
+      - 阶段
+      - 老师
+      - 开始日期
+      - 结束日期

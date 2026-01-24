@@ -1,0 +1,17 @@
+{
+  "anuppuccin-theme-settings@@anp-alt-rainbow-style": "anp-simple-rainbow-color-toggle",
+  "anuppuccin-theme-settings@@anp-simple-rainbow-title-toggle": true,
+  "anuppuccin-theme-settings@@anp-header-color-toggle": true,
+  "anuppuccin-theme-settings@@anp-h2-color-custom": "anp-h2-maroon",
+  "anuppuccin-theme-settings@@anp-h3-color-custom": "anp-h3-peach",
+  "anuppuccin-theme-settings@@anp-h4-color-custom": "anp-h4-yellow",
+  "anuppuccin-theme-settings@@anp-h5-color-custom": "anp-h5-green",
+  "anuppuccin-theme-settings@@anp-h6-color-custom": "anp-h6-teal",
+  "anuppuccin-theme-settings@@anp-custom-checkboxes": true,
+  "anuppuccin-theme-settings@@anp-speech-bubble": true,
+  "anuppuccin-theme-settings-extended@@anp-theme-ext-light": true,
+  "anuppuccin-theme-settings-extended@@catppuccin-theme-extended": "ctp-atom-light",
+  "anuppuccin-theme-settings-extended@@anp-theme-ext-dark": true,
+  "anuppuccin-theme-settings-extended@@catppuccin-theme-dark-extended": "ctp-nord-darker",
+  "anuppuccin-theme-settings@@anp-layout-select": "anp-card-layout"
+}

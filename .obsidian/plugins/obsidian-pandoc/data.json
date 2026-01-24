@@ -1,0 +1,15 @@
+{
+  "showCLICommands": false,
+  "addExtensionsToInternalLinks": "html",
+  "injectAppCSS": "light",
+  "injectThemeCSS": false,
+  "customCSSFile": null,
+  "displayYAMLFrontmatter": false,
+  "linkStrippingBehaviour": "link",
+  "highDPIDiagrams": true,
+  "pandoc": "C:\\Users\\吕梓源\\AppData\\Local\\Pandoc\\pandoc.exe",
+  "pdflatex": "",
+  "outputFolder": "D:\\Obsidian\\27考研\\27考研",
+  "extraArguments": "",
+  "exportFrom": "html"
+}

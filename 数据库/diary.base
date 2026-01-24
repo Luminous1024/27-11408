@@ -1,0 +1,12 @@
+views:
+  - type: table
+    name: diary
+    filters:
+      and:
+        - file.hasTag("diary")
+    groupBy:
+      property: 创建时间
+      direction: DESC
+    order:
+      - file.name
+      - file.ctime

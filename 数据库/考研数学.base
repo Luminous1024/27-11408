@@ -1,0 +1,24 @@
+views:
+  - type: table
+    name: 考研数学
+    filters:
+      and:
+        - file.hasTag("考研数学")
+    order:
+      - file.name
+      - 创建时间
+      - 考试科目
+      - 课程
+      - 阶段
+      - 老师
+      - 开始日期
+      - 结束日期
+      - file.links
+      - file.backlinks
+    sort:
+      - property: file.basename
+        direction: ASC
+    columnSize:
+      note.创建时间: 113
+      note.考试科目: 84
+      note.课程: 70
