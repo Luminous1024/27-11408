@@ -1078,4 +1078,163 @@ int main(){
 }
 ```
 ---
-[[2026-01-20]]
+[[2026-01-25]]
+# 6. 运算符和表达式
+	运算符
+		算术运算符
+		关系运算符
+		逻辑运算符
+		赋值运算符
+		*位运算符
+		其他：条件运算符 逗号运算符
+---
+## 6.1 算术运算符
+	+ - * / %
+	整数支持：+ - * / %
+	浮点数支持：+ - * / （不支持%）
+
+```c
+#include<stdio.h>
+int main(){
+	int a = 10,b = 5;
+	printf("a + b = %d\n",a + b);
+	printf("a - b = %d\n",a - b);
+	printf("a * b = %d\n",a * b);
+	printf("a / b = %d\n",a / b);
+	printf("a %% b = %d\n",a % b); //printf()想显示%要写%%
+	
+	return 0;
+}
+```
+
+```c
+结果：
+a + b = 15
+a - b = 5
+a * b = 50
+a / b = 2
+a % b = 0
+```
+
+- [0] %（取余运算符）的操作数必须是整数
+
+```c
+#include<stdio.h>
+int main(){
+	int a = 1,b = 2,c = 3;
+	//优先级：* / % 高于 + -
+	//相同优先级按照从左往右的顺序
+	printf("output = %d\n",a + b * c);
+	
+	return 0;
+}
+```
+
+```c
+结果：output = 7
+```
+
+- [1] 优先级：* / % 高于 + -
+- [2] 相同优先级按照从左往右的顺序 —— 结合性
+---
+## 6.2 关系运算符
+	C语言当中如何描述真和假
+
+$$
+\left.
+\begin{array}{l@{\quad}l}
+\text{数据的机器数是0} & \text{—— 假} \\
+\text{数据的机器数不是0} & \text{—— 真}
+\end{array}
+\right\}
+\text{ ——> if 结构}
+$$
+
+```c
+#include<stdio.h>
+int main(){
+	int condition = 1;
+	if(condition){
+		printf("true!\n");
+	}
+	else{
+		printf("false!\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：true!
+```
+
+	关系运算符
+		判断相等关系
+			判断相等 ==
+			判断不相等 !=
+		判断大小关系
+			小于 <
+			小于等于 <=
+			大于 >
+			大于等于 >=
+
+```c
+#include<stdio.h>
+int main(){
+	int a = 10,b = 5;
+	printf("a == b is %d\n",a == b);
+	printf("a != b is %d\n",a != b);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+a == b is 0
+a != b is 1
+```
+
+- [0] 满足条件，关系运算符的返回值为1；不满足条件，关系运算符的返回值为0。
+
+```c
+#include<stdio.h>
+int main(){
+	int a = 1,b = 2,c = 3;
+	printf("a < b < c is %d\n",a < b < c);
+	//a < b < c不是看b是否在a与c中间，而是先执行a < b，再执行b < c
+	
+	return 0;
+}
+```
+
+```c
+结果：a < b < c is 1
+```
+
+- [1] a < b < c不是看b是否在a与c中间，而是先执行a < b，再执行b < c
+
+```c
+#include<stdio.h>
+int main(){
+	int a = 1,b = 2,c = 1;
+	printf("a == b < c is %d\n",a == b < c);
+	//'<'的优先级高于'=='，所以要先做<运算，再做==运算
+	
+	return 0;
+}
+```
+
+```c
+结果：a == b < c is 0
+```
+
+><font color="#add8e6">注意：</font>$$
+'<' \text{的优先级高于} '==' \text{，所以要先做<运算，再做==运算}
+$$
+
+- [3] 判断大小的运算符的优先级高于判断相等的运算符，相同优先级按照从左往右的顺序 —— 结合性
+---
+[[2026-01-26]]
+## 6.3 逻辑运算符

@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b3cb7180ac4612a9",
+        "id": "7a5a72044382b43b",
         "type": "tabs",
         "children": [
           {
-            "id": "9b74ce9661f5546b",
+            "id": "0c65a6e5a2f6b139",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "日记/2026-01-24.md",
+                "file": "06_408/00_C语言/C语言入门课程.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-24"
+              "title": "C语言入门课程"
             }
           }
         ]
@@ -96,7 +96,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -223,6 +224,36 @@
               "icon": "lucide-archive",
               "title": "添加笔记属性"
             }
+          },
+          {
+            "id": "e2df0d9f949fd434",
+            "type": "leaf",
+            "state": {
+              "type": "Strange New Worlds",
+              "state": {},
+              "icon": "file-digit",
+              "title": "Strange New Worlds"
+            }
+          },
+          {
+            "id": "edb74b12be733ace",
+            "type": "leaf",
+            "state": {
+              "type": "journal-calendar",
+              "state": {},
+              "icon": "calendar-days",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "6ebe0af7ef7b9b61",
+            "type": "leaf",
+            "state": {
+              "type": "planner-timeline",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Timeline"
+            }
           }
         ]
       },
@@ -276,39 +307,41 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "9b74ce9661f5546b",
+  "active": "0c65a6e5a2f6b139",
   "lastOpenFiles": [
-    "日记/2026-01-23.md",
+    "日记/2026-01-25.md",
+    "06_408/00_C语言/C语言入门课程.md",
+    "日记/2026-01-26.md",
+    "05_数学/01_基础/第一讲 函数极限与连续.md",
+    "00_目录/考研数学基础30讲 —— 高等数学篇.md",
+    "00_目录/diary.md",
+    "00_目录/考研英语.md",
+    "00_目录/考研数学.md",
+    "00_目录/408.md",
+    "05_数学/00_零基础/考研数学零基础通关.md",
+    "数据库/408.base",
+    "未命名.base",
     "日记/2026-01-24.md",
+    "日记/2026-01-16.md",
+    "日记/2026-01-17.md",
+    "日记/2026-01-18.md",
+    "日记/2026-01-20.md",
+    "日记/2026-01-21.md",
+    "日记/2026-01-23.md",
     "数据库/考研英语.base",
     "数据库/diary.base",
     "数据库/考研数学.base",
-    "数据库/408.base",
-    "日记/2026-01-16.md",
     "日记/2026-01-11.md",
-    "日记/2026-01-18.md",
-    "05_数学/00_零基础/考研数学零基础通关.md",
     "日记/2026-01-22.md",
-    "日记/2026-01-21.md",
-    "00_目录/考研英语.md",
     "Unit 3.md",
     "04_英语/00_单词/Unit 2.md",
     "04_英语/00_单词/Unit 1.md",
-    "日记/2026-01-20.md",
-    "06_408/00_C语言/C语言入门课程.md",
     "06_408/00_C语言/ASCII码表(完整版).md",
     "06_408/01_基础/计算机组成原理.md",
     "06_408/00_C语言/C语言常用的32个关键字.md",
     "06_408/00_C语言/二进制与十进制相互转换方法.md",
-    "日记/2026-01-19.md",
-    "00_目录/408.md",
     "~$语言入门课程.docx",
     "C语言入门课程.docx",
-    "06_408/00_C语言/深入了解EOF.md",
-    "00_目录/diary.md",
-    "00_目录/考研数学.md",
-    "Unit1.md",
-    "日记/2026-01-17.md",
     "未命名.canvas",
     "Pasted image 20260116205736.png",
     "Pasted image 20260116143734.png",
@@ -318,7 +351,6 @@
     "足球/赛事",
     "足球/人员",
     "足球/人员/球员",
-    "足球/人员/教练",
     "assets/阿凡达：火与烬.webp",
     "assets/老友记第一季.webp",
     "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112224.png",

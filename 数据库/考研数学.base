@@ -4,6 +4,7 @@ views:
     filters:
       and:
         - file.hasTag("考研数学")
+        - 阶段 == "基础"
     order:
       - file.name
       - 创建时间
@@ -22,3 +23,8 @@ views:
       note.创建时间: 113
       note.考试科目: 84
       note.课程: 70
+  - type: table
+    name: 考研数学基础30讲 —— 高等数学篇
+    filters:
+      and:
+        - 课程 == "高等数学"
