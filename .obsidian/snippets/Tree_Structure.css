@@ -1,0 +1,11 @@
+/* 所有 Mermaid 图表居中 */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* 或者只对特定容器内的 Mermaid */
+.markdown-preview-view .mermaid {
+  text-align: center;
+}

@@ -1,0 +1,11 @@
+/* 为表格添加居中类 */
+.table-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 或者为所有表格设置居中 */
+.markdown-preview-view table {
+    margin-left: auto;
+    margin-right: auto;
+}

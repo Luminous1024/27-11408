@@ -9,4 +9,6 @@ views:
       direction: DESC
     order:
       - file.name
-      - file.ctime
+      - 创建时间
+    columnSize:
+      file.name: 197

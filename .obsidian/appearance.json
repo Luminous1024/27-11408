@@ -1,7 +1,9 @@
 {
   "cssTheme": "AnuPpuccin",
   "enabledCssSnippets": [
-    "extended-colorschemes"
+    "extended-colorschemes",
+    "center-tables",
+    "Tree_Structure"
   ],
   "theme": "obsidian"
 }

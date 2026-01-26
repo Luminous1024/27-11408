@@ -9,7 +9,7 @@ views:
       direction: DESC
     order:
       - file.name
-      - file.ctime
+      - 创建时间
       - 考试科目
       - 课程
       - 阶段
@@ -17,8 +17,10 @@ views:
       - 开始日期
       - 结束日期
     sort:
-      - property: file.name
-        direction: ASC
+      - property: file.ctime
+        direction: DESC
+    columnSize:
+      note.创建时间: 163
   - type: table
     name: 零基础
     filters:

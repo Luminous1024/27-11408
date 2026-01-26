@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "7a5a72044382b43b",
+        "id": "54eea9778d5abeca",
         "type": "tabs",
         "children": [
           {
-            "id": "0c65a6e5a2f6b139",
+            "id": "958a446fd242c41c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "06_408/00_C语言/C语言入门课程.md",
-                "mode": "source",
+                "file": "日记/2026-01-26.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "C语言入门课程"
+              "title": "2026-01-26"
             }
           }
         ]
@@ -96,8 +96,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -279,7 +278,7 @@
               "type": "planner-weekly",
               "state": {},
               "icon": "table-2",
-              "title": "1月, 24–1月, 26"
+              "title": "1月, 26–1月, 28"
             }
           }
         ]
@@ -307,17 +306,20 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "0c65a6e5a2f6b139",
+  "active": "958a446fd242c41c",
   "lastOpenFiles": [
-    "日记/2026-01-25.md",
-    "06_408/00_C语言/C语言入门课程.md",
     "日记/2026-01-26.md",
     "05_数学/01_基础/第一讲 函数极限与连续.md",
-    "00_目录/考研数学基础30讲 —— 高等数学篇.md",
+    "日记/2026-01-25.md",
+    "06_408/00_C语言/C语言入门课程.md",
+    "06_408/00_C语言/C语言运算符优先级.md",
+    "Pasted image 20260126153537.png",
+    "未命名.canvas",
+    "00_目录/408.md",
     "00_目录/diary.md",
+    "00_目录/考研数学基础30讲 —— 高等数学篇.md",
     "00_目录/考研英语.md",
     "00_目录/考研数学.md",
-    "00_目录/408.md",
     "05_数学/00_零基础/考研数学零基础通关.md",
     "数据库/408.base",
     "未命名.base",
@@ -338,11 +340,8 @@
     "04_英语/00_单词/Unit 1.md",
     "06_408/00_C语言/ASCII码表(完整版).md",
     "06_408/01_基础/计算机组成原理.md",
-    "06_408/00_C语言/C语言常用的32个关键字.md",
-    "06_408/00_C语言/二进制与十进制相互转换方法.md",
     "~$语言入门课程.docx",
     "C语言入门课程.docx",
-    "未命名.canvas",
     "Pasted image 20260116205736.png",
     "Pasted image 20260116143734.png",
     "Pasted image 20260116205643.png",
@@ -354,7 +353,6 @@
     "assets/阿凡达：火与烬.webp",
     "assets/老友记第一季.webp",
     "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112224.png",
-    "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112119.png",
-    "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112043.png"
+    "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112119.png"
   ]
 }
