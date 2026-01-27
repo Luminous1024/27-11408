@@ -1523,4 +1523,202 @@ int main(){
 结果：i = 4,j = 3
 ```
 ---
+[[2026-01-27]]
 ## 6.10 运算符总结
+
+```c
+5 > 3 && 8 < 4 - !0
+```
+
+```mermaid
+graph TD
+    A["&&"] --> B["&gt;"]
+    A["&&"] --> C["<"]
+    B["&gt;"] --> D["5"]
+    B["&gt;"] --> E["3"]
+    C["<"] --> F["8"]
+    C["<"] --> G["&minus;"]
+    G["&minus;"] --> H["4"]
+    G["&minus;"] --> I["!"]
+    I["!"] --> J["0"]
+```
+
+```
+先算 5 > 3 --> 1
+
+!0 --> 1
+4 - 1 --> 3
+8 < 3 --> 0
+
+最后 1 && 0 --> 0
+```
+
+- [0] 1.需要按照优先级整理表达式树
+- [1] 2.几个特殊运算符 && || , 规定了执行顺序
+---
+# 7. 选择结构
+## 7.1 选择结构描述
+
+	先修知识 —— 顺序结构
+
+```mermaid
+flowchart TD
+    Start([开始]) --> Input[/输入数据/]
+    Input --> Process1[处理步骤1]
+    Process1 --> Process2[处理步骤2]
+    Process2 --> Output[/输出结果/]
+    Output --> End([结束])
+```
+
+	选择结构
+
+```mermaid
+flowchart TD
+    Start([开始]) --> Condition{条件判断}
+    Condition -->|真| ProcessA[执行操作A]
+    Condition -->|假| ProcessB[执行操作B]
+    ProcessA --> End([结束])
+    ProcessB --> End
+```
+
+- [0] C语言中选择结构靠if和switch两种方式实现
+---
+## 7.2 单分支if
+	if(表达式){
+		语句块
+	}
+
+	语句块可以是：
+		一个语句
+		{多个语句}
+
+```mermaid
+flowchart TD
+    A([开始]) --> B[操作1]
+    B --> C{条件判断?}
+    C -->|真| D[执行语句块]
+    D[执行语句块] --> F([结束])
+    C -->|假| F([结束])
+```
+```c
+#include<stdio.h>
+int main(){
+	int i;
+	scanf("%d",&i);
+	if(i == 1){
+		printf("i is 1!\n");
+	} //编程要求：我们自己写的代码，不能省略花括号。
+	
+	return 0;
+}
+```
+
+```c
+输入：1
+结果：i is 1!
+```
+---
+## 7.3 双分支if
+	if(表达式){
+		语句块1
+	}
+	else{
+		语句块2
+	}
+
+```mermaid
+flowchart TD
+    A([开始]) --> B{条件判断?}
+    B -->|真| C[执行语句块1]
+    B -->|假| D[执行语句块2]
+    C --> E([结束])
+    D --> E([结束])
+```
+
+```c
+#include<stdio.h>
+int main(){
+	int a = 10,b = 5;
+	if(a > b){
+		printf("max = a,a is %d\n",a)
+	}
+	else{
+		printf("max = b,b is %d\n",b);
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：max = a,a is 10
+```
+
+```c
+#include<stdio.h>
+int main(){
+	int a = 10,b = 15,c = 20;
+	if(a > b){
+		if(a > c){
+			printf("max = a,a is %d\n",a);
+		}
+		else{
+			printf("max = c,c is %d\n",c);
+		}
+	}
+	else{
+		if(b > c){
+			printf("max = b,b is %d\n",b);
+		}
+		else{
+			printf("max = c,c is %d\n",c);
+		}
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：max = c,c is 20
+```
+---
+## 7.4 多分支if
+	只需要在else的语句里面嵌套使用if，就可以实现更多分支的if了。
+
+```mermaid
+flowchart TD
+    Start([开始]) --> Condition1{条件判断1?}
+    Condition1 -->|真| Process1[执行语句块1]
+    Condition1 -->|假| Condition2{条件判断2?}
+    Condition2 -->|真| Process2[执行语句块2]
+    Condition2 -->|假| Default[执行语句块3]
+    Process1 --> End([结束])
+    Process2 --> End([结束])
+    Default --> End([结束])
+```
+
+```c
+#include<stdio.h>
+int main(){
+	int height;
+	scanf("%d",&height);
+	if(height < 160){
+		printf("He is short!\n");
+	}
+	else if(height <= 178){
+		printf("He is middle-sized!\n")
+	}
+	else{
+		printf("He is tall!\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+输入：180
+结果：He is tall!
+```
+---

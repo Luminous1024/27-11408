@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "日记/2026-01-26.md",
-                "mode": "preview",
+                "file": "06_408/00_C语言/C语言入门课程.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-26"
+              "title": "C语言入门课程"
             }
           }
         ]
@@ -96,7 +96,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -285,7 +286,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316
+    "width": 316,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -308,11 +310,12 @@
   },
   "active": "958a446fd242c41c",
   "lastOpenFiles": [
+    "06_408/00_C语言/C语言运算符优先级.md",
+    "06_408/00_C语言/C语言入门课程.md",
+    "日记/2026-01-27.md",
     "日记/2026-01-26.md",
     "05_数学/01_基础/第一讲 函数极限与连续.md",
     "日记/2026-01-25.md",
-    "06_408/00_C语言/C语言入门课程.md",
-    "06_408/00_C语言/C语言运算符优先级.md",
     "Pasted image 20260126153537.png",
     "未命名.canvas",
     "00_目录/408.md",
