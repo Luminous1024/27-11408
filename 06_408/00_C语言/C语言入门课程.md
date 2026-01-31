@@ -1316,6 +1316,7 @@ $$
 - [0] !（逻辑非） > &&（逻辑与） > ||（逻辑或）
 
 ```c
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 int main(){
 	int year;
@@ -1601,6 +1602,7 @@ flowchart TD
     C -->|假| F([结束])
 ```
 ```c
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 int main(){
 	int i;
@@ -1699,6 +1701,7 @@ flowchart TD
 ```
 
 ```c
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 int main(){
 	int height;
@@ -1722,3 +1725,220 @@ int main(){
 结果：He is tall!
 ```
 ---
+[[2026-01-29]]
+## 7.5 else就近匹配
+	不加花括号可能会出现的问题
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 0;
+	if(i > 1)
+		if(i < 10)
+			printf("i is between 1 amd 10\n");
+	else{
+		printf("i is less than 1\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+```
+
+- [0] if和else是就近匹配的
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 0;
+	if(i > 1){
+		if(i < 10){
+			printf("i is between 1 and 10\n");
+		}
+	}
+	else{
+		printf("i is less than 1\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：i is less than 1
+```
+
+- [1] C语言中，缩进不代表匹配规则
+---
+## 7.6 switch
+	用于处理固定的多分支。
+
+	switch(表达式){
+		case 值1:
+			...
+		case 值2:
+			...
+
+		...
+
+		default:
+			...
+	}
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 4;
+	switch(i){
+		case 1:
+			printf("1\n");
+		case 2:
+			printf("2\n");
+		case 3:
+			printf("3\n");
+		default:
+			printf("default!\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：default!
+```
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 3;
+	switch(i){
+		case 1:
+			printf("1\n");
+		case 2:
+			printf("2\n");
+		case 3:
+			printf("3\n");
+		default:
+			printf("default!\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+i = 3
+default!
+```
+
+	switch当中的break
+		switch语句块的代码遇到break会立刻跳出语句块
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 3;
+	switch(i){
+		case 1:
+			printf("1\n");
+			break;
+		case 2:
+			printf("2\n");
+			break;
+		case 3:
+			printf("3\n");
+			break;
+		default:
+			printf("default!\n");
+			break;
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：3
+```
+
+	场景题：给出年份和月份，求这个月有多少天？
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int year,month;
+	scanf("%d%d",&year,&month);
+	int days_of_the_month;
+	switch(month){
+		case 1: case 3: case 5:
+		case 7: case 8: case 10:
+		case 12:
+			days_of_the_month = 31;
+			printf("Days of the month are %d\n",days_of_the_month);
+			break;
+		case 4: case 6: case 9:
+		case 11:
+			days_of_the_month = 30;
+			printf("Days of the month are %d\n",days_of_the_month);
+			break;
+		case 2:
+			days_of_the_month = 28 + (year % 400 == 0 || year % 4 == 0 && year % 100 != 0);
+			printf("Days of the month are %d\n",days_of_the_month);
+			break;
+		default:
+			printf("error!\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+输入：2026 1
+结果：Days of the month are 31
+```
+---
+# 8. 循环结构
+## 8.1 goto和循环
+	实现函数内部的跳转 ——> 重复做一些事情 ——> 循环结构
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 1;
+	int total = 0;
+label:
+	total += i;
+	++i;
+	if(i <= 100){
+		goto label;
+	}
+	printf("total is %d\n",total);
+	
+	return 0;
+}
+```
+
+```c
+结果：total is 5050
+```
+
+	如何用goto实现循环：
+		先写标签，再写goto —— 实现循环
+		goto语句应该放在if结构里面，否则会产生死循环（死循环需要用任务管理器排查）
+
+	goto实现循环的问题：
+		goto有害 —— Dijkstra
+			代码的可读性下降
+			性能问题（破坏了局部性）
+		我们一般情况下使用goto，就算是用goto，也不会用它来实现循环。
+		goto的使用场景是做快速跳转 —— 可以用goto离开多重循环。
+
+		前向goto：标签在goto前面 —— 实现循环
+		后向goto：标签在goto后面 —— 快速跳转
