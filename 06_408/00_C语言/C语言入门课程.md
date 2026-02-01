@@ -1,7 +1,7 @@
 ---
 tags:
   - 408_计算机学科专业基础
-创建时间: 2026-01-11T16:44:00
+创建时间: 2026-01-11T16:00:00
 考试科目: "408"
 课程: C语言
 阶段: 零基础
@@ -1942,3 +1942,211 @@ label:
 
 		前向goto：标签在goto前面 —— 实现循环
 		后向goto：标签在goto后面 —— 快速跳转
+---
+[[2026-02-01]]
+## 8.2 while循环
+	while循环
+		while(表达式 —— 入口条件){
+			语句块 —— 循环体
+		}
+
+		语句块可以是：
+			一个语句
+			{多个语句}
+
+```mermaid
+flowchart TD
+    Start([开始]) --> Init[初始化循环变量]
+    Init --> Condition{循环条件?}
+    Condition -->|真| LoopBody[执行循环体]
+    LoopBody --> Update[更新循环变量]
+    Update --> Condition
+    Condition -->|假| Exit[退出循环]
+    Exit --> End([结束])
+```
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 1;
+	int total = 0;
+	while(i <= 100){ //先写循环体，再写入口条件
+		total += i;
+		++i;
+	}
+	printf("Total is %d\n",total);
+	
+	return 0;
+}
+```
+
+```c
+结果：Total is 5050
+```
+---
+## 8.3 翻转整数
+	输入一个整数，然后输出翻转之后的结果：
+	1234 ——> 4321
+
+- [0] 本题解题思路详见[[8.3 翻转整数解题思路]]
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int number;
+	scanf("%d",&number);
+	int input = number;
+	int output = 0;
+	while(input > 0){
+		output *= 10;
+		output += input % 10;
+		input /= 10;
+	}
+	printf("output is %d\n",output);
+	
+	return 0;
+}
+```
+
+```c
+输入：1234
+结果：output is 4321
+```
+
+	使用循环解决问题的思路：
+		1.代码中肯定存在重复的行为
+
+		2.先想循环体，把问题的中间状态列一个表格，观察各数据的变化，设计合理的变量
+
+		3.入口条件，重点关注最后一次循环体（边界问题）
+---
+## 8.4 小写转大写
+	输入一行字符串，将其中的小写字母转成大写字母：
+	hello world! ——> HELLO WORLD!
+
+- [0] 本题需要用到我们之前学过的知识[[ASCII码表(完整版)]]
+
+- [1] 本题解题思路详见[[8.4 小写转大写解题思路]]
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	char ch;
+	while(scanf("%c",&ch) , ch != '\n'){
+		if(ch >= 'a' && ch <= 'z'){
+			ch -= 32; //将小写字母 转换成 大写字母
+		}
+		printf("%c",ch);
+	}
+	printf("\n");
+	
+	return 0;
+}
+```
+
+```c
+输入：hello world!
+结果：HELLO WORLD!
+```
+
+	使用循环解决问题的思路：
+		1.代码中肯定存在重复的行为
+
+		2.先想循环体，把问题的中间状态列一个表格，观察各数据的变化，设计合理的变量
+
+		3.入口条件，重点关注最后一次循环体（边界问题）
+---
+## 8.5 for循环
+	背景：使用while执行一个100次的循环，代码如下：
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 0;
+	while(i < 100){
+		循环体
+		++1;
+	}
+}
+```
+
+	当我们使用while循环时，需要在主业务(循环体)之外进行一些额外操作(用于控制此循环)：
+		1.初始化一个循环变量
+		2.设置入口条件
+		3.在循环体末尾对循环变量进行迭代
+
+	这些额外操作(用于控制此循环)与主业务(循环体)的逻辑是毫无关联的，但在书写代码时却与主业务(循环体)的代码混在一起，因此为了解决这个问题，我们提出了for循环。
+	for循环希望将这些额外操作(用于控制此循环)的代码和主业务(循环体)的代码分离，使代码结构更加清晰，方便程序员阅读。
+
+	for(初始化;入口条件;循环变量迭代){
+		语句块 —— 循环体
+	}
+
+```mermaid
+flowchart TD
+    Start([开始]) --> Init[初始化]
+    Init --> Condition{循环条件?}
+    Condition -->|真| LoopBody[执行循环体]
+    LoopBody --> Update[更新循环变量]
+    Update --> Condition
+    Condition -->|假| Exit[退出循环]
+    Exit --> End([结束])
+```
+
+```c
+#include<stdio.h>
+int main(){
+	int total;
+	for(i = 1;i <= 100;++1){
+		total += i;
+	}
+	printf("Total is %d\n",total);
+	
+	return 0;
+}
+```
+
+```c
+结果：Total is 5050
+```
+---
+## 8.6 do while循环
+	do while循环
+		do{
+			语句块 —— 循环体
+		}
+		while(条件);
+	先执行语句块，再检查条件
+
+```mermaid
+flowchart TD
+    Start([开始]) --> Init[初始化循环变量]
+    Init --> LoopBody[执行循环体]
+    LoopBody --> Update[更新循环变量]
+    Update --> Condition{循环条件?}
+    Condition -->|真| LoopBody
+    Condition -->|假| Exit[退出循环]
+    Exit --> End([结束])
+```
+
+```c
+#include<stdio.h>
+int main(){
+	int total = 0;
+	int i = 1;
+	do{
+		total += i;
+		++1;
+	}while(i <= 100);
+	printf("Total is %d\n",total);
+	
+	return 0;
+}
+```
+
+```c
+结果：Total is 5050
+```
+---

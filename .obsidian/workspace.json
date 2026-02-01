@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "54eea9778d5abeca",
+        "id": "1273db3eaf6af497",
         "type": "tabs",
         "children": [
           {
-            "id": "958a446fd242c41c",
+            "id": "fa3cd38a23e4b8ef",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "日记/2026-01-31.md",
-                "mode": "preview",
+                "file": "06_408/00_C语言/C语言入门课程.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-31"
+              "title": "C语言入门课程"
             }
           }
         ]
@@ -118,28 +118,28 @@
             }
           },
           {
-            "id": "13b319f1262f4c05",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "日记/2026-01-31.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "2026-01-31 的大纲"
-            }
-          },
-          {
-            "id": "cf1f61b0a2edefe9",
+            "id": "7d5095a9ca58cd8f",
             "type": "leaf",
             "state": {
               "type": "graph",
               "state": {},
               "icon": "lucide-git-fork",
               "title": "关系图谱"
+            }
+          },
+          {
+            "id": "13b319f1262f4c05",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "06_408/00_C语言/C语言入门课程.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "C语言入门课程 的大纲"
             }
           },
           {
@@ -201,16 +201,6 @@
             }
           },
           {
-            "id": "c67055673a43249a",
-            "type": "leaf",
-            "state": {
-              "type": "journal-calendar",
-              "state": {},
-              "icon": "calendar-days",
-              "title": "Calendar"
-            }
-          },
-          {
             "id": "fe9947f2963d97f3",
             "type": "leaf",
             "state": {
@@ -222,36 +212,6 @@
               },
               "icon": "lucide-archive",
               "title": "添加笔记属性"
-            }
-          },
-          {
-            "id": "e2df0d9f949fd434",
-            "type": "leaf",
-            "state": {
-              "type": "Strange New Worlds",
-              "state": {},
-              "icon": "file-digit",
-              "title": "Strange New Worlds"
-            }
-          },
-          {
-            "id": "edb74b12be733ace",
-            "type": "leaf",
-            "state": {
-              "type": "journal-calendar",
-              "state": {},
-              "icon": "calendar-days",
-              "title": "Calendar"
-            }
-          },
-          {
-            "id": "6ebe0af7ef7b9b61",
-            "type": "leaf",
-            "state": {
-              "type": "planner-timeline",
-              "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Timeline"
             }
           }
         ]
@@ -306,13 +266,29 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "958a446fd242c41c",
+  "active": "fa3cd38a23e4b8ef",
   "lastOpenFiles": [
-    "05_数学/01_基础/第一讲 函数极限与连续.md",
-    "日记/2026-01-31.md",
-    "日记/2026-01-29.md",
+    "日记/2026-02-01.md",
     "06_408/00_C语言/C语言入门课程.md",
     "日记/2026-01-28.md",
+    "日记/2026-01-29.md",
+    "硕士毕业论文-刘华-无地面控制点车载激光扫描仪外标定方法研究.pdf",
+    "06_408/00_C语言/8.4 小写转大写解题思路.md",
+    "06_408/00_C语言/Untitled.pdf",
+    "06_408/00_C语言/ASCII码表(完整版).md",
+    "00_目录/408.md",
+    "00_目录/考研数学.md",
+    "06_408/00_C语言/8.3 翻转整数解题思路.md",
+    "00_目录/diary.md",
+    "00_目录/考研数学基础30讲 —— 高等数学篇.md",
+    "07_GIS/ENVI实验.md",
+    "2025-12-31.md",
+    "日记/2026-01-17.md",
+    "日记/2026-01-16.md",
+    "Pasted image 20260201152910.png",
+    "05_数学/01_基础/第一讲 函数极限与连续.md",
+    "05_数学/00_零基础/考研数学零基础通关.md",
+    "日记/2026-01-31.md",
     "日记/2026-01-26.md",
     "日记/2026-01-27.md",
     "04_英语/00_单词/Unit 3.md",
@@ -320,27 +296,13 @@
     "日记/2026-01-25.md",
     "Pasted image 20260126153537.png",
     "未命名.canvas",
-    "00_目录/408.md",
-    "00_目录/diary.md",
-    "00_目录/考研数学基础30讲 —— 高等数学篇.md",
     "00_目录/考研英语.md",
-    "00_目录/考研数学.md",
-    "05_数学/00_零基础/考研数学零基础通关.md",
     "数据库/408.base",
     "未命名.base",
     "日记/2026-01-24.md",
-    "日记/2026-01-16.md",
-    "日记/2026-01-17.md",
-    "日记/2026-01-18.md",
-    "日记/2026-01-20.md",
-    "日记/2026-01-21.md",
-    "日记/2026-01-23.md",
     "数据库/考研英语.base",
     "数据库/diary.base",
     "数据库/考研数学.base",
-    "日记/2026-01-11.md",
-    "日记/2026-01-22.md",
-    "Unit 3.md",
     "~$语言入门课程.docx",
     "C语言入门课程.docx",
     "Pasted image 20260116205736.png",
@@ -349,11 +311,8 @@
     "Pasted image 20260116205647.png",
     "Pasted image 20260116143749.png",
     "足球/赛事",
-    "足球/人员",
-    "足球/人员/球员",
     "assets/阿凡达：火与烬.webp",
     "assets/老友记第一季.webp",
-    "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112224.png",
-    "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112119.png"
+    "Math-And-English-Library-main/Math-And-English-Library-main/00_附件/Pasted image 20250409112224.png"
   ]
 }
