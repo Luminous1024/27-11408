@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "日记/2026-02-03.md",
-                "mode": "source",
+                "file": "日记/2026-02-04.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-02-03"
+              "title": "2026-02-04"
             }
           }
         ]
@@ -279,6 +279,12 @@
   "active": "e3310d637810d576",
   "lastOpenFiles": [
     "05_数学/01_基础/第一讲 函数极限与连续.md",
+    "Pasted image 20260204210452.png",
+    "Pasted image 20260204210441.png",
+    "Pasted image 20260204210331.png",
+    "Pasted image 20260201152910.png",
+    "Pasted image 20260204210055.png",
+    "日记/2026-02-04.md",
     "日记/2026-02-03.md",
     "模板/日记模板.md",
     "未命名/未命名.md",
@@ -304,12 +310,9 @@
     "07_GIS/ENVI实验.md",
     "2025-12-31.md",
     "日记/2026-01-17.md",
-    "Pasted image 20260201152910.png",
     "05_数学/00_零基础/考研数学零基础通关.md",
     "日记/2026-01-31.md",
     "日记/2026-01-26.md",
-    "日记/2026-01-27.md",
-    "04_英语/00_单词/Unit 3.md",
     "Pasted image 20260126153537.png",
     "未命名.canvas",
     "数据库/408.base",
@@ -320,10 +323,6 @@
     "~$语言入门课程.docx",
     "C语言入门课程.docx",
     "Pasted image 20260116205736.png",
-    "Pasted image 20260116143734.png",
-    "Pasted image 20260116205643.png",
-    "Pasted image 20260116205647.png",
-    "Pasted image 20260116143749.png",
-    "assets/阿凡达：火与烬.webp"
+    "Pasted image 20260116143734.png"
   ]
 }
