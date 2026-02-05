@@ -2076,9 +2076,11 @@ int main(){
 		1.初始化一个循环变量
 		2.设置入口条件
 		3.在循环体末尾对循环变量进行迭代
+---
 
 	这些额外操作(用于控制此循环)与主业务(循环体)的逻辑是毫无关联的，但在书写代码时却与主业务(循环体)的代码混在一起，因此为了解决这个问题，我们提出了for循环。
 	for循环希望将这些额外操作(用于控制此循环)的代码和主业务(循环体)的代码分离，使代码结构更加清晰，方便程序员阅读。
+---
 
 	for(初始化;入口条件;循环变量迭代){
 		语句块 —— 循环体
@@ -2150,3 +2152,160 @@ int main(){
 结果：Total is 5050
 ```
 ---
+[[2026-02-06]]
+## 8.7 continue
+	continue关键字
+		continue用在循环体里面
+		程序运行的时候遇到continue，就会跳过本次循环体，直接开始下一次循环体
+---
+
+	场景题：对2，4，6，8，···，100进行求和
+
+```c
+#include<stdio.h>
+int main(){
+	int i = 1;
+	int total = 0;
+	while(i <= 100){
+		if(i % 2 != 0){
+			++i; //在continue之前记得对循环变量进行迭代！！！
+			continue;
+		}
+		else{
+			total += i;
+			++i;
+		}
+	}
+	printf("Total is %d\n",total);
+	
+	return 0;
+}
+```
+
+```c
+结果：Total is 2550
+```
+
+- [0] 在while循环中使用continue需注意要在continue之前对循环变量进行迭代！！！
+
+```c
+#include<stdio.h>
+int main(){
+	int total = 0;
+	for(i = 1;i <= 100;++i){
+		if(i % 2 != 0){
+			continue;
+		}
+		else{
+			total += i;
+		}
+	}
+	printf("Total is %d\n",total);
+	
+	return 0;
+}
+```
+
+```c
+结果：Total is 2550
+```
+---
+## 8.8 break
+	break关键字
+		break之前在选择结构switch里面出现过，现在讲的是一种新用法。
+		break与continue一样只能出现在循环体里面。
+		当程序运行到break的时候，程序会跳出单层循环。
+		break的此种用法一般用于提前终止循环或循环次数未知的循环。
+---
+
+	场景题：1 + 2 + 3 + ··· + n > 200 (n∈N)，使此不等式成立的n的最小值是多少？（n为多少时，1 + 2 + 3 + ··· + n 第一次大于200？）
+
+```c
+#include<stdio.h>
+int main(){
+	while(1){
+		//死循环 + 循环体里面break --> 循环次数未知的循环
+		total += i;
+		if(total > 200){
+			break; //跳出循环结构
+		}
+		++i;
+	}
+	printf("Total is %d,i is %d\n",total,i);
+	
+	return 0;
+}
+```
+
+```c
+结果：Total is 210,i is 20
+```
+---
+# 9. 专题B 枚举
+	枚举思想
+		面对一个问题的时候，直接将问题的所有可能性全部列出来，一个一个地检查是否符合题目的要求 --> 暴力解法 --> 存在重复操作 --> 循环
+## 9.1 水仙花数
+	“水仙花数”是指一个三位数，其各位数字的立方和等于该数本身。例如，153是一个水仙花数。请编写程序，找出所有的三位水仙花数。
+
+```c
+#include<stdio.h>
+int main(){
+	for(int i = 1;i <= 9;++i){
+		for(int j = 0;j <= 9;++j){
+			for(int k = 0;k <= 9;++k){
+				if(100 * i + 10 * j + k == i * i * i + j * j * j + k * k * k){
+					printf("%d\n",100 * i + 10 * j + k);
+				}
+			}
+		}
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+153
+370
+371
+407
+```
+---
+## 9.2 找完数
+	完数是指除本身以外的因子之和等于其本身的数。
+	任给一个自然数n，求n以内的所有完数。如果找不到，则输出"No"
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int n;
+	printf("请输入一个自然数：");
+	scanf("%d",&n);
+	int Is_Empty = 1;
+	for(i = 1;i < n;++i){
+		int total = 0;
+		for(j = 1;j < i;++j){
+			if(i % j == 0){
+				total += j;
+			}
+			else{
+				continue;
+			}
+		}
+		if(total == i){
+			Is_Empty = 0;
+			printf("%d is a perfect number!\n",i);
+		}
+		else{
+			continue;
+		}
+	}
+	if(Is_Empty == 1){
+		printf("There are no perfect numbers within the natural number n!\n");
+	}
+	
+	return 0;
+}
+```
