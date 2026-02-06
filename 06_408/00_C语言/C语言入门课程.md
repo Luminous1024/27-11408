@@ -2078,7 +2078,7 @@ int main(){
 		3.在循环体末尾对循环变量进行迭代
 ---
 
-	这些额外操作(用于控制此循环)与主业务(循环体)的逻辑是毫无关联的，但在书写代码时却与主业务(循环体)的代码混在一起，因此为了解决这个问题，我们提出了for循环。
+	这些额外操作(用于控制此循环)与主业务(循环体)的逻辑是毫无关联的，但在书写代码时却与主业务(循环体)的代码混在一起。为了解决这个问题，我们提出了for循环。
 	for循环希望将这些额外操作(用于控制此循环)的代码和主业务(循环体)的代码分离，使代码结构更加清晰，方便程序员阅读。
 ---
 
@@ -2281,13 +2281,16 @@ int main(){
 #include<stdio.h>
 int main(){
 	int n;
-	printf("请输入一个自然数：");
+	printf("Please enter a natural number:");
 	scanf("%d",&n);
-	int Is_Empty = 1;
-	for(i = 1;i < n;++i){
+	int Is_Empty = 1; //记录完数个数是否为0
+	for(int i = 1;i <= n;++i){
+		// i用来遍历所有小于等于n的自然数
 		int total = 0;
-		for(j = 1;j < i;++j){
+		for(int j = 1;j < i;++j){
+			// j用来遍历所有比i小的数，把i的约数找出来
 			if(i % j == 0){
+				// 如果整除，则j是i的一个约数
 				total += j;
 			}
 			else{
@@ -2295,7 +2298,8 @@ int main(){
 			}
 		}
 		if(total == i){
-			Is_Empty = 0;
+			// 满足完数条件
+			Is_Empty = 0; // 只要有一个完数，就不打印No
 			printf("%d is a perfect number!\n",i);
 		}
 		else{
@@ -2309,3 +2313,307 @@ int main(){
 	return 0;
 }
 ```
+
+```c
+Please enter a natural number:1024
+结果：
+6 is a perfect number!
+28 is a perfect number!
+496 is a perfect number!
+```
+---
+## 9.3 检查一个数是否为质数
+	输入一个正整数，检查该数是否为质数。如果该数是质数，则输出Yes；如果该数不是质数，则输出No。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int n;
+	printf("Please enter a positive integer:");
+	scanf("%d",&n);
+	int Is_Prime = 1;
+	for(int i = 2;i < n;++i){
+		if(n % i == 0){
+			Is_Prime = 0;
+			break;
+		}
+	}
+	if(Is_Prime == 1){
+		printf("Yes\n");
+	}
+	else{
+		printf("No\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+Please enter a positive integer:31
+结果：Yes
+```
+---
+
+	算法是否有优化空间？
+	当前算法为：从2检查到n - 1 --> 有没有办法少检查几次？
+
+- [0] 假如一个数n不是质数，那么它可以用a * b（a,b ≠ 1 且 a,b ≠ n）来表示，并且a,b不可能同时大于$\sqrt{n}$ ，也就是说，假如一个数n不是质数，那么它至少有一个约数小于等于$\sqrt{n}$
+- [1] 因此，我们只需要从2检查到$\sqrt{n}$就可以了
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int n;
+	printf("Please enter a positive integer:");
+	scanf("%d",&n);
+	int Is_Prime = 1;
+	for(int i = 2;i * i <= n;++i){
+		if(n % i == 0){
+			Is_Prime = 0;
+			break;
+		}
+	}
+	if(Is_Prime == 1){
+		printf("Yes\n");
+	}
+	else{
+		printf("No\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+Please enter a positive integer:31
+结果：Yes
+```
+---
+# 10. 函数的基本原理
+## 10.1 函数简介
+	正式学习函数之前，我们需要对函数建立两个直觉：
+		- 函数大概有什么用？
+			● 传入参数 --> 执行函数体里面的指令 --> 返回结果
+			● 把函数看成是程序的组件：
+				■ 可以把函数看成是小的子程序
+				■ 可以把程序看成是不同的函数组合起来
+		- 使用函数有什么好处？
+			● 减少重复代码的冗余
+---
+
+	场景题：现有3组数据，每组数据里面有3个整数，请你判断每组数据中的3个整数能否作为三角形的三边边长。三组数据如下：
+
+	第一组数据：1,2,3
+	第二组数据：2,3,4
+	第三组数据：4,5,6
+
+	解题思路：根据三角形任意两边之和大于第三边的性质对每组数据进行判断。
+---
+>**Version 1** : 声明每组数据时直接进行初始化，再对每组数据进行判断。
+
+```c
+#include<stdio.h>
+int main(){
+	int a1 = 1,b1 = 2,c1 = 3;
+	int a2 = 2,b2 = 3,c2 = 4;
+	int a3 = 4,b3 = 5,c3 = 6;
+	
+	if(a1 + b1 > c1 && a1 + c1 > b1 && b1 + c1 > a1){
+		printf("The three integers in the first set of data can serve as the lengths of the three sides of a triangle.\n");
+	}
+	else{
+		printf("The three integers in the first set of data cannot serve as the lengths of the three sides of a triangle.\n");
+	}
+	
+	if(a2 + b2 > c2 && a2 + c2 > b2 && b2 + c2 > a2){
+		printf("The three integers in the second set of data can serve as the lengths of the three sides of a triangle.\n");
+	}
+	else{
+		printf("The three integers in the second set of data cannot serve as the lengths of the three sides of a triangle.\n");
+	}
+	
+	if(a3 + b3 > c3 && a3 + c3 > b3 && b3 + c3 > a3){
+		printf("The three integers in the third set of data can serve as the lengths of the three sides of a triangle.\n");
+	}
+	else{
+		printf("The three integers in the third set of data cannot serve as the lengths of the three sides of a triangle.\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+The three integers in the first set of data cannot serve as the lengths of the three sides of a triangle.
+The three integers in the second set of data can serve as the lengths of the three sides of a triangle.
+The three integers in the third set of data can serve as the lengths of the three sides of a triangle.
+```
+---
+>**Version 2** : 先声明每组数据，然后通过 **scanf( )** 对每组数据进行赋值，最后对每组数据进行判断。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int a1,b1,c1;
+	printf("Please enter the first set of data:");
+	scanf("%d%d%d",&a1,&b1,&c1);
+	
+	int a2,b2,c2;
+	printf("Please enter the second set of data:");
+	scanf("%d%d%d",&a2,&b2,&c2);
+	
+	int a3,b3,c3;
+	printf("Please enter the third set of data:");
+	scanf("%d%d%d",&a3,&b3,&c3);
+	
+	if(a1 + b1 > c1 && a1 + c1 > b1 && b1 + c1 > a1){
+		printf("The three integers in the first set of data can serve as the lengths of the three sides of a triangle.\n");
+	}
+	else{
+		printf("The three integers in the first set of data cannot serve as the lengths of the three sides of a triangle.\n");
+	}
+	
+	if(a2 + b2 > c2 && a2 + c2 > b2 && b2 + c2 > a2){
+		printf("The three integers in the second set of data can serve as the lengths of the three sides of a triangle.\n");
+	}
+	else{
+		printf("The three integers in the second set of data cannot serve as the lengths of the three sides of a triangle.\n");
+	}
+	
+	if(a3 + b3 > c3 && a3 + c3 > b3 && b3 + c3 > a3){
+		printf("The three integers in the third set of data can serve as the lengths of the three sides of a triangle.\n");
+	}
+	else{
+		printf("The three integers in the third set of data cannot serve as the lengths of the three sides of a triangle.\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+Please enter the first set of data:1 2 3
+Please enter the second set of data:2 3 4
+Please enter the third set of data:4 5 6
+结果：
+The three integers in the first set of data cannot serve as the lengths of the three sides of a triangle.
+The three integers in the second set of data can serve as the lengths of the three sides of a triangle.
+The three integers in the third set of data can serve as the lengths of the three sides of a triangle.
+```
+---
+
+	Version 1与Version 2的代码中存在大量重复冗余的片段，导致代码非常容易出错。为了降低代码出错的概率，我们应该尽量减少重复的操作。为此我们提出了函数这一概念。
+---
+
+	函数
+		返回值类型 函数名(函数参数列表 --> 形参 --> 当作局部变量){
+			函数体
+		}
+---
+>**Version 3** : 将 **Version 1** 与 **Version 2** 中对每组数据进行判断的代码重新编写后集成到新定义的函数 **Is_Triangle( )** 中，对每组数据进行判断时只需调用**Is_Triangle( )** ，减少了重复操作，降低了代码出错的概率。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+
+void Is_Triangle(char rank[], int a, int b, int c){
+	if (a + b > c && a + c > b && b + c > a){
+		printf("The three integers in the %s set of data can serve as the lengths of the three sides of a triangle.\n", rank);
+	}
+	else{
+		printf("The three integers in the %s set of data cannot serve as the lengths of the three sides of a triangle.\n", rank);
+	}
+}
+
+int main(){
+	int a1, b1, c1;
+	char r1[] = "first";
+	printf("Please enter the %s set of data:", r1);
+	scanf("%d%d%d", &a1, &b1, &c1);
+	Is_Triangle(r1, a1, b1, c1);
+
+	int a2, b2, c2;
+	char r2[] = "second";
+	printf("Please enter the %s set of data:", r2);
+	scanf("%d%d%d", &a2, &b2, &c2);
+	Is_Triangle(r2, a2, b2, c2);
+
+	int a3, b3, c3;
+	char r3[] = "third";
+	printf("Please enter the %s set of data:", r3);
+	scanf("%d%d%d", &a3, &b3, &c3);
+	Is_Triangle(r3, a3, b3, c3);
+
+	return 0;
+}
+```
+
+```c
+Please enter the first set of data:1 2 3
+结果：
+The three integers in the first set of data cannot serve as the lengths of the three sides of a triangle.
+Please enter the second set of data:2 3 4
+结果：
+The three integers in the second set of data can serve as the lengths of the three sides of a triangle.
+Please enter the third set of data:4 5 6
+结果：
+The three integers in the third set of data can serve as the lengths of the three sides of a triangle.
+```
+---
+>**Version 4** : 进一步将告诉程序输入的是第几组数据这一功能也集成到**Is_Triangle( )** 中，并引入**整形变量n** 来获取要输入几组数据的信息，进而通过**for** 循环来调用**Is_Triangle( )** 对每组数据进行判断。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+
+void Is_Triangle(){
+	char rank[100];
+	printf("Please enter the ranking of this set of data(e.g., first, second, third, ...):");
+	scanf("%s",rank);
+	int a,b,c;
+	printf("Please enter the %s set of data(three integers):",rank);
+	scanf("%d%d%d",&a,&b,&c);
+	
+	if (a + b > c && a + c > b && b + c > a){
+		printf("The three integers in the %s set of data can serve as the lengths of the three sides of a triangle.\n", rank);
+	}
+	else{
+		printf("The three integers in the %s set of data cannot serve as the lengths of the three sides of a triangle.\n", rank);
+	}
+}
+
+int main(){
+	int n;
+	printf("Please input the number of data groups:");
+	scanf("%d",&n);
+	for(int i = 1;i <= n;++i){
+		Is_Triangle();
+	}
+
+	return 0;
+}
+```
+
+```c
+Please input the number of data groups:3
+Please enter the ranking of this set of data(e.g., first, second, third, ...):first
+Please enter the first set of data(three integers):1 2 3
+结果：
+The three integers in the first set of data cannot serve as the lengths of the three sides of a triangle.
+Please enter the ranking of this set of data(e.g., first, second, third, ...):second
+Please enter the second set of data(three integers):2 3 4
+结果：
+The three integers in the second set of data can serve as the lengths of the three sides of a triangle.
+Please enter the ranking of this set of data(e.g., first, second, third, ...):third
+Please enter the third set of data(three integers):4 5 6
+结果：
+The three integers in the third set of data can serve as the lengths of the three sides of a triangle.
+```
+---
+[[2026-02-07]]
+## 10.2 函数的声明和定义
