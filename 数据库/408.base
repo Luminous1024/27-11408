@@ -1,12 +1,13 @@
+filters:
+  and:
+    - file.hasTag("408_计算机学科专业基础")
 views:
   - type: table
     name: "408"
     filters:
       and:
-        - file.hasTag("408_计算机学科专业基础")
-    groupBy:
-      property: 创建时间
-      direction: DESC
+        - 考试科目 == "408"
+        - file.name != "408"
     order:
       - file.name
       - 创建时间
@@ -18,44 +19,14 @@ views:
       - 结束日期
     sort:
       - property: file.ctime
-        direction: DESC
+        direction: ASC
     columnSize:
       note.创建时间: 163
-  - type: table
-    name: 零基础
-    filters:
-      and:
-        - 阶段 == "零基础"
-        - file.hasTag("408_计算机学科专业基础")
-    groupBy:
-      property: 创建时间
-      direction: DESC
-    order:
-      - file.name
-      - file.ctime
-      - 考试科目
-      - 课程
-      - 阶段
-      - 老师
-      - 开始日期
-      - 结束日期
-    columnSize:
-      file.name: 198
-      file.ctime: 91
-      note.考试科目: 88
-      note.开始日期: 113
-      note.结束日期: 117
   - type: table
     name: C语言入门课程
     filters:
       and:
         - file.name == "C语言入门课程"
-    order:
-      - file.name
-      - file.ctime
-      - 考试科目
-      - 课程
-      - 阶段
-      - 老师
-      - 开始日期
-      - 结束日期
+    sort:
+      - property: file.ctime
+        direction: ASC

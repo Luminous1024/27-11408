@@ -7,7 +7,20 @@
   "leftRibbon": [],
   "rightRibbon": [],
   "titleBar": [],
-  "statusBar": [],
+  "statusBar": [
+    {
+      "id": "obsidian-day-planner:show-day-planner-timeline",
+      "icon": "lucide-timer",
+      "name": "Day Planner: Show timeline",
+      "mode": "any"
+    },
+    {
+      "id": "app:toggle-right-sidebar",
+      "icon": "sidebar-right",
+      "name": "折叠/展开右侧边栏",
+      "mode": "any"
+    }
+  ],
   "pageHeader": [],
   "macros": [
     {

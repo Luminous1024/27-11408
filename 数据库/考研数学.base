@@ -1,10 +1,17 @@
+filters:
+  and:
+    - file.hasTag("考研数学")
 views:
   - type: table
     name: 考研数学
     filters:
-      and:
-        - file.hasTag("考研数学")
-        - 阶段 == "基础"
+      or:
+        - file.name == "考研数学基础30讲"
+        - file.name == "张宇1000题"
+        - file.name == "武忠祥高等数学强化"
+        - file.name == "李永乐线性代数强化"
+        - file.name == "没咋了线代强化"
+        - file.name == "余炳森概率论与数理统计强化"
     order:
       - file.name
       - 创建时间
@@ -23,8 +30,3 @@ views:
       note.创建时间: 113
       note.考试科目: 84
       note.课程: 70
-  - type: table
-    name: 考研数学基础30讲 —— 高等数学篇
-    filters:
-      and:
-        - 课程 == "高等数学"

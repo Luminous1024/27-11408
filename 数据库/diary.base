@@ -4,11 +4,11 @@ views:
     filters:
       and:
         - file.hasTag("diary")
-    groupBy:
-      property: 创建时间
-      direction: DESC
     order:
       - file.name
       - 创建时间
+    sort:
+      - property: file.ctime
+        direction: DESC
     columnSize:
       file.name: 197
