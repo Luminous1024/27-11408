@@ -2614,6 +2614,189 @@ Please enter the third set of data(three integers):4 5 6
 结果：
 The three integers in the third set of data can serve as the lengths of the three sides of a triangle.
 ```
+
+- [0] 当我们使用函数时，可以将重复冗余的操作都放进函数体中。这样做可以使代码量减少，进而降低程序出错的可能性。
 ---
-[[2026-02-07]]
+[[2026-02-10]]
 ## 10.2 函数的声明和定义
+	函数的声明
+		通知编译器函数的一些信息，包括：
+			返回值类型
+			函数名
+			形式参数
+			分号';'
+
+		在使用函数之前，必须有函数的声明
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+
+void Is_Triangle(); //函数的声明
+void Is_Triangle(); //声明可以多次
+
+int main(){
+	int n;
+	printf("Please input the number of data groups:");
+	scanf("%d",&n);
+	for(int i = 1;i <= n;++i){
+		Is_Triangle();
+	}
+
+	return 0;
+}
+
+void Is_Triangle(){
+	char rank[100];
+	printf("Please enter the ranking of this set of data(e.g., first, second, third, ...):");
+	scanf("%s",rank);
+	int a,b,c;
+	printf("Please enter the %s set of data(three integers):",rank);
+	scanf("%d%d%d",&a,&b,&c);
+	
+	if (a + b > c && a + c > b && b + c > a){
+		printf("The three integers in the %s set of data can serve as the lengths of the three sides of a triangle.\n", rank);
+	}
+	else{
+		printf("The three integers in the %s set of data cannot serve as the lengths of the three sides of a triangle.\n", rank);
+	}
+}
+```
+---
+
+	函数的定义
+		函数的定义就是把一个函数的所有信息全部描述出来，包括：
+			返回值类型
+			函数名
+			形式参数
+			函数体{}
+
+		函数的定义会自带一次声明。
+		函数的定义在一个程序中只能有一次！
+---
+- [0] 一个函数的定义在程序中只能有一次；一个函数的声明在程序中可以有多次。
+---
+## 10.3 函数运行过程
+	函数调用
+		函数调用语句之前，必须要先有函数声明。
+
+		调用函数时，先写函数的名字，再写一对圆括号，在圆括号里面写传入的参数（实际参数 —— 实参）
+
+		主调方：调用函数的一方
+		被调方：被调用的函数
+
+		流程：主调方先准备实参，然后传入给被调方，调用被调函数，被调方执行函数体，返回之后讲返回值给主调方。
+---
+
+	调试函数调用过程
+
+```mermaid
+flowchart TD
+    Start["开始执行程序"] --> A[main开始]
+    
+    A --> B["定义变量 n<br>int n;"]
+    B --> C["输出提示信息<br>printf(&quot;Please input...&quot;)"]
+    C --> D["读取输入 n<br>scanf(&quot;%d&quot;, &n)"]
+    D --> E["for 循环开始<br>i = 1"]
+    
+    E --> Condition{i <= n?}
+    
+    Condition -- 是 --> F["调用 Is_Triangle() 函数"]
+    
+    F --> G[IsTriangle开始执行]
+    G --> H["定义局部变量<br>char rank[100];<br>int a, b, c;"]
+    H --> I["输出排名提示<br>printf(&quot;Please enter the ranking...&quot;)"]
+    I --> J["读取 rank<br>scanf(&quot;%s&quot;, rank)"]
+    J --> K["输出数据输入提示<br>printf(&quot;Please enter the %s...&quot;, rank)"]
+    K --> L["读取 a, b, c<br>scanf(&quot;%d%d%d&quot;, &a, &b, &c)"]
+    L --> M["判断三角形条件<br>a+b>c && a+c>b && b+c>a"]
+    
+    M -- 条件成立 --> N["输出可以构成三角形<br>printf(&quot;The three integers...&quot;)"]
+    M -- 条件不成立 --> O["输出不能构成三角形<br>printf(&quot;The three integers...&quot;)"]
+    
+    N --> P[IsTriangle执行结束]
+    O --> P
+    
+    P --> Q["返回到 main 调用处<br>控制权交还给 main"]
+    Q --> R["i++ (i 增加 1)"]
+    R --> Condition
+    
+    Condition -- 否 --> S["跳出循环"]
+    S --> T["return 0;<br>程序结束"]
+    
+    style Start fill:#e1f5e1
+    style A fill:#e1f5e1
+    style F fill:#bbdefb
+    style G fill:#bbdefb
+    style P fill:#ffccbc
+    style T fill:#ffccbc
+```
+- [0] 1.调试函数的时候要使用F11而不是F10
+- [1] 2.主调函数去调用被调函数的时候，指令位置会跳转到被调函数，等被调函数返回之后，再回到主调方
+
+>总结：
+>顺序结构：指令一行一行从上往下走
+>选择结构：出现指令跳转的情况
+>循环结构：出现指令走回头路的情况
+>函数调用：出现指令临时跳转到被调函数，被调方返回之后，再回到主调方的情况
+---
+## 10.4 函数运行的内存原理
+
+```c
+#include<stdio.h>
+
+void func1(){
+	
+}
+
+void func2(){
+	func1();
+}
+
+int main(){
+	func1();
+	func2();
+	
+	return 0;
+}
+```
+
+- [1] 调试函数调用的过程会发现：存在这样一个现象 —— 后调用的函数先返回。此现象的详细说明详见 —— [[函数调用的详细过程]]
+
+- [0] 在指令的运行过程中，内存发生了什么变化？详见 —— [[内存布局]] + [[函数调用的内存原理]]
+
+>总结：
+>根据先修知识[[内存布局]]我们了解到 —— 函数调用影响的是栈区
+>栈区的特征 —— 后进先出 **(Last in,first out.)**
+>
+>根据先修知识[[函数调用的内存原理]]我们了解到 —— 在函数调用的过程中，内存的变化如下：
+>每次调用函数，会开辟一个栈帧
+>栈帧会压入栈区；
+>每次函数返回，会弹出一个栈帧 —— 被弹出的这个栈帧就会被销毁掉
+---
+## 10.5 作用域
+	作用域用来描述变量的有效范围
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int a = 1;
+void func(){
+	int b = 2;
+}
+int main(){
+	int c = 3;
+	{
+		int d = 4;
+		// 在第11行这个位置，a b c d谁是有效的谁是无效的？答：除了b其他都有效。
+	}
+	
+	// 在第14行这个位置，a b c d谁是有效的谁是无效的？答：除了b和d其他都有效。
+	return 0;
+}
+```
+
+- [0] 通过在**不同位置分别对a b c d进行赋值操作**，然后对代码进行编译，我们会发现：存在这样一个**现象** —— **不同位置的变量的有效范围是有区别的。**
+- [1] 变量的作用域是以 —— **花括号'{}'** 作为边界的。
+- [2] 我们将**花括号'{}'** 内部的变量称为 —— **内部变量**；我们将**花括号'{}'** 外部的变量称为 —— **外部变量**。
+- [3] 外部变量在内部**依然可以生效**；内部变量在外部**不生效**。

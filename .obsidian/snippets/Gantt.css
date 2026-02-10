@@ -1,0 +1,47 @@
+/* 完整版 Mermaid Gantt 图调整 */
+.mermaid .gantt {
+    /* 设置最小宽度，防止内容挤压 */
+    min-width: 1000px !important;
+
+    /* 允许水平滚动 */
+    overflow-x: auto !important;
+    display: block;
+
+    /* 保持高度自适应 */
+    height: auto !important;
+}
+
+/* 确保 SVG 元素也足够宽 */
+.mermaid svg {
+    min-width: 1000px !important;
+    max-width: none !important;
+}
+
+/* 调整时间轴标签，防止重叠 */
+.mermaid .grid .tick text {
+    font-size: 11px !important;
+    font-family: monospace !important;
+    transform: translateY(3px) !important;
+}
+
+/* 调整时间轴刻度线 */
+.mermaid .grid .tick line {
+    stroke-width: 0.5px !important;
+    stroke: #888 !important;
+}
+
+/* 调整图表中的文本 */
+.mermaid .sectionTitle text {
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+/* 调整任务条的颜色和样式 */
+.mermaid .task {
+    stroke-width: 1px !important;
+}
+
+/* 针对短时间跨度的特殊处理 */
+.mermaid .gantt[data-short-time="true"] {
+    min-width: 1500px !important;
+}

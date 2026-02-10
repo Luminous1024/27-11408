@@ -3,7 +3,8 @@
   "enabledCssSnippets": [
     "extended-colorschemes",
     "center-tables",
-    "Tree_Structure"
+    "Tree_Structure",
+    "Gantt"
   ],
   "theme": "obsidian"
 }
