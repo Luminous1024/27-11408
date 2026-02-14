@@ -2902,3 +2902,88 @@ main,a = 10,b = 5
 
 - [3] **在main函数中失败的原因：** 值交换这一操作的代码都集成到**swap函数**中了，而**swap函数**所实现的值交换仅仅是对**swap函数**的**形参(sawp函数内部的局部变量)** 进行值交换，**main函数内部的局部变量a、b**并没有发生任何改变。因此在**main函数**中失败了。
 ---
+[[2026-02-14]]
+# 11. 数组
+## 11.1 数组的概念和定义
+	数组
+
+	场景：
+		如果需要5个变量？ —— int a1,a2,a3,a4,a5;
+		如果需要10个变量？ —— int a1,a2,···,a10;
+		如果需要100个变量？ —— int a1,a2,···,a100;
+
+	由于程序业务的要求，我们现在需要很多个变量，原来用来描述单一数据的数据类型已经无法满足我们的需求了。因此我们提出了 —— 聚合数据结构(把单一的数据组合在一起)
+
+	数组就是一种典型的聚合数据结构。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int arr[5];
+	
+	return 0;
+}
+```
+
+- [0] 当我声明了一个整形数组arr[5] (int arr[5])时，内存中发生了什么呢？ —— 详见[[C语言数组声明详解：int arr[5] ]]
+- [1] 数组的性质 —— 详见[[数组的性质]]
+---
+
+	数组的定义
+		元素的数据类型 数组名[数组长度(必须是"正·常·整数")];
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	// 数组的长度必须大于0 && 数组的长度是一个整数
+	int arr[LEN]; // 数组的元素类型为int，数组名为arr，数组长度为5。
+	// 下面是不推荐的写法（不推荐的原因：数组长度不应该是变量）
+	// int len = 5;
+	// int arr[len];
+	
+	return 0;
+}
+```
+---
+## 11.2 数组的初始化
+	数组的初始化就是在定义数组时，就给数组的元素设置好值 —— 数组的初始化
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	int arr[LEN] = {1,2,3,4,5};
+	
+	return 0;
+}
+```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	// 初始化列表元素个数小于数组长度时，剩余元素自动赋值为0。
+	// 注意：初始化列表元素个数不允许大于数组长度！！！
+	int arr[LEN] = {1,2,3};
+	
+	return 0;
+}
+```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	// 数组长度是可以自动推断的。
+	// 注意：只有初始化列表存在的情况下才可以省略数组长度！！！
+	int arr[] = {1,2,3};
+	
+	return 0;
+}
+```
