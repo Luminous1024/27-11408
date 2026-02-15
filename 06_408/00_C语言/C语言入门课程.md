@@ -2987,3 +2987,188 @@ int main(){
 	return 0;
 }
 ```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	// 申请一个长度为1024的数组，内容全是0
+	int arr[1024] = {0};
+	
+	return 0;
+}
+```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	int arr[5] = {1,2,3,4,5}; // 定义语句里面，"="是初始化符号。
+	int arr[5];
+	arr[5] = {1,2,3,4,5}; // 在定义语句之外，"="是赋值的意思，赋值不能使用初始化列表。
+	
+	return 0;
+}
+```
+---
+[[2026-02-15]]
+## 11.3 访问数组元素
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	int arr[5] = {1,2,3,4,5};
+	// 下标运算符"[]"
+	// arr[0] arr[1] ··· arr[4] // 范围是 0 ~ N - 1
+	/* arr[0]是一个元素 —— 可以当成一个变量：
+		1.arr[0]里面有值
+		2.编译器给arr[0]分配了内存空间
+	*/
+	
+	return 0;
+}
+```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	int arr[5] = {1,2,3,4,5}; // 定义语句里面"[]"用来规定数组的长度，这时"[]"称为数组定义运算符。
+	for(int i = 0;i < 5;++i){
+		// 非定义语句里面"[]"用来根据下标访问元素。
+		printf("arr[%d] = %d\n",i,arr[i]);
+	}
+	printf("-------------------------\n");
+	arr[3] = 1024;
+	for(int i = 0;i < 5;++i){
+		printf("arr[%d] = %d\n",i,arr[i]);
+	}
+	
+	return 0;
+}
+```
+---
+## 11.4 数组元素的内存布局和越界问题
+
+>**知识回顾 —— 数组的性质**
+>1.连续存储
+>2.数据类型相同
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	int arr[5] = {1,2,3,4,5}; // 定义语句里面"[]"用来规定数组的长度，这时"[]"称为数组定义运算符。
+	for(int i = 0;i < 5;++i){
+		// 非定义语句里面"[]"用来根据下标访问元素。
+		printf("arr[%d] = %d\n",i,arr[i]);
+	}
+	printf("-------------------------\n");
+	arr[3] = 1024;
+	for(int i = 0;i < 5;++i){
+		printf("arr[%d] = %d\n",i,arr[i]);
+	}
+	
+	return 0;
+}
+```
+
+	数组元素的内存布局
+		1.数组的首地址和arr[0]的首地址是一样的。
+		2.arr[i]的地址 = 数组首地址 + i * sizeof(元素类型) —— 如果想要访问某个元素，不需要知道数组的长度，只需要知道数组的首地址、下标和元素类型即可。
+
+	"[]"的原理：根据数组的首地址、下标和元素类型求出i号元素在内存中的位置，再访问元素。
+	"[]"的本质：先计算地址，再访问元素。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	int arr[5] = {1,2,3,4,5};
+	int a = 20;
+	for(int i = 0;i < 13;++i){
+		arr[i] = i + 1;
+	}
+	printf("a = %d\n",a);
+	
+	return 0;
+}
+```
+
+```c
+结果：a = 12
+```
+
+- [0] 我并没有对局部变量a进行除了初始化之外的任何操作，但为什么打印的时候a的值从20变为12了呢？ —— 具体原因详见[[数组元素的内存布局与越界问题]]
+---
+[[2026-02-16]]
+## 11.5 局部数组的长度限制
+	栈帧的大小限制
+		只要是局部的变量，无论是单一变量还是数组，都分配在栈帧上面。与单一变量不同，数组的长度可能会很大，因此我们提出这样一个问题 —— 数组的长度有没有限制？
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+int main(){
+	char arr[1200000];
+	
+	return 0;
+}
+```
+
+- [0] 我点击调试按钮之后弹出了一条报错信息：**Stack Overflow** 这是怎么回事？默认栈帧大小是多少？该如何解决？ —— 具体原因与解决方案详见 —— [[局部数组的长度限制与栈溢出]]
+---
+## 11.6 数组作为函数参数
+	使用函数传递数组
+
+	知识回顾："[]"运算符
+		arr[i]的原理：先根据数组首地址、元素类型和下标i计算出地址，再根据地址去访问内存 —— 数组的长度是没用的信息。
+		C语言的作者在设计数组参数的时候，决定丢弃掉长度信息。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define LEN 5
+void func(int arr[5],int length){
+	// length补充数组的长度信息。
+	// 在被调函数中，数组会退化成一个地址，丢失了长度信息。
+	printf("func sizeof(arr) = %d\n",sizeof(arr));
+	for(int i = 0;i < length;++i){
+		printf("%3d",arr[i]); // "[]"不需要长度信息。
+	}
+	printf("\n");
+}
+int main(){
+	// 在主调函数的位置，我们知道数组的长度信息。
+	int arr[LEN] = {1,2,3,4,5};
+	printf("main sizeof(arr) = %d\n",sizeof(arr));
+	for(int i = 0;i < sizeof(arr) / sizeof(int);++i){
+		printf("%3d",arr[i]);
+	}
+	printf("\n");
+	func(arr,sizeof(arr) / sizeof(int)); // 数组这个整体作为实参时，不需要"[]"。
+	
+	return 0;
+}
+```
+
+```c
+结果：
+main sizeof(arr) = 20
+  1  2  3  4  5
+func sizeof(arr) = 8
+  1  2  3  4  5
+```
+
+- [0] C语言中将一个数组从主调函数传递给被调函数时，会将数组退化成指向数组第一个字节的地址
+---
+## 11.7 二维数组的基本概念
+	二维数组
