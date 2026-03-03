@@ -878,7 +878,7 @@ int main(){
 			1. 准备变量 —— 数据的目的地
 			2. scanf()的两类参数：
 				- 第一类参数：字符串 —— 用来描述数据的格式
-				- 第二类参数：& + 变量名 —— 用来说明存放数据的地址（记得使用&运算符）
+				- 第二类参数：& + 变量名 —— 用来说明存放数据的地址（记得使用'&'运算符）
 			3. scanf()的返回值是读取成功的变量个数
 				- 如果返回值和'%'个数相等 —— 读取成功
 				- 如果返回值小于'%'个数 —— 有数据读取失败
@@ -1085,7 +1085,7 @@ int main(){
 		关系运算符
 		逻辑运算符
 		赋值运算符
-		*位运算符
+		位运算符
 		其他：条件运算符 逗号运算符
 ---
 ## 6.1 算术运算符
@@ -1116,7 +1116,7 @@ a / b = 2
 a % b = 0
 ```
 
-- [0] %（取余运算符）的操作数必须是整数
+- [0] '%'（取余运算符）的操作数必须是整数
 
 ```c
 #include<stdio.h>
@@ -1398,7 +1398,7 @@ int main(){
 ## 6.6 赋值运算符
 	赋值运算符 L = R
 		赋值运算符优先级比较低
-		可以将赋值运算符"="看作一个向左指向的箭头"⬅"，其实质为把R的值(可以是临时数据)放入L的内存空间里面。因此，我们需要对L提出一些要求：
+		可以将赋值运算符'='看作一个向左指向的箭头'⬅'，其实质为把R的值(可以是临时数据)放入L的内存空间里面。因此，我们需要对L提出一些要求：
 
 $$
 \text L(左值)
@@ -1483,7 +1483,7 @@ int main(){
 	if(i = i + 1,i == 3){
 	}
 
-- [2] 注意：函数参数里面的","不是逗号运算符，C语言没有规定参数的处理顺序。
+- [2] 注意：函数参数里面的','不是逗号运算符，C语言没有规定参数的处理顺序。
 ---
 ## 6.9 自增自减运算符
 	++ 单目 自增 ——> 操作数必须是左值
@@ -3022,7 +3022,7 @@ int main(){
 #define LEN 5
 int main(){
 	int arr[5] = {1,2,3,4,5};
-	// 下标运算符"[]"
+	// 下标运算符'[]'
 	// arr[0] arr[1] ··· arr[4] // 范围是 0 ~ N - 1
 	/* arr[0]是一个元素 —— 可以当成一个变量：
 		1.arr[0]里面有值
@@ -3038,9 +3038,9 @@ int main(){
 #include<stdio.h>
 #define LEN 5
 int main(){
-	int arr[5] = {1,2,3,4,5}; // 定义语句里面"[]"用来规定数组的长度，这时"[]"称为数组定义运算符。
+	int arr[5] = {1,2,3,4,5}; // 定义语句里面'[]'用来规定数组的长度，这时'[]'称为数组定义运算符。
 	for(int i = 0;i < 5;++i){
-		// 非定义语句里面"[]"用来根据下标访问元素。
+		// 非定义语句里面'[]'用来根据下标访问元素。
 		printf("arr[%d] = %d\n",i,arr[i]);
 	}
 	printf("-------------------------\n");
@@ -3064,9 +3064,9 @@ int main(){
 #include<stdio.h>
 #define LEN 5
 int main(){
-	int arr[5] = {1,2,3,4,5}; // 定义语句里面"[]"用来规定数组的长度，这时"[]"称为数组定义运算符。
+	int arr[5] = {1,2,3,4,5}; // 定义语句里面'[]'用来规定数组的长度，这时'[]'称为数组定义运算符。
 	for(int i = 0;i < 5;++i){
-		// 非定义语句里面"[]"用来根据下标访问元素。
+		// 非定义语句里面'[]'用来根据下标访问元素。
 		printf("arr[%d] = %d\n",i,arr[i]);
 	}
 	printf("-------------------------\n");
@@ -3083,8 +3083,8 @@ int main(){
 		1.数组的首地址和arr[0]的首地址是一样的。
 		2.arr[i]的地址 = 数组首地址 + i * sizeof(元素类型) —— 如果想要访问某个元素，不需要知道数组的长度，只需要知道数组的首地址、下标和元素类型即可。
 
-	"[]"的原理：根据数组的首地址、下标和元素类型求出i号元素在内存中的位置，再访问元素。
-	"[]"的本质：先计算地址，再访问元素。
+	'[]'的原理：根据数组的首地址、下标和元素类型求出i号元素在内存中的位置，再访问元素。
+	'[]'的本质：先计算地址，再访问元素。
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -3129,7 +3129,7 @@ int main(){
 ## 11.6 数组作为函数参数
 	使用函数传递数组
 
-	知识回顾："[]"运算符
+	知识回顾：'[]'运算符
 		arr[i]的原理：先根据数组首地址、元素类型和下标i计算出地址，再根据地址去访问内存 —— 数组的长度是没用的信息。
 		C语言的作者在设计数组参数的时候，决定丢弃掉长度信息。
 
@@ -3142,7 +3142,7 @@ void func(int arr[5],int length){
 	// 在被调函数中，数组会退化成一个地址，丢失了长度信息。
 	printf("func sizeof(arr) = %d\n",sizeof(arr));
 	for(int i = 0;i < length;++i){
-		printf("%3d",arr[i]); // "[]"不需要长度信息。
+		printf("%3d",arr[i]); // '[]'不需要长度信息。
 	}
 	printf("\n");
 }
@@ -3154,7 +3154,7 @@ int main(){
 		printf("%3d",arr[i]);
 	}
 	printf("\n");
-	func(arr,sizeof(arr) / sizeof(int)); // 数组这个整体作为实参时，不需要"[]"。
+	func(arr,sizeof(arr) / sizeof(int)); // 数组这个整体作为实参时，不需要'[]'。
 	
 	return 0;
 }
@@ -3170,5 +3170,695 @@ func sizeof(arr) = 8
 
 - [0] C语言中将一个数组从主调函数传递给被调函数时，会将数组退化成指向数组第一个字节的地址
 ---
+[[2026-02-24]]
 ## 11.7 二维数组的基本概念
-	二维数组
+	一维数组 —— 向量
+	二维数组 —— 矩阵
+
+```c
+int arr[M][N]; // M —— 行数 N —— 列数
+```
+
+
+$$
+\text {从计算机的角度看：二维数组也是一维数组}
+\begin{cases}
+\text {数组的元素类型是数组 \ —— \ “数组的数组”} \\
+\text {数组的行数即数组的长度} \\
+\end{cases}
+$$
+
+```c
+int a[2][3]; // 长度为2的数组，数组元素是长度为3的数组
+```
+
+- [0] 数组在内存中按照行优先存储
+---
+## 11.8 二维数组的初始化
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	// 二维数组方式初始化
+	int arr[2][3] = { {1,2,3},{4,5,6} };
+	// 一维数组方式初始化
+	int arr[2][3] = {1,2,3,4,5,6};
+	
+	// 二维数组方式初始化
+	int arr[2][3] = { {1,2},{3,4} };
+	// 一维数组方式初始化
+	int arr[2][3] = {1,2,3,4};
+	
+	return 0;
+}
+```
+---
+[[2026-02-25]]
+## 11.9 二维数组的访问和传递
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int arr[2][3] = { {1,2,3},{4,5,6}};
+	for(int i = 0;i < 2;++i){ // 遍历每一行
+		for(int j = 0;j < 3;++j){ // 遍历每一列
+			printf("%3d",arr[i][j]);
+		}
+		printf("\n");
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+  1  2  3
+  4  5  6
+```
+
+	arr[i][j]的地址如何计算？
+	arr首地址 + i * sizeof(int) * 3 + j * sizeof(int)
+
+>[!note]
+>计算二维数组元素的内存地址时，只需要知道二维数组的列数，不需要知道二位数组的行数。
+
+- [0] 深入理解C语言中是如何计算二维数组元素的内存地址 —— 详见[[计算二维数组元素的内存地址]]
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+void func(int arr[2][3]){
+	for(int i = 0;i < 2;++i){ // 遍历每一行
+		for(int j = 0;j < 3;++j){ // 遍历每一列
+			printf("%3d",arr[i][j]);
+		}
+		printf("\n");
+	}
+}
+int main(){
+	int arr[2][3] = { {1,2,3},{4,5,6}};
+	for(int i = 0;i < 2;++i){ // 遍历每一行
+		for(int j = 0;j < 3;++j){ // 遍历每一列
+			printf("%3d",arr[i][j]);
+		}
+		printf("\n");
+	}
+	printf("-----------\n");
+	func(arr);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+  1  2  3
+  4  5  6
+-----------
+  1  2  3
+  4  5  6
+```
+
+>[!note]
+>二维数组作为参数传递时只丢失了行数的信息。
+
+---
+[[2026-02-26]]
+# 12. 指针
+## 12.1 地址、指针和指针变量
+
+>知识回顾：内存模型 —— 详见[[内存布局]]
+
+	我们想根据地址来访问内存中的数据
+	指针就是地址
+	指针变量是一个变量，变量的内存里面存储了一个指针
+
+---
+## 12.2 指针变量的定义和初始化
+	前提：指针变量是依附于另外一个目标而存在的。所以在使用指针变量时需要先给目标申请内存，再创建指针变量。
+
+	基类型：指针所指向的目标的数据类型。
+	基类型决定了目标的大小。
+	基类型 *指针变量名
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int i = 10;
+	int *p; // 推荐将*和变量名写在一起。
+	// '&'(取地址运算符)出现在非定义语句里面时，表示取地址的意思。'&'(取地址运算符)只能作用于变量/数组的名字，不能对一个临时的结果做取地址的操作。
+	p = &i; // p里面存储的地址值是i的地址 —— p指向i
+	// 对指针变量赋值可以修改指针的指向
+	
+	int *p = &i; // 定义一个指针变量p，初始化为指向i
+	
+	return 0;
+}
+```
+
+---
+## 12.3 解引用运算符
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int i = 10;
+	
+	int *p = &i; // 定义一个指针变量p，初始化为指向i
+	
+	printf("*p = %d\n",*p);
+	// '*'运算符在定义语句里面，用来说明创建指针变量。
+	// '*'(解引用运算符)出现非定义语句里面，表示解引用/间接访问(根据指针变量里面存储的地址值和指针变量的基类型去访问目标的内容)的意思。
+	*p = 11;
+	printf("i = %d\n",i);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+*p = 10
+i = 11
+```
+
+---
+[[2026-02-27]]
+## 12.4 指针基本使用小结
+	流程：
+		1.给目标申请内存
+		2.准备一个指针变量，通过初始化/赋值的方式，让指针变量去指向目标
+		3.使用解引用运算符'*'去间接访问目标
+
+	两种用途：
+		1.指针的传递 —— 指针和函数配合
+		2.指针的偏移 —— 指针和数组配合
+
+---
+## 12.5 指针的传递
+
+>**知识回顾：函数的值传递机制 —— 详见[[值传递]]**
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+void swap(int a,int b){
+	int temp = a;
+	a = b;
+	b = temp;
+	printf("sawp a = %d,b = %d\n",a,b);
+}
+int main(){
+	int a = 10,b = 5;
+	swap(a,b);
+	printf("main a = %d,b = %d\n",a,b);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+sawp a = 5,b = 10
+main a = 10,b = 5
+```
+
+>[!note]
+>由于**函数的值传递机制**，被调函数没有办法修改**主调函数栈帧里面的内容**。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+void swap(int *pa,int *pb){
+	int temp = *pa;
+	*pa = *pb;
+	*pb = temp;
+	printf("swap *pa = %d,*pb = %d\n",*pa,*pb);
+}
+int main(){
+	int a = 10,b = 5;
+	int *pa,*pb;
+	pa = &a;
+	pb = &b;
+	swap(pa,pb);
+	printf("main a = %d,b = %d\n",a,b);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+swap *pa = 5,*pb = 10
+main a = 5,b = 10
+```
+
+>[!Note]
+>指针的传递可以用来在被调函数中去修改主调函数栈帧中的数据。
+>	1.主调方先给被修改的数据申请内存
+>	2.被调方需要用数据的指针作为参数
+>	3.被调方需要用解引用运算符去间接访问内存，修改内容
+
+- [0] 若想深入理解程序运行过程中内存是如何变化的 —— 详见[[指针交换程序内存变化分析]]
+---
+[[2026-02-28]]
+## 12.6 指针的偏移
+	对指针变量做加减法（只能加减整数）
+	int *p
+	p和p + 1有什么关系？
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int i = 10;
+	double d = 3.14;
+	int *pi = &i;
+	double *pd = &d;
+	printf("pi = %p,pi + 1 = %p\n",pi,pi + 1); // 指针可以用%p作为占位符
+	printf("pd = %p,pd + 1 = %p\n",pd,pd + 1);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+pi = 000000533A19FB74,pi + 1 = 000000533A19FB78
+pd = 000000533A19FB98,pd + 1 = 000000533A19FBA0
+```
+
+>[!note]
+>p + n的结果 = p里面存储的地址 + n * sizeof(基类型) —— 和'[]'运算符很像
+>因此可以得到以下结论：我们经常会把数组当中的某个元素的地址取出来，然后**对指针变量做加减法（即指针的偏移）** 从而去访问数组中的其他元素。
+>根据此结论我们建立了一个直觉 —— 指针的偏移通常会和数组联系在一起，也就是说我们会经常会通过**对指针变量做加减法（即指针的偏移）** 来访问数组中的其他元素。
+
+---
+## 12.7 指针和数组的关系
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int arr[] = {1,2,3,4,5};
+	int *p = &arr[0];
+	for(int i = 0;i < 5;++i){
+		printf("i = %d,p + i = %p,&arr[i] = %p\n",i,p + i,&arr[i]);
+		printf("i = %d,*(p + i) = %d,arr[i] = %d\n",i,*(p + i),arr[i]);
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+i = 0,p + i = 00000091628FF638,&arr[i] = 00000091628FF638
+i = 0,*(p + i) = 1,arr[i] = 1
+i = 1,p + i = 00000091628FF63C,&arr[i] = 00000091628FF63C
+i = 1,*(p + i) = 2,arr[i] = 2
+i = 2,p + i = 00000091628FF640,&arr[i] = 00000091628FF640
+i = 2,*(p + i) = 3,arr[i] = 3
+i = 3,p + i = 00000091628FF644,&arr[i] = 00000091628FF644
+i = 3,*(p + i) = 4,arr[i] = 4
+i = 4,p + i = 00000091628FF648,&arr[i] = 00000091628FF648
+i = 4,*(p + i) = 5,arr[i] = 5
+```
+
+>[!important] 指针和数组更有意思的关联
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int arr[] = {1,2,3,4,5};
+	int *p = arr;
+	for(int i = 0;i < 5;++i){
+		printf("i = %d,p + i = %p,&arr[i] = %p\n",i,p + i,&arr[i]);
+		printf("i = %d,*(p + i) = %d,arr[i] = %d\n",i,*(p + i),arr[i]);
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+i = 0,p + i = 00000091628FF638,&arr[i] = 00000091628FF638
+i = 0,*(p + i) = 1,arr[i] = 1
+i = 1,p + i = 00000091628FF63C,&arr[i] = 00000091628FF63C
+i = 1,*(p + i) = 2,arr[i] = 2
+i = 2,p + i = 00000091628FF640,&arr[i] = 00000091628FF640
+i = 2,*(p + i) = 3,arr[i] = 3
+i = 3,p + i = 00000091628FF644,&arr[i] = 00000091628FF644
+i = 3,*(p + i) = 4,arr[i] = 4
+i = 4,p + i = 00000091628FF648,&arr[i] = 00000091628FF648
+i = 4,*(p + i) = 5,arr[i] = 5
+```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int arr[] = {1,2,3,4,5};
+	int *p = arr;
+	for(int i = 0;i < 5;++i){
+		printf("i = %d,p + i = %p,&arr[i] = %p\n",i,p + i,&arr[i]);
+		printf("i = %d,*(p + i) = %d,arr[i] = %d\n",i,*(p + i),arr[i]);
+		printf("i = %d,p[i] = %d,*(arr + i) = %d\n",i,p[i],*(arr + i));
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+i = 0,p + i = 0000006EB40FF7B8,&arr[i] = 0000006EB40FF7B8
+i = 0,*(p + i) = 1,arr[i] = 1
+i = 0,p[i] = 1,*(arr + i) = 1
+i = 1,p + i = 0000006EB40FF7BC,&arr[i] = 0000006EB40FF7BC
+i = 1,*(p + i) = 2,arr[i] = 2
+i = 1,p[i] = 2,*(arr + i) = 2
+i = 2,p + i = 0000006EB40FF7C0,&arr[i] = 0000006EB40FF7C0
+i = 2,*(p + i) = 3,arr[i] = 3
+i = 2,p[i] = 3,*(arr + i) = 3
+i = 3,p + i = 0000006EB40FF7C4,&arr[i] = 0000006EB40FF7C4
+i = 3,*(p + i) = 4,arr[i] = 4
+i = 3,p[i] = 4,*(arr + i) = 4
+i = 4,p + i = 0000006EB40FF7C8,&arr[i] = 0000006EB40FF7C8
+i = 4,*(p + i) = 5,arr[i] = 5
+i = 4,p[i] = 5,*(arr + i) = 5
+```
+
+>[!note]
+>1.数组不是指针，指针也不是数组
+>2.数组的数组名可以赋值给一个指针变量；也可以做加减法 —— 数组的数组名可以退化成&arr[0]
+>3.指针可以使用'[]'运算符
+>p[i] = 等价于 (p + i) (先做偏移，后做解引用)
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int arr[] = {1,2,3,4,5};
+	int *p = arr;
+	for(int i = 0;i < 5;++i){
+		printf("i = %d,p + i = %p,&arr[i] = %p\n",i,p + i,&arr[i]);
+		printf("i = %d,*(p + i) = %d,arr[i] = %d\n",i,*(p + i),arr[i]);
+		printf("i = %d,i[p] = %d,*(arr + i) = %d\n",i,i[p],*(arr + i));
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+i = 0,p + i = 000000076BCFFAE8,&arr[i] = 000000076BCFFAE8
+i = 0,*(p + i) = 1,arr[i] = 1
+i = 0,i[p] = 1,*(arr + i) = 1
+i = 1,p + i = 000000076BCFFAEC,&arr[i] = 000000076BCFFAEC
+i = 1,*(p + i) = 2,arr[i] = 2
+i = 1,i[p] = 2,*(arr + i) = 2
+i = 2,p + i = 000000076BCFFAF0,&arr[i] = 000000076BCFFAF0
+i = 2,*(p + i) = 3,arr[i] = 3
+i = 2,i[p] = 3,*(arr + i) = 3
+i = 3,p + i = 000000076BCFFAF4,&arr[i] = 000000076BCFFAF4
+i = 3,*(p + i) = 4,arr[i] = 4
+i = 3,i[p] = 4,*(arr + i) = 4
+i = 4,p + i = 000000076BCFFAF8,&arr[i] = 000000076BCFFAF8
+i = 4,*(p + i) = 5,arr[i] = 5
+i = 4,i[p] = 5,*(arr + i) = 5
+```
+
+>[!note]
+>数组有时候会变成指针，指针也可以对其使用'[]'运算符。
+>此时我们会有一个疑问：数组是不是就是指针？指针和数组是有区别的。
+>大部分场景下指针和数组是等价的，但存在例外 —— **sizeof( )**
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(){
+	int arr[] = {1,2,3,4,5};
+	int *p = arr;
+	for(int i = 0;i < 5;++i){
+		printf("i = %d,p + i = %p,&arr[i] = %p\n",i,p + i,&arr[i]);
+		printf("i = %d,*(p + i) = %d,arr[i] = %d\n",i,*(p + i),arr[i]);
+		printf("i = %d,i[p] = %d,*(arr + i) = %d\n",i,i[p],*(arr + i));
+	}
+	printf("sizeof(p) = %d,sizeof(arr) = %d\n",sizeof(p),sizeof(arr));
+	
+	return 0;
+}
+```
+
+```c
+结果：
+i = 0,p + i = 00000007BD0FF818,&arr[i] = 00000007BD0FF818
+i = 0,*(p + i) = 1,arr[i] = 1
+i = 0,i[p] = 1,*(arr + i) = 1
+i = 1,p + i = 00000007BD0FF81C,&arr[i] = 00000007BD0FF81C
+i = 1,*(p + i) = 2,arr[i] = 2
+i = 1,i[p] = 2,*(arr + i) = 2
+i = 2,p + i = 00000007BD0FF820,&arr[i] = 00000007BD0FF820
+i = 2,*(p + i) = 3,arr[i] = 3
+i = 2,i[p] = 3,*(arr + i) = 3
+i = 3,p + i = 00000007BD0FF824,&arr[i] = 00000007BD0FF824
+i = 3,*(p + i) = 4,arr[i] = 4
+i = 3,i[p] = 4,*(arr + i) = 4
+i = 4,p + i = 00000007BD0FF828,&arr[i] = 00000007BD0FF828
+i = 4,*(p + i) = 5,arr[i] = 5
+i = 4,i[p] = 5,*(arr + i) = 5
+sizeof(p) = 8,sizeof(arr) = 20
+```
+
+>[!note]
+>指针和数组尽管在很多情况下起到一样的作用。比如说在偏移的时候；比如说在赋值的时候；比如说在使用'[]'运算符的时候。但是指针和数组并不是一回事，在使用**sizeof( )** 去计算二者的大小时二者的结果并不是相等的。
+>指针不是数组，数组也不是指针。但是**数组可以退化成指针**，**指针也可以使用'[]'运算符**。
+
+---
+[[2026-03-02]]
+## 12.8 指针的使用原则
+
+>[!important]
+>指针非常容易犯错
+>原则：我们必须先确保目标的存在，再考虑指向它的指针。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int *func(){
+	int arr[] = {1,2,3};
+	for(int i = 0;i < 3;++i){
+		printf("func arr[i] = %d\n",arr[i]);
+	}
+	return arr; // 数组的数组名是可以赋值/传递给主调方的，这样的话数组会退化成指针
+}
+int main(){
+	int *p = func();
+	for(int i = 0;i < 3;++i){
+		printf("main p[i] = %d\n",p[i]);
+	}
+	
+	return 0;
+}
+```
+
+```c
+结果：
+func arr[i] = 1
+func arr[i] = 2
+func arr[i] = 3
+main p[i] = 1
+main p[i] = -858993460
+main p[i] = -858993460
+```
+
+>[!Important]
+>结论：函数的返回值不能返回指向自己局部变量的指针。因为在它返回时，这个局部变量已经被销毁了。
+
+---
+[[2026-03-03]]
+## 12.9 堆空间和动态数组
+### 堆空间
+#### 内存布局
+
+>**知识回顾：[[内存布局]]**
+>栈区：函数调用的时候申请内存函数返回的时候释放内存。
+>数据段 *(用来存放全局变量)* ：程序运行的时候申请内存；程序结束的时候释放内存。
+>堆区：由用户自己决定什么时候申请内存 **(malloc)** ，什么时候释放内存 **(free)**。
+
+	malloc
+		语法：
+			#include<stdlib.h>
+			void *malloc(size_t size);
+		功能：函数指向一个大小为size的空间，如果错误发生返回NULL。
+
+	1.添加一个#include<stdlib.h>
+	2.函数名是malloc，函数参数是一个size_t类型（无符号的8字节整数 —— 描述申请空间的大小），返回值是一个void *（基类型还没有确定的指针，void *类型的指针变量在解引用和偏移之前必须先强转成其他类型） —— 描述申请空间的首地址
+
+	free
+		语法：
+			#include<stdlib.h>
+			void free(void *ptr);
+		功能：函数释放指针ptr指向的空间，以供以后使用，指针ptr必须由先前对malloc()，calloc()，realloc()的调用返回。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+int *func(){
+	int *arr = (int*)malloc(3 * sizeof(int));
+	arr[0] = 1;
+	arr[1] = 2;
+	arr[2] = 3;
+	for(int i = 0;i < 3;++i){
+		printf("func arr[%d] = %d\n",i,arr[i]);
+	}
+	return arr;
+}
+int main(){
+	int *p = func();
+	for(int i = 0;i < 3;++i){
+		printf("main p[%d] = %d\n",i,p[i]);
+	}
+	free(p); // 避免内存泄漏
+	
+	return 0;
+}
+```
+
+```c
+结果：
+func arr[0] = 1
+func arr[1] = 2
+func arr[2] = 3
+main p[0] = 1
+main p[1] = 2
+main p[2] = 3
+```
+
+- [0] 若想深入理解此程序 —— 详见[[C程序内存动态分析：malloc与函数返回示例]]
+
+>[!堆空间的用法]
+>**使用堆空间的好处：** 
+>1.堆空间的生存期是不受函数调用和返回的影响。
+>2.堆空间的长度不需要在一开始写代码时就确定，可以在后期根据需求再进行分配，我们将其称为 —— **动态数组(实际上并不是一个数组而是一个指针)**
+>
+>堆空间的长度是可以 **在程序运行的时候确定的**。
+
+---
+## 12.10 野指针和空指针
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	int *p;
+	p = (int*)0x12345678;
+	// 这是一个野指针
+	*p = 100;
+	printf("*p = %d\n",*p);
+	
+	return 0;
+}
+```
+
+>[!caution]
+>此程序虽然能够编译成功，但实际上这个程序是错误的！！！
+>
+>**使用指针的原则：** 必须先确保目标的存在，在考虑指向它的指针。
+>
+>0x12345678不是任何目标的内存地址，当你运行此程序时，编译器会弹出一条**报错信息：引发了异常，写入访问权限冲突。** 也就是说，0x12345678所指向的内存空间根本就没分配，所以我们无法访问这部分内存空间。所以这种指针变量我们是无法使用的。
+
+- [0] 我们如果创建了一个指针变量，为了**规避野指针**的问题，我们可以怎么做？
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	int *p = NULL; // NULL底层原理是0 —— 我们将p称为空指针
+	int i = 101;
+	p = &i;
+	*p = 100;
+	
+	return 0;
+}
+```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+void func(int *pi){
+	*pi = 100;
+}
+int main(){
+	int *p = NULL;
+	int i = 100;
+	p = &i;
+	func(p);
+	
+	return 0;
+}
+```
+
+---
+# 13. 专题C C风格字符串
+## 13.1 C风格的字符串
+
+>[!definition]
+>**字符串：** 字符串是由一个或者多个字符组成的字符序列。
+
+>[!caution]
+>C语言没有原生的字符串类型。
+>C语言的字符串是基于字符数组 **(char数组)** 的。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	char str[] = "hello";
+	printf("str = %s\n",str);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+str = hello
+```
+
+>[!important]
+>C语言的字符串 = 字符数组 + 在字符串的有效内容之后，要额外加一个ASCII码为0的终止符**('\0') ** 作为结尾 **(额外约定)**
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	char str[5] = {'h','e','l','l','o'}; // 没有空间去放'\0'
+	printf("str = %s\n",str);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+str = hello烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫?
+```
+
+---
