@@ -415,7 +415,7 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 >2.for s in dict:
 >3.集合支持**交/差/对称查**运算
 
-#### 3.4.4 序列内涵( *list comprehension* )
+#### 3.4.4 序列内涵 ( *list comprehension* )
 
 >[!note]
 >1.[i ** 2 for i in range(1,100)]

@@ -1,24 +1,104 @@
 {
   "recentFiles": [
     {
+      "basename": "C语言入门课程",
+      "path": "06_408/00_C语言/C语言入门课程.md"
+    },
+    {
+      "basename": "2026-03-05",
+      "path": "日记/2026-03-05.md"
+    },
+    {
+      "basename": "个人独立博客搭建方案",
+      "path": "随笔/个人独立博客搭建方案.md"
+    },
+    {
+      "basename": "大学生就业“难”的个人成因",
+      "path": "随笔/大学生就业“难”的个人成因.md"
+    },
+    {
+      "basename": "学习构建一个功能完整的Code Agent",
+      "path": "随笔/学习构建一个功能完整的Code Agent.md"
+    },
+    {
+      "basename": "考研压力管理",
+      "path": "随笔/考研压力管理.md"
+    },
+    {
+      "basename": "随笔",
+      "path": "随笔/随笔.md"
+    },
+    {
       "basename": "三维GIS开发",
       "path": "07_GIS/三维GIS开发.md"
+    },
+    {
+      "basename": "深入了解EOF",
+      "path": "06_408/00_C语言/深入了解EOF.md"
     },
     {
       "basename": "2026-03-04",
       "path": "日记/2026-03-04.md"
     },
     {
+      "basename": "Pasted image 20260304111445",
+      "path": "Pasted image 20260304111445.png"
+    },
+    {
+      "basename": "Pasted image 20260304111537",
+      "path": "Pasted image 20260304111537.png"
+    },
+    {
+      "basename": "Pasted image 20260203150510",
+      "path": "Pasted image 20260203150510.png"
+    },
+    {
+      "basename": "Pasted image 20260201152910",
+      "path": "Pasted image 20260201152910.png"
+    },
+    {
+      "basename": "936a0255bdccc52feb47f963c1be1250",
+      "path": "936a0255bdccc52feb47f963c1be1250.jpg"
+    },
+    {
+      "basename": "3aa4907461dd1cc17bb6ee7e2dd50a99",
+      "path": "3aa4907461dd1cc17bb6ee7e2dd50a99.jpg"
+    },
+    {
+      "basename": "74ffbd8b94935c53cdcdc682f2b1b8a0",
+      "path": "74ffbd8b94935c53cdcdc682f2b1b8a0.jpg"
+    },
+    {
+      "basename": "207dcd69ff71616d97c39a22515a0884",
+      "path": "207dcd69ff71616d97c39a22515a0884.jpg"
+    },
+    {
+      "basename": "ENVI实验",
+      "path": "07_GIS/ENVI实验.md"
+    },
+    {
       "basename": "2026-03-03",
       "path": "日记/2026-03-03.md"
     },
     {
-      "basename": "C语言入门课程",
-      "path": "06_408/00_C语言/C语言入门课程.md"
-    },
-    {
       "basename": "2026-03-02",
       "path": "日记/2026-03-02.md"
+    },
+    {
+      "basename": "2026-02-28",
+      "path": "日记/2026-02-28.md"
+    },
+    {
+      "basename": "2026-02-27",
+      "path": "日记/2026-02-27.md"
+    },
+    {
+      "basename": "2026-02-26",
+      "path": "日记/2026-02-26.md"
+    },
+    {
+      "basename": "2026-02-24",
+      "path": "日记/2026-02-24.md"
     },
     {
       "basename": "408",
@@ -53,10 +133,6 @@
       "path": "06_408/00_C语言/二进制与十进制相互转换方法.md"
     },
     {
-      "basename": "2026-02-28",
-      "path": "日记/2026-02-28.md"
-    },
-    {
       "basename": "指针交换程序内存变化分析",
       "path": "06_408/00_C语言/指针交换程序内存变化分析.md"
     },
@@ -67,14 +143,6 @@
     {
       "basename": "内存布局",
       "path": "06_408/00_C语言/内存布局.md"
-    },
-    {
-      "basename": "2026-02-27",
-      "path": "日记/2026-02-27.md"
-    },
-    {
-      "basename": "2026-02-26",
-      "path": "日记/2026-02-26.md"
     },
     {
       "basename": "2026-02-25",
@@ -97,10 +165,6 @@
       "path": "06_408/00_C语言/C语言数组声明详解：int arr[5].md"
     },
     {
-      "basename": "2026-02-24",
-      "path": "日记/2026-02-24.md"
-    },
-    {
       "basename": "2026-02-23",
       "path": "日记/2026-02-23.md"
     },
@@ -111,10 +175,6 @@
     {
       "basename": "Pasted image 20260213215657",
       "path": "Pasted image 20260213215657.png"
-    },
-    {
-      "basename": "Pasted image 20260201152910",
-      "path": "Pasted image 20260201152910.png"
     },
     {
       "basename": "Pasted image 20260223115316",
@@ -139,62 +199,6 @@
     {
       "basename": "2026-02-16",
       "path": "日记/2026-02-16.md"
-    },
-    {
-      "basename": "函数调用的内存原理",
-      "path": "06_408/00_C语言/函数调用的内存原理.md"
-    },
-    {
-      "basename": "2026-02-15",
-      "path": "日记/2026-02-15.md"
-    },
-    {
-      "basename": "2026-02-14",
-      "path": "日记/2026-02-14.md"
-    },
-    {
-      "basename": "2026-02-11",
-      "path": "日记/2026-02-11.md"
-    },
-    {
-      "basename": "2026-01-16",
-      "path": "日记/2026-01-16.md"
-    },
-    {
-      "basename": "2026-01-17",
-      "path": "日记/2026-01-17.md"
-    },
-    {
-      "basename": "2026-01-18",
-      "path": "日记/2026-01-18.md"
-    },
-    {
-      "basename": "2026-01-31",
-      "path": "日记/2026-01-31.md"
-    },
-    {
-      "basename": "函数调用的详细过程",
-      "path": "06_408/00_C语言/函数调用的详细过程.md"
-    },
-    {
-      "basename": "2026-02-10",
-      "path": "日记/2026-02-10.md"
-    },
-    {
-      "basename": "ASCII码表(完整版)",
-      "path": "06_408/00_C语言/ASCII码表(完整版).md"
-    },
-    {
-      "basename": "第一讲 函数极限与连续",
-      "path": "05_数学/01_基础/第一讲 函数极限与连续.md"
-    },
-    {
-      "basename": "高等数学零基础通关",
-      "path": "05_数学/00_零基础/高等数学零基础通关.md"
-    },
-    {
-      "basename": "2026-02-03",
-      "path": "日记/2026-02-03.md"
     }
   ],
   "omittedPaths": [],

@@ -3862,3 +3862,685 @@ str = hello烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫?
 ```
 
 ---
+[[2026-03-04]]
+## 13.2 strlen
+### 和字符串相关的函数
+
+	strlen
+		语法：
+			#include<string.h> // 所有和字符串相关的函数在使用前都要引入<string.h>这个头文件。
+			size_t strlen(char *str);
+		功能：函数返回字符串str的长度(即空值结束符之前字符数目)。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str[10] = "hello"; // 数组长度 ≥ 有效长度 + 1 即可
+	printf("strlen(str) = %d,sizeof(str) = %d\n",strlen(str),sizeof(str));
+	return 0;
+}
+```
+
+```c
+结果：
+strlen(str) = 5,sizeof(str) = 10
+```
+
+---
+## 13.3 strcpy
+
+	strcpy
+		语法：
+			#include<string.h>
+			char *strcpy(char *to,const char *from)
+		功能：复制字符串from中的字符到字符串to，包括空值结束符。返回值为指针to。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char to[10];
+	char from[10] = "hello";
+	// to = from; // 这是一个错误用法，数组是不能赋值的。
+	strcpy(to,from);
+	printf("to = %s\n",to)
+	
+	return 0;
+}
+```
+
+>[!caution]
+>使用 `strcpy` 存在**缓冲区溢出风险**。
+>
+>`strcpy(to, from);`  
+>该函数仅根据源字符串的 `'\0'` 结束符决定拷贝长度，**不检查目标数组 `to` 的大小**。因此，如果源字符串的长度（包含结尾的 `'\0'`）超过目标数组的容量，就会发生越界写入，导致程序行为不可预测甚至崩溃。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char to[5];
+	char from[10] = "hello";
+	// to = from; // 这是一个错误用法，数组是不能赋值的。
+	strcpy(to,from);
+	printf("to = %s\n",to)
+	
+	return 0;
+}
+```
+
+>[!caution]
+>程序运行时报错 **Run-Time Check Failure #2 – Stack around the variable 'to' was corrupted**，这是因为 `strcpy(to, from)` 将长度为 6 字节的字符串（`"hello"` 的 5 个字符 + 结尾的 `'\0'`）复制到容量仅 5 字节的数组 `to` 中，导致数组越界。由于 `to` 是 `main` 函数的局部数组，存储在栈区，越界写入破坏了栈上其他数据（如相邻变量或返回地址），从而引发栈损毁检测错误。
+
+---
+## 13.4 strcmp
+
+	strcmp
+		语法：
+			#include<string.h>
+			int strcmp(const char *str1,const char *str2);
+		功能：比较字符串str1 and str2，返回值如下：
+
+| 返回值            | 解释                        |
+| -------------- | ------------------------- |
+| less than 0    | str1 is less than str2    |
+| equal to 0     | str1 is equal to str2     |
+| greater than 0 | str1 is greater than str2 |
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str1[] = "back";
+	char str2[] = "backward";
+	char str3[] = "back";
+	printf("str1 vs str2 = %d\n",strcmp(str1,str2));
+	printf("str2 vs str1 = %d\n",strcmp(str2,str1));
+	printf("str1 vs str3 = %d\n",strcmp(str1,str3));
+	
+	return 0;
+}
+```
+
+```c
+结果：
+str1 vs str2 = -1
+str2 vs str1 = 1
+str1 vs str3 = 0
+```
+
+---
+## 13.5 strcat
+
+	strcat
+		语法：
+			#include<string.h>
+			char *strcat(char *str1,const *str2);
+		功能：函数将字符串str2连接到str1的末端，并返回指针str1。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str1[20] = "how";
+	char str2[] = "ever";
+	strcat(str1,str2);
+	printf("str1 = %s\n",str1);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+str1 = however
+```
+
+>[!caution]
+>使用 `strcat` 存在**缓冲区溢出风险**。
+>
+>`strcat(str1, str2);`  
+>该函数将字符串 `str2` 追加到 `str1` 的末尾（覆盖 `str1` 的结尾空字符，然后添加新的空字符）。**它不检查目标数组 `str1` 的大小**。因此，如果 `str1` 中原有字符串的长度与 `str2` 的长度（均不包含结尾的 `'\0'`）之和再加 1 超过 `str1` 数组的容量，就会发生越界写入，导致程序行为不可预测甚至崩溃。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str1[5] = "how";
+	char str2[] = "ever";
+	strcat(str1,str2);
+	printf("str1 = %s\n",str1);
+	
+	return 0;
+}
+```
+
+>[!caution]
+>程序运行时报错 **Run-Time Check Failure #2 – Stack around the variable 'str1' was corrupted**，这是因为 `strcat(str1, str2)` 将字符串 `"ever"`（长度 4，加上结尾 `'\0'` 共 5 字节）追加到 `str1` 原有字符串 `"how"`（长度 3，加上结尾 `'\0'` 共 4 字节）的末尾。合并后的字符串总长度为 7（不含结尾 `'\0'`），加上结尾 `'\0'` 共需 8 字节，而 `str1` 数组的容量仅为 5 字节，导致数组越界写入。由于 `str1` 是 `main` 函数的局部数组，存储在栈区，越界写入破坏了栈上其他数据（如相邻变量或返回地址），从而引发栈损毁检测错误。
+
+---
+## 13.6 字符串输入
+
+>**从标准输入中读取字符串**
+
+	scanf %s —— 读取一个单词 —— 以空白字符为边界(遇到换行、空格、制表符等空白字符时都会停止输入)
+	fgets —— 读取一行内容 —— 以换行为边界
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str[20];
+	scanf("%s",str); // str是一个数组，当数组作为参数进行传递时会退化成一个指针
+	printf("str = %s\n",str);
+	
+	return 0;
+}
+```
+
+```c
+输入：
+hello
+结果：
+str = hello
+```
+
+```c
+输入：
+how are you
+结果：
+str = how
+```
+
+	fgets
+		语法：
+			#include<stdio.h>
+			char *fgets(char *str,int num,FILE *stream);
+		函数fgets()从给出的文件流中读取[num - 1]个字符并且把它们转储到str(字符串)中。fgets()在到达行末时停止，在这种情况下，str(字符串)将会被一个新行符结束。如果fgets()达到[num - 1]个字符或者遇到EOF, str(字符串)将会以null结束.fgets()成功时返回str(字符串),失败时返回NULL。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str[20];
+	fgets(str,20,stdin); // 从stdin中读取一行到str，最大长度是20。
+	printf("str = %s\n",str);
+	
+	return 0;
+}
+```
+
+```c
+输入：
+how are you
+结果：
+str = how are you
+
+
+```
+
+>[!important]
+>fgets读取一行内容时，不会将末尾的'\n'换行符去掉，而是会留在缓冲区中。
+
+- [1] 若想去掉多余的换行，我们可以进行如下操作：
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str[20];
+	fgets(str,20,stdin); // 从stdin中读取一行到str，最大长度是20。
+	int idx = strlen(str) - 1;
+	if(str[idx] == '\n'){
+		str[idx] = '\0';
+	}
+	printf("str = %s\n",str);
+	
+	return 0;
+}
+```
+
+```c
+输入：
+how are you
+结果：
+str = how are you
+
+```
+
+>[!caution]
+>**scanf和fgets的安全性**
+>**scanf的安全性**
+>scanf的参数里面没有长度信息。
+>**结论一：** scanf是不安全的，有可能会出现数组越界的问题。
+>**fgets的安全性**
+>fgets的参数里面有长度限制信息。
+>**结论二：** fgets是安全的。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str[4];
+	scanf("%s",str);
+	printf("str = %s\n",str);
+	
+	return 0;
+}
+```
+
+>[!caution]
+>程序运行时报错 **Run-Time Check Failure #2 – Stack around the variable 'str' was corrupted**，这是因为 `scanf("%s", str)` 没有限制输入长度，当用户输入的字符串长度超过数组 `str` 的容量（4字节，最多存储3个字符加一个结尾空字符）时，就会发生缓冲区溢出，越界写入栈上的相邻内存，导致栈损毁检测错误。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char str[10];
+	fgets(str,10,stdin);
+	printf("str = %s\n",str);
+	
+	return 0;
+}
+```
+
+```c
+输入：
+how are you
+结果：
+str = how are y
+```
+
+---
+[[2026-03-05]]
+# 14. 专题D 递归和分治
+## 14.1 递归
+
+>[!definition]
+>**递归：** 设计一个函数func的函数定义，再func的函数体里面，去调用func函数本身 —— 递归
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+void func(int i){
+	printf("i = %d\n",i);
+	// 避免无限递归触发栈溢出，我们可以设计一个递归出口。
+	if(i <= 0){
+		return;
+	}
+	else{
+		func(i - 1);
+	}
+}
+int main(){
+	func(4);
+}
+```
+
+```c
+结果：
+i = 4
+i = 3
+i = 2
+i = 1
+i = 0
+```
+
+>[!caution]
+>**避免无限递归的方法：** 设计一个合理的递归出口。
+
+---
+## 14.2 爬楼梯问题
+
+>[!question]
+>**爬楼梯问题：** 假设你正在爬楼梯，总共有n阶台阶。每次你只能爬1阶 **或者** 爬2阶。
+>问：你有多少种不同的方法可以爬到楼顶？ 
+
+>[!challenge]
+>我们从传统的全局视角当中，很难去找到问题的解决方案。
+
+>[!solution]
+>**局部解决：** 把一个规模大一点的问题转移成规模小一点的问题 —— 分治法( *分而治之 divide and conquer* )
+
+>[!method]
+>**数学归纳法：** 假设 num = 1,2,3,4, ... ,n - 1 都已经被解决了，在此基础上去解决 num = n的问题。
+
+>[!principle]
+>**组合计数问题 —— 加法原理** 
+>台阶数num = n时爬到楼顶的方法总数 = 台阶数num = n - 1时爬到楼顶的方法总数 + 台阶数num = n - 2时爬到楼顶的方法总数
+
+>[!derivation]
+>**同理可得：** 
+>$$
+>\begin{gather}
+>\text{设台阶数num \ = \ n时爬到楼顶的方法总数为}S_n \\
+>S_{n - 1} \ = \ S_{n - 2} \ + \ S_{n - 3} \\
+>S_{n - 2} \ = \ S_{n - 3} \ + \ S_{n - 4} \\
+>... \\
+>S_{3} \ = \ S_{2} \ + \ S_{1} \\
+>\end{gather}
+>$$
+
+>[!ideology]
+>当$S_{n-1}$逐步分解直到分解为$S_{3} \ = \ S_{2} \ + \ S_{1}$时，如何根据$S_{1} \ 和 \ S_{2}$求得$S_{3}$已经不再困难，我们可以非常轻松的计算出$S_{3}$。( *divide：递推 —— 将大问题转移成小问题* )
+>求出$S_{3}$之后，我们可以根据$S_{2} \ 和刚刚求得的 \ S_{3} \ 进而去计算 \ S_{4}$，以此类推，最后我们可以计算出$S_{n}$。( *conquer：回归 —— 将小问题解决后进行反向推理使大问题也得到了解决* )
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+
+int f(int n){
+	// 大问题 —— 小问题 —— 递归
+	if(n > 2){
+		int result = f(n - 1) + f(n - 2);
+		return result;
+	}
+	// 最小问题的解决方案
+	else if(n == 2){
+		return 2;
+	}
+	else if(n == 1){
+		return 1;
+	}
+}
+int main(){
+	int n = 4;
+	printf("f(%d) = %d\n",n,f(n));
+	
+	return 0;
+}
+```
+
+```c
+结果：
+f(4) = 5
+```
+
+```mermaid
+flowchart TD
+    A["main调用f(4)"] -->|1| B["f(4)条件 n>2"]
+    B -->|2| C["调用f(3)"]
+    C -->|3| D["f(3)条件 n>2"]
+    D -->|4| E["调用f(2)"]
+    E -->|5| F["f(2)返回2"]
+    F -->|6| D
+    D -->|7| G["调用f(1)"]
+    G -->|8| H["f(1)返回1"]
+    H -->|9| D
+    D -->|10| I["f(3)返回3"]
+    I -->|11| B
+    B -->|12| J["调用f(2)"]
+    J -->|13| K["f(2)返回2"]
+    K -->|14| B
+    B -->|15| L["f(4)返回5"]
+    L -->|16| M["main输出5"]
+```
+
+>[!process]
+>**递归过程**
+>*1.大问题转移成小问题 —— 递推*
+>*2.找到问题的边界(最小问题) —— 回归*
+
+---
+## 14.3 汉诺塔问题
+
+>[!question]
+>**汉诺塔问题：** 现在有n个从小到大排列的圆盘，我们需要将圆盘全部移动到另一个柱子上，并遵守**以下规则**：
+>1.每次只能移动一个圆盘；
+>2.移动过程中，大盘不能放在小盘上面；
+>3.只能移动最顶端的圆盘。
+
+>[!challenge]
+>如果我们用**枚举**的思路( *从全局的角度* )去解决`汉诺塔问题`显然是很困难的。
+
+>[!solution]
+>因此我们退而求其次选择**分治法**来解决`汉诺塔问题`。
+
+>[!method]
+>**数学归纳法：** 假设我们已经知道如何移动 n-1 个盘子，那么就可以解决 n 个盘子的移动问题。
+
+>[!principle]
+>**分治策略：** 将 n 个盘子的移动问题分解为三个子问题：
+>1. 将上面的 n-1 个盘子从起始柱移动到辅助柱；
+>2. 将最大的盘子从起始柱移动到目标柱；
+>3. 将 n-1 个盘子从辅助柱移动到目标柱。
+
+>[!derivation]
+>**递归公式：** 设移动 n 个盘子所需的最少步数为 $T_n$，则有：
+>$$
+>T_n = 2T_{n-1} + 1, \quad T_1 = 1
+>$$
+>**通项公式推导（迭代法）：**
+>$$
+>\begin{aligned}
+>T_n &= 2T_{n-1} + 1 \\
+>&= 2(2T_{n-2} + 1) + 1 = 2^2 T_{n-2} + 2 + 1 \\
+>&= 2^2(2T_{n-3} + 1) + 2 + 1 = 2^3 T_{n-3} + 2^2 + 2 + 1 \\
+>&\quad \vdots \\
+>&= 2^{n-1} T_1 + (2^{n-2} + 2^{n-3} + \cdots + 2 + 1)
+>\end{aligned}
+>$$
+>代入 $T_1 = 1$，并利用等比数列求和公式 $2^{n-2} + 2^{n-3} + \cdots + 2 + 1 = 2^{n-1} - 1$，得：
+>$$
+>T_n = 2^{n-1} \cdot 1 + (2^{n-1} - 1) = 2^n - 1
+>$$
+
+>[!ideology]
+>当 $T_{n-1}$ 逐步分解直到 $T_1$ 时，问题变得极为简单：直接移动一个盘子即可。这就是 ( *divide：递推* ) 的过程。求出 $T_1$ 后，我们可以根据 $T_1$ 计算出 $T_2$，进而得到 $T_3$，以此类推，最终得到 $T_n$。这就是 ( *conquer：回归* ) 的过程。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+// 汉诺塔递归函数
+void hanoi(int n, char from, char buffer, char to){
+	// 形参from 圆盘的初始位置
+	// 形参to 圆盘的最终位置
+	// 形参buffer 临时借用的位置
+	
+	// 大问题 —— 小问题 —— 递归
+	if(n > 1){
+		// 把前n - 1个圆盘从 from 移动到 buffer
+		hanoi(n - 1,from,to,buffer);
+		// 将第n个圆盘从 from 移动到 to
+		hanoi(1,from,buffer,to);
+		// 把前n - 1个圆盘从 buffer 移动到 to
+		hanoi(n - 1,buffer,from,to);
+	}
+	else if(n == 1){
+		printf("move %c to %c\n",from,to);
+	}
+}
+
+int main(){
+    int n = 5;
+    hanoi(n, 'A', 'B', 'C');
+    return 0;
+}
+```
+
+```c
+结果：
+move A to C
+move A to B
+move C to B
+move A to C
+move B to A
+move B to C
+move A to C
+move A to B
+move C to B
+move C to A
+move B to A
+move C to B
+move A to C
+move A to B
+move C to B
+move A to C
+move B to A
+move B to C
+move A to C
+move B to A
+move C to B
+move C to A
+move B to A
+move B to C
+move A to C
+move A to B
+move C to B
+move A to C
+move B to A
+move B to C
+move A to C
+```
+
+根据新代码（参数顺序为 `from, buffer, to`），以 n=5 为例的递归调用树非常庞大（共 46 个节点，31 个叶子节点对应输出）。为了清晰展示整体结构，下面采用缩略树的形式，用节点范围表示完整的子树，并标注了深度优先遍历的序号。
+
+**缩略版递归调用树**
+
+```mermaid
+flowchart TD
+    A["1: hanoi(5, A, B, C)"] --> B["2..23: hanoi(4, A, C, B) (22 个节点)"]
+    A --> C["24: hanoi(1, A, B, C)"]
+    A --> D["25..46: hanoi(4, B, A, C) (22 个节点)"]
+```
+
+### 节点序号说明
+- **序号 1**：根调用 `hanoi(5, A, B, C)`。
+- **序号 2~23**：完整的 `hanoi(4, A, C, B)` 子树，内部包含 22 个节点（递归展开后对应前 22 步调用）。
+- **序号 24**：直接输出 `move A to C` 的调用 `hanoi(1, A, B, C)`。
+- **序号 25~46**：完整的 `hanoi(4, B, A, C)` 子树，内部包含 22 个节点。
+
+每个 `hanoi(4, ...)` 子树内部结构可类比 n=4 时的递归树（共 22 个节点），其展开方式与根节点类似，依次包含两个 n=3 子树和一个 n=1 调用。若需查看完整展开，可参考 n=3 的详细树结构进行类推。
+
+### 完整调用统计
+- n=5 时，总调用次数（含叶子输出）为 46 次，其中输出语句执行 31 次，与 $2^5-1=31$ 一致。
+
+此缩略树在保持整体结构的同时，避免了过长的节点列表，便于在 Obsidian 中呈现和理解递归的层次关系。
+
+**完整版递归调用树**
+
+### 根节点：hanoi(5, A, B, C)
+```mermaid
+flowchart TD
+    1["1: hanoi(5,A,B,C)"]
+```
+### 左子树：hanoi(4, A, C, B)
+```mermaid
+flowchart TD
+    2["2: hanoi(4,A,C,B)"]
+    3["3: hanoi(3,A,B,C)"]
+    4["4: hanoi(2,A,C,B)"]
+    5["5: hanoi(1,A,B,C)"]
+    6["6: hanoi(1,A,C,B)"]
+    7["7: hanoi(1,C,A,B)"]
+    8["8: hanoi(1,A,B,C)"]
+    9["9: hanoi(2,B,A,C)"]
+    10["10: hanoi(1,B,C,A)"]
+    11["11: hanoi(1,B,A,C)"]
+    12["12: hanoi(1,A,B,C)"]
+    13["13: hanoi(1,A,C,B)"]
+    14["14: hanoi(3,C,A,B)"]
+    15["15: hanoi(2,C,B,A)"]
+    16["16: hanoi(1,C,A,B)"]
+    17["17: hanoi(1,C,B,A)"]
+    18["18: hanoi(1,B,C,A)"]
+    19["19: hanoi(1,C,A,B)"]
+    20["20: hanoi(2,A,C,B)"]
+    21["21: hanoi(1,A,B,C)"]
+    22["22: hanoi(1,A,C,B)"]
+    23["23: hanoi(1,C,A,B)"]
+    2 --> 3
+    3 --> 4
+    4 --> 5
+    4 --> 6
+    4 --> 7
+    3 --> 8
+    3 --> 9
+    9 --> 10
+    9 --> 11
+    9 --> 12
+    2 --> 13
+    2 --> 14
+    14 --> 15
+    15 --> 16
+    15 --> 17
+    15 --> 18
+    14 --> 19
+    14 --> 20
+    20 --> 21
+    20 --> 22
+    20 --> 23
+```
+### 中子树(中子)：hanoi(1, A, B, C)
+```mermaid
+flowchart TD
+    24["24: hanoi(1,A,B,C)"]
+```
+### 右子树：hanoi(4, B, A, C)
+```mermaid
+flowchart TD
+    25["25: hanoi(4,B,A,C)"]
+    26["26: hanoi(3,B,C,A)"]
+    27["27: hanoi(2,B,A,C)"]
+    28["28: hanoi(1,B,C,A)"]
+    29["29: hanoi(1,B,A,C)"]
+    30["30: hanoi(1,A,B,C)"]
+    31["31: hanoi(1,B,C,A)"]
+    32["32: hanoi(2,C,B,A)"]
+    33["33: hanoi(1,C,A,B)"]
+    34["34: hanoi(1,C,B,A)"]
+    35["35: hanoi(1,B,C,A)"]
+    36["36: hanoi(1,B,A,C)"]
+    37["37: hanoi(3,A,B,C)"]
+    38["38: hanoi(2,A,C,B)"]
+    39["39: hanoi(1,A,B,C)"]
+    40["40: hanoi(1,A,C,B)"]
+    41["41: hanoi(1,C,A,B)"]
+    42["42: hanoi(1,A,B,C)"]
+    43["43: hanoi(2,B,A,C)"]
+    44["44: hanoi(1,B,C,A)"]
+    45["45: hanoi(1,B,A,C)"]
+    46["46: hanoi(1,A,B,C)"]
+    25 --> 26
+    26 --> 27
+    27 --> 28
+    27 --> 29
+    27 --> 30
+    26 --> 31
+    26 --> 32
+    32 --> 33
+    32 --> 34
+    32 --> 35
+    25 --> 36
+    25 --> 37
+    37 --> 38
+    38 --> 39
+    38 --> 40
+    38 --> 41
+    37 --> 42
+    37 --> 43
+    43 --> 44
+    43 --> 45
+    43 --> 46
+```
+
+>[!process]
+>**递归过程**
+>*1. 大问题转移成小问题 —— 递推：每次将 n 个盘子的问题转化为 n-1 个盘子的问题，直到边界 n=1。*
+>*2. 找到问题的边界（最小问题）—— 回归：当 n=1 时直接移动，然后逐步返回，完成上层剩余的移动。*
+
+---
