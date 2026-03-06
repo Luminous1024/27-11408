@@ -3687,8 +3687,8 @@ main p[i] = -858993460
 ---
 [[2026-03-03]]
 ## 12.9 堆空间和动态数组
-### 堆空间
-#### 内存布局
+#### 堆空间
+##### 内存布局
 
 >**知识回顾：[[内存布局]]**
 >栈区：函数调用的时候申请内存函数返回的时候释放内存。
@@ -3864,7 +3864,7 @@ str = hello烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫?
 ---
 [[2026-03-04]]
 ## 13.2 strlen
-### 和字符串相关的函数
+#### 和字符串相关的函数
 
 	strlen
 		语法：
@@ -4344,6 +4344,7 @@ flowchart TD
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include<string.h>
 
 // 汉诺塔递归函数
 void hanoi(int n, char from, char buffer, char to){
@@ -4418,7 +4419,7 @@ flowchart TD
     A --> D["25..46: hanoi(4, B, A, C) (22 个节点)"]
 ```
 
-### 节点序号说明
+#### 节点序号说明
 - **序号 1**：根调用 `hanoi(5, A, B, C)`。
 - **序号 2~23**：完整的 `hanoi(4, A, C, B)` 子树，内部包含 22 个节点（递归展开后对应前 22 步调用）。
 - **序号 24**：直接输出 `move A to C` 的调用 `hanoi(1, A, B, C)`。
@@ -4426,19 +4427,19 @@ flowchart TD
 
 每个 `hanoi(4, ...)` 子树内部结构可类比 n=4 时的递归树（共 22 个节点），其展开方式与根节点类似，依次包含两个 n=3 子树和一个 n=1 调用。若需查看完整展开，可参考 n=3 的详细树结构进行类推。
 
-### 完整调用统计
+#### 完整调用统计
 - n=5 时，总调用次数（含叶子输出）为 46 次，其中输出语句执行 31 次，与 $2^5-1=31$ 一致。
 
 此缩略树在保持整体结构的同时，避免了过长的节点列表，便于在 Obsidian 中呈现和理解递归的层次关系。
 
 **完整版递归调用树**
 
-### 根节点：hanoi(5, A, B, C)
+#### 根节点：hanoi(5, A, B, C)
 ```mermaid
 flowchart TD
     1["1: hanoi(5,A,B,C)"]
 ```
-### 左子树：hanoi(4, A, C, B)
+#### 左子树：hanoi(4, A, C, B)
 ```mermaid
 flowchart TD
     2["2: hanoi(4,A,C,B)"]
@@ -4485,12 +4486,12 @@ flowchart TD
     20 --> 22
     20 --> 23
 ```
-### 中子树(中子)：hanoi(1, A, B, C)
+#### 中子树(中子)：hanoi(1, A, B, C)
 ```mermaid
 flowchart TD
     24["24: hanoi(1,A,B,C)"]
 ```
-### 右子树：hanoi(4, B, A, C)
+#### 右子树：hanoi(4, B, A, C)
 ```mermaid
 flowchart TD
     25["25: hanoi(4,B,A,C)"]
@@ -4544,3 +4545,285 @@ flowchart TD
 >*2. 找到问题的边界（最小问题）—— 回归：当 n=1 时直接移动，然后逐步返回，完成上层剩余的移动。*
 
 ---
+[[2026-03-06]]
+## 14.4 归并排序
+
+>*利用分而治之的思想进行排序*
+
+>[!question]
+>现有一个**无序**的数组（即对于下标 i < j，不一定有 a[i] < a[j]），我们想通过**分而治之的思想**对数组中的元素进行**排序**。
+
+>*解决这个问题之前让我们先解决一个前提问题：*
+
+>[!question]
+>给出两个**有序**的小数组，如何合并成一个大的**有序**数组？
+>**例如：**
+>```c
+>int a[5] = {1,3,5,7,9};
+>int b[5] = {2,4,6,8,10};
+>```
+
+>[!solution]
+>准备两个变量 i 和 j 分别从左往右扫描数组 a 和 b，每次比较 i 和 j 所指的元素，将**较小者**放入结果数组中，并移动相应指针。重复此过程直到其中一个数组扫描完毕，最后将另一个数组的剩余元素直接复制到结果末尾。
+
+>*解决了前提问题之后，让我们回到最初的问题 —— 利用* **分而治之的思想** *对* **无序** * *数组进行* **排序**
+
+>[!ideology]
+>**分治法**
+>1. **划分（Divide）**：将无序大数组均分成两个无序的小数组( *divide：递推过程* ）；
+>2. **解决（Conquer）**：递归地对两个小数组进行排序，使其成为有序小数组；
+>3. **合并（Combine）**：将两个有序小数组**合并**成一个有序大数组( *conquer：回归过程* )。
+>
+>当数组长度为 0 或 1 时，数组自然有序，这是递归的**边界条件**。
+
+>[!method]
+>**数学归纳法（递归视角）**：假设我们已经知道如何对长度为$n - 1$的数组进行排序，那么可以通过“分 — 排 — 合”的步骤解决长度为$n$的数组的排序问题。但归并排序更自然的描述是：将数组一分为二，递归排序两个子数组，然后合并。
+
+>[!principle]
+>**分治策略**：将长度为 n 的数组排序问题分解为三个子问题：
+>4. 将数组从中间分成左右两个子数组(规模约为$n/2$)；
+>5. 递归地对左子数组进行归并排序；
+>6. 递归地对右子数组进行归并排序；
+>7. 将两个已排序的子数组合并成一个完整的有序数组。
+
+>[!derivation]
+>**递归公式**：设对 n 个元素进行归并排序所需的最多比较次数为 $T(n)$，则有：
+>$$
+>T(n) = 2T(n/2) + O(n)
+>$$
+>其中 $O(n)$ 为合并两个有序子数组所需的时间（线性扫描）。若忽略常数，可写为：
+>$$
+>T(n) = 2T(n/2) + n
+>$$
+>**通项公式推导（迭代法 / 主定理）**：
+>假设 $n = 2^k$，则：
+>$$
+>\begin{aligned}
+>T(n) &= 2T(n/2) + n \\
+>&= 2(2T(n/4) + n/2) + n = 4T(n/4) + 2n \\
+>&= 4(2T(n/8) + n/4) + 2n = 8T(n/8) + 3n \\
+>&\quad \vdots \\
+>&= 2^k T(1) + k \cdot n
+>\end{aligned}
+>$$
+>其中 $T(1)=0$（一个元素无需比较），$k = \log_2 n$，因此：
+>$$
+>T(n) = n \log_2 n
+>$$
+>即归并排序的时间复杂度为 **$O(n \log n)$**。
+
+>[!caution]
+>在时间复杂度的大$O$表示法中，对数底数通常是**省略**的，因为不同底数之间仅相差一个常数因子，而常数因子在大$O$中被忽略。例如，$\log⁡_{2}n=\log⁡_{2}10⋅\log_{⁡10}n$，所以 $O(\log_{⁡2}n)$ 与 $O(\log_{⁡10}n)$是等价的，统一写作 $O(\log⁡_{}n)$。
+>因此，归并排序的时间复杂度$O(n\log_{}⁡n)$中的$\log$默认可以是以$2$为底，也可以是以其他常数为底，不影响渐近阶。推导中出现了$\log_{⁡2}n$，最后写成$O(n\log n)$是标准且正确的，不需要特意加上底数$2$。
+
+>[!ideology]
+>当子数组长度降为 1 时，问题变得极为简单：单个元素自然有序。这就是( *divide：递推* )的过程。求出最小问题的解后，我们逐层返回，将两个有序子数组合并成更大的有序数组。这就是( *conquer：回归* )的过程。
+
+#### 代码实现
+
+以下实现使用 `while` 循环完成合并，逻辑清晰且无变量作用域错误。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+// 合并两个有序子数组 [left, mid] 和 [mid+1, right]
+void merge(int* arr, int* temp, int left, int mid, int right) {
+    // 1. 将原数组备份到 temp
+    for (int i = left; i <= right; ++i) {
+        temp[i] = arr[i];
+    }
+
+    // 2. 合并两个有序子数组
+    int i = left;          // 左半部分起始下标
+    int j = mid + 1;       // 右半部分起始下标
+    int k = left;          // 写入 arr 的位置
+
+    while (i <= mid && j <= right) {
+        if (temp[i] < temp[j]) {
+            arr[k++] = temp[i++];
+        } else {
+            arr[k++] = temp[j++];
+        }
+    }
+
+    // 3. 处理剩余元素
+    while (i <= mid) {
+        arr[k++] = temp[i++];
+    }
+    while (j <= right) {
+        arr[k++] = temp[j++];
+    }
+}
+
+// 归并排序递归函数
+void mergeSort(int* arr, int* temp, int left, int right) {
+    if (left < right) {                     // 当区间长度大于1时
+        int mid = (left + right) / 2;        // 划分点
+        mergeSort(arr, temp, left, mid);     // 排序左半
+        mergeSort(arr, temp, mid + 1, right); // 排序右半
+        merge(arr, temp, left, mid, right);   // 合并两个有序半区
+    }
+    // left == right 时，区间只有一个元素，自然有序，不做任何操作
+}
+
+int main() {
+    int arr[] = {3, 14, 15, 9, 26, 5, 35, 89, 79, 32, 38, 46};
+    int temp[12];                            // 辅助数组
+    mergeSort(arr, temp, 0, 11);              // 对全部12个元素排序
+
+    printf("排序后的 arr：\n");
+    for (int i = 0; i < 12; ++i) {
+        printf("arr[%d] = %d\n", i, arr[i]);
+    }
+    return 0;
+}
+```
+
+以下实现使用 `for` 循环完成合并，逻辑清晰且无变量作用域错误。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include<string.h>
+
+// 合并功能函数merge
+void merge(int *arr,int *temp,int left,int mid,int right){
+	// arr[left] ~ arr[mid] 和 arr[mid + 1] ~ arr[right] 进行合并
+	// 1.将arr的内容备份到temp里面
+	for(int i = left;i <= right;++i){
+		temp[i] = arr[i];
+	}
+	
+	// 2.合并有序数组 —— 准备三个变量i,j,k
+	// i用来访问左半边 | j用来访问右半边 | k用来存放结果
+	int i,j,k;
+	// 把左右两边当中比较小的那一边完全放到目标数组中
+	for(int i = left,j = mid + 1,k = left;i <= mid && j <= right;++k){
+		if(temp[i] < temp[j]){
+			arr[k] = temp[i];
+			++i;
+		}
+		else{
+			arr[k] = temp[j];
+			++j;
+		}
+	}
+	
+	// 如果左边没有放完，那就将左边剩余的数组元素放到目标数组中
+	while(i <= mid){
+		arr[k] = temp[i];
+		++i;
+		++k;
+	}
+	
+	// 如果右边没有放完，那就将右边剩余的数组元素放到目标数组中
+	while(j <= right){
+		arr[k] = temp[j];
+		++j;
+		++k;
+	}
+}
+
+//归并排序
+void mergeSort(int *arr,int *temp,int left,int right){
+	// 大问题 —— 小问题 —— 递归
+	if(left < right){
+		int mid = (left + right) / 2;
+		mergeSort(arr,temp,left,mid);
+		mergeSort(arr,temp,mid + 1,right);
+		merge(arr,temp,left,mid,right);
+	}
+	
+	// 找到最小问题的解决方案
+}
+
+int main(){
+	int arr[] = {3,14,15,9,26,5,35,89,79,32,38,46};
+	int temp[12];
+	mergeSort(arr,temp,0,11);
+	for(int i = 0;i < 12;++i){
+		printf("arr[%d] = %d\n",i,arr[i]);
+	}
+	printf("--------------------\n");
+	for(int i = 0;i < 12;++i){
+		printf("temp[%d] = %d\n",i,temp[i]);
+	}
+	
+	return 0;
+}
+```
+
+> [!caution]
+> 初学者容易在 `merge` 函数中犯变量作用域错误（如过早声明 `i, j, k` 却未初始化，或在 `for` 循环内重新定义局部变量）。上述代码分别采用了`while` 循环和`for` 循环实现，每个变量在使用前都被正确初始化。
+
+#### 递归调用树示例
+
+以数组 `{3,14,15,9,26,5,35,89,79,32,38,46}`( 下标 $0$ ~ $11$ )为例，归并排序的递归调用树如下( 缩进表示递归深度，每个节点表示一次 `mergeSort` 调用，其后的区间为待排序范围 )：
+
+```
+mergeSort(arr, temp, 0, 11)
+├── mergeSort(arr, temp, 0, 5)                 // 左半 [0,5]
+│   ├── mergeSort(arr, temp, 0, 2)              // [0,2]
+│   │   ├── mergeSort(arr, temp, 0, 1)           // [0,1]
+│   │   │   ├── mergeSort(arr, temp, 0, 0)       // [0,0] 叶子
+│   │   │   └── mergeSort(arr, temp, 1, 1)       // [1,1] 叶子
+│   │   │   └── merge(arr, temp, 0, 0, 1)         // 合并 [0,0] 和 [1,1]
+│   │   └── mergeSort(arr, temp, 2, 2)           // [2,2] 叶子
+│   │   └── merge(arr, temp, 0, 1, 2)             // 合并 [0,1] 和 [2,2]
+│   └── mergeSort(arr, temp, 3, 5)              // [3,5]
+│       ├── mergeSort(arr, temp, 3, 4)           // [3,4]
+│       │   ├── mergeSort(arr, temp, 3, 3)       // [3,3] 叶子
+│       │   └── mergeSort(arr, temp, 4, 4)       // [4,4] 叶子
+│       │   └── merge(arr, temp, 3, 3, 4)         // 合并 [3,3] 和 [4,4]
+│       └── mergeSort(arr, temp, 5, 5)           // [5,5] 叶子
+│       └── merge(arr, temp, 3, 4, 5)             // 合并 [3,4] 和 [5,5]
+│   └── merge(arr, temp, 0, 2, 5)                 // 合并左半 [0,2] 和 [3,5]
+└── mergeSort(arr, temp, 6, 11)                 // 右半 [6,11]
+    ├── mergeSort(arr, temp, 6, 8)               // [6,8]
+    │   ├── mergeSort(arr, temp, 6, 7)           // [6,7]
+    │   │   ├── mergeSort(arr, temp, 6, 6)       // [6,6] 叶子
+    │   │   └── mergeSort(arr, temp, 7, 7)       // [7,7] 叶子
+    │   │   └── merge(arr, temp, 6, 6, 7)         // 合并 [6,6] 和 [7,7]
+    │   └── mergeSort(arr, temp, 8, 8)           // [8,8] 叶子
+    │   └── merge(arr, temp, 6, 7, 8)             // 合并 [6,7] 和 [8,8]
+    └── mergeSort(arr, temp, 9, 11)              // [9,11]
+        ├── mergeSort(arr, temp, 9, 10)          // [9,10]
+        │   ├── mergeSort(arr, temp, 9, 9)       // [9,9] 叶子
+        │   └── mergeSort(arr, temp, 10, 10)     // [10,10] 叶子
+        │   └── merge(arr, temp, 9, 9, 10)        // 合并 [9,9] 和 [10,10]
+        └── mergeSort(arr, temp, 11, 11)         // [11,11] 叶子
+        └── merge(arr, temp, 9, 10, 11)           // 合并 [9,10] 和 [11,11]
+    └── merge(arr, temp, 6, 8, 11)                 // 合并右半 [6,8] 和 [9,11]
+└── merge(arr, temp, 0, 5, 11)                     // 最终合并左右两半
+```
+
+>[!note]
+>树中每个内部节点都对应一次 `merge` 操作，而叶子节点（长度为1的区间）不执行任何实际合并。整个递归过程先**递推**分解到叶子，然后逐层**回归**合并，最终得到完全有序的数组。
+
+>[!process]
+>**递归过程**
+>1. **大问题转移成小问题 —— 递推**：每次将长度为 n 的数组排序问题转化为两个长度为 n/2 的子数组排序问题，不断划分直到数组长度为 1（自然有序）。
+>2. **找到问题的边界（最小问题）—— 回归**：当数组长度为 1 时直接返回，然后逐层向上将两个已排序的子数组合并成更大的有序数组，最终得到原数组的有序结果。
+
+>[!summarization]
+>通过上述分治策略，归并排序实现了稳定、高效的排序，时间复杂度始终为 $O(n \log n)$，且不受输入数据初始顺序的影响。
+
+---
+# 15. 结构体和补充知识
+## 15.1 结构体类型定义和变量定义
+
+>[!review]
+>**知识回顾：[[数据类型]] —— 一个对象被放在内存里面后，它的种类是什么？**
+>**组成数据类型的三要素：**
+>1.数据在内存中占多大的空间？
+>2.以何种方式去解释内存中的每一个`bit` ？
+>3.数据都支持什么类型的运算？
+
+>[!review]
+>**基本数据类型：** `int` , `double` , `float` , `char` , `···`
+>**复合数据类型：** `数组` , `指针` , `···`
+
+>[!question]
+>*除此之外还有没有其他* **数据类型** *？*
+

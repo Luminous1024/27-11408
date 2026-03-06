@@ -96,8 +96,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -106,7 +105,7 @@
       {
         "id": "4c6650e63d96b04d",
         "type": "tabs",
-        "dimension": 31.149301825993554,
+        "dimension": 32.15686274509804,
         "children": [
           {
             "id": "8fb154fdd5fa5a1e",
@@ -116,16 +115,6 @@
               "state": {},
               "icon": "calendar-with-checkmark",
               "title": "Calendar"
-            }
-          },
-          {
-            "id": "7d5095a9ca58cd8f",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
             }
           },
           {
@@ -141,25 +130,6 @@
               },
               "icon": "lucide-list",
               "title": "C语言入门课程 的大纲"
-            }
-          },
-          {
-            "id": "71737b915252256a",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "日记/2026-02-07.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "2026-02-07 的反向链接列表"
             }
           },
           {
@@ -240,9 +210,9 @@
         ]
       },
       {
-        "id": "5d73c29972d82d00",
+        "id": "e21fac3be92ccc06",
         "type": "tabs",
-        "dimension": 68.85069817400644,
+        "dimension": 67.84313725490196,
         "children": [
           {
             "id": "acfbc74ea5ef31fd",
@@ -261,15 +231,43 @@
               "type": "planner-weekly",
               "state": {},
               "icon": "table-2",
-              "title": "2月, 7–2月, 9"
+              "title": "3月, 6–3月, 8"
+            }
+          },
+          {
+            "id": "71737b915252256a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "06_408/00_C语言/C语言入门课程.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "C语言入门课程 的反向链接列表"
+            }
+          },
+          {
+            "id": "7d5095a9ca58cd8f",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 316,
-    "collapsed": true
+    "width": 316
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -292,16 +290,17 @@
   },
   "active": "c22d040d9123fbbb",
   "lastOpenFiles": [
+    "日记/2026-03-06.md",
+    "06_408/00_C语言/C语言入门课程.md",
+    "日记/2026-03-05.md",
     "06_408/00_C语言/hanoi_subtrees_independent.py",
     "06_408/00_C语言/hanoi_subtrees.py",
     "06_408/00_C语言/hanoi_tree.py",
-    "日记/2026-03-05.md",
     "随笔/个人独立博客搭建方案.md",
     "随笔/大学生就业“难”的个人成因.md",
     "随笔/学习构建一个功能完整的Code Agent.md",
     "随笔/考研压力管理.md",
     "随笔/随笔.md",
-    "06_408/00_C语言/C语言入门课程.md",
     "07_GIS/三维GIS开发.md",
     "06_408/00_C语言/深入了解EOF.md",
     "日记/2026-03-04.md",
@@ -337,7 +336,6 @@
     "数据库/张宇1000题.base",
     "数据库/考研数学.base",
     "数据库/考研数学基础30讲.base",
-    "数据库/考研数学基础30讲 —— 高等数学.base",
     "未命名.canvas"
   ]
 }
