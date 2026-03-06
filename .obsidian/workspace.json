@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "c22d040d9123fbbb",
+            "id": "44c4a423b2b8ca07",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -96,7 +96,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -201,10 +202,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "00_目录/考研数学.md"
+                "file": "06_408/00_C语言/C语言入门课程.md"
               },
               "icon": "lucide-info",
-              "title": "考研数学的笔记属性"
+              "title": "C语言入门课程的笔记属性"
             }
           }
         ]
@@ -288,10 +289,11 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "c22d040d9123fbbb",
+  "active": "44c4a423b2b8ca07",
   "lastOpenFiles": [
     "日记/2026-03-06.md",
     "06_408/00_C语言/C语言入门课程.md",
+    "06_408/00_C语言/内存对齐.md",
     "日记/2026-03-05.md",
     "06_408/00_C语言/hanoi_subtrees_independent.py",
     "06_408/00_C语言/hanoi_subtrees.py",
@@ -328,7 +330,6 @@
     "数据库/考研数学基础30讲.md",
     "06_408/00_C语言/内存布局.md",
     "06_408/00_C语言/指针交换程序内存变化分析.md",
-    "06_408/00_C语言/值传递.md",
     "数据库/diary.base",
     "数据库/张宇1000题基础篇 —— 线性代数.base",
     "数据库/张宇1000题基础篇 —— 高等数学.base",

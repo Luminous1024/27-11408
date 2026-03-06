@@ -3714,6 +3714,7 @@ main p[i] = -858993460
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 int *func(){
 	int *arr = (int*)malloc(3 * sizeof(int));
@@ -3762,6 +3763,8 @@ main p[2] = 3
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#icnlude<string.h>
+
 int main(){
 	int *p;
 	p = (int*)0x12345678;
@@ -3786,6 +3789,8 @@ int main(){
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
+
 int main(){
 	int *p = NULL; // NULL底层原理是0 —— 我们将p称为空指针
 	int i = 101;
@@ -3800,6 +3805,8 @@ int main(){
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
+
 void func(int *pi){
 	*pi = 100;
 }
@@ -3828,6 +3835,8 @@ int main(){
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
+
 int main(){
 	char str[] = "hello";
 	printf("str = %s\n",str);
@@ -3848,6 +3857,8 @@ str = hello
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
+
 int main(){
 	char str[5] = {'h','e','l','l','o'}; // 没有空间去放'\0'
 	printf("str = %s\n",str);
@@ -3875,7 +3886,9 @@ str = hello烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫?
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char str[10] = "hello"; // 数组长度 ≥ 有效长度 + 1 即可
 	printf("strlen(str) = %d,sizeof(str) = %d\n",strlen(str),sizeof(str));
@@ -3900,7 +3913,9 @@ strlen(str) = 5,sizeof(str) = 10
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char to[10];
 	char from[10] = "hello";
@@ -3921,7 +3936,9 @@ int main(){
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char to[5];
 	char from[10] = "hello";
@@ -3953,7 +3970,9 @@ int main(){
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<Stdlib.h>
 #include<string.h>
+
 int main(){
 	char str1[] = "back";
 	char str2[] = "backward";
@@ -3985,7 +4004,9 @@ str1 vs str3 = 0
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char str1[20] = "how";
 	char str2[] = "ever";
@@ -4010,7 +4031,9 @@ str1 = however
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char str1[5] = "how";
 	char str2[] = "ever";
@@ -4035,7 +4058,9 @@ int main(){
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#icnlude<stdlib.h>
 #include<string.h>
+
 int main(){
 	char str[20];
 	scanf("%s",str); // str是一个数组，当数组作为参数进行传递时会退化成一个指针
@@ -4068,7 +4093,9 @@ str = how
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char str[20];
 	fgets(str,20,stdin); // 从stdin中读取一行到str，最大长度是20。
@@ -4095,7 +4122,9 @@ str = how are you
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char str[20];
 	fgets(str,20,stdin); // 从stdin中读取一行到str，最大长度是20。
@@ -4129,7 +4158,9 @@ str = how are you
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 int main(){
 	char str[4];
 	scanf("%s",str);
@@ -4145,7 +4176,9 @@ int main(){
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<Stdlib.h>
 #include<string.h>
+
 int main(){
 	char str[10];
 	fgets(str,10,stdin);
@@ -4173,7 +4206,9 @@ str = how are y
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+
 void func(int i){
 	printf("i = %d\n",i);
 	// 避免无限递归触发栈溢出，我们可以设计一个递归出口。
@@ -4240,6 +4275,7 @@ i = 0
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
 
 int f(int n){
@@ -4343,7 +4379,8 @@ flowchart TD
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
 
 // 汉诺塔递归函数
@@ -4625,7 +4662,9 @@ flowchart TD
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 // 合并两个有序子数组 [left, mid] 和 [mid+1, right]
 void merge(int* arr, int* temp, int left, int mid, int right) {
@@ -4684,7 +4723,8 @@ int main() {
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
 
 // 合并功能函数merge
@@ -4827,3 +4867,231 @@ mergeSort(arr, temp, 0, 11)
 >[!question]
 >*除此之外还有没有其他* **数据类型** *？*
 
+>[!definition]
+>**结构体：** 一种由用户自定义的复合数据类型( 可以把多个不同类型的成员打包在一起组成一个新的类型 )。
+>可以将**结构体**看作一个容器，容器里面是一个个成员。
+
+>[!question]
+>如何定义一个结构体类型？
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 定义结构体类型
+struct student_s{ // struct studentn_s 是结构体类型的名字
+	int id;
+	char name[25];
+	char gender;
+	float Politics;
+	float English;
+	float Math;
+	float cs408;
+}; //分号是不可省略的
+
+int main(){
+	// struct student_s stu; // 结构体类型的变量
+	struct student_s stu = {2023211033,"LvZiyuan",'m',60,75,115,115};
+	
+	return 0;
+}
+```
+
+>[!important]
+>**声明**一个**结构体变量**时，系统会为该变量分配一块连续的内存空间，其占用的内存大小通常 **≥** 该结构体类型所有成员占用的内存大小之和。
+
+---
+## 15.2 对齐问题
+
+>[!question]
+>*结构体都支持什么类型的运算？*
+
+>[!note]
+>**1.sizeof：** 用字节计算右边表达式并返回字节数 —— 计算数据类型所占内存大小
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 定义结构体类型
+struct student_s{ // struct studentn_s 是结构体类型的名字
+	int id;
+	char name[25];
+	char gender;
+	float Politics;
+	float English;
+	float Math;
+	float cs408;
+	// sizeof(stu) = 4 + 25 + 1 + 4 + 4 + 4 + 4 = 46
+}; //分号是不可省略的
+
+int main(){
+	// struct student_s stu; // 结构体类型的变量
+	struct student_s stu = {2023211033,"LvZiyuan",'m',60,75,115,115};
+	printf("sizeof(stu) = %d\n",sizeof(stu));
+	
+	return 0;
+}
+```
+
+```c
+结果：
+sizeof(stu) = 48
+```
+
+>[!question]
+>系统分配给**结构体变量stu**的内存大小的理论值为46 $byte$，但在程序实际运过程中**sizeof(stu) = 48** $byte$，系统实际分配给**结构体变量stu**的内存大小比系统分配给**结构体变量stu**的内存大小的理论值大 $2 \ byte$，这是为什么？
+
+>[!definition]
+>**内存对齐：( Memory Alignment )** 是计算机系统为了提升内存访问效率，而对数据在内存中的存放地址所做出的一种限制。简单来说，它要求特定类型的数据只能存储在内存中某些特定的地址上（通常是该数据类型大小的整数倍地址）。
+>若想深入理解 **内存对齐** 的概念 —— 详见[[内存对齐]]
+
+---
+## 15.3 常见结构体变量
+
+### '.'运算符
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 定义结构体类型
+struct student_s{ // struct studentn_s 是结构体类型的名字
+	int id;
+	char name[25];
+	char gender;
+	float Politics;
+	float English;
+	float Math;
+	float cs408;
+}; //分号是不可省略的
+
+int main(){
+	// struct student_s stu; // 结构体类型的变量
+	struct student_s stu = {2023211033,"LvZiyuan",'m',60,75,115,115};
+	
+	// '.'运算符 —— 根据结构体去访问内部的成员
+	printf("stu = %d %s %c %f %f %f %f\n",stu.id,stu.name,stu.gender,stu.Politics,stu.English,stu.Math,stu.cs408);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+stu = 2023211033 LvZiyuan m 60.000000 75.000000 115.000000 115.000000
+```
+
+### '='运算符
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 定义结构体类型
+struct student_s{ // struct studentn_s 是结构体类型的名字
+	int id;
+	char name[25];
+	char gender;
+	float Politics;
+	float English;
+	float Math;
+	float cs408;
+}; //分号是不可省略的
+
+int main(){
+	// struct student_s stu; // 结构体类型的变量
+	struct student_s stu = {2023211033,"LvZiyuan",'m',60,75,115,115};
+	
+	// '.'运算符 —— 根据结构体去访问内部的成员
+	printf("stu = %d %s %c %f %f %f %f\n",stu.id,stu.name,stu.gender,stu.Politics,stu.English,stu.Math,stu.cs408);
+	
+	// '='运算符
+	struct student_s stu1;
+	stu1 = stu;
+	printf("stu1 = %d %s %c %f %f %f %f\n",stu1.id,stu1.name,stu1.gender,stu1.Politics,stu1.English,stu1.Math,stu1.cs408);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+stu = 2023211033 LvZiyuan m 60.000000 75.000000 115.000000 115.000000
+stu1 = 2023211033 LvZiyuan m 60.000000 75.000000 115.000000 115.000000
+```
+
+>[!caution]
+>**数组**是**不能直接赋值**的，但如果**结构体变量**中的某个成员的数据类型是**数组** 的话，我们是可以把含有**数组**成员的**结构体变量**赋值给另外一个**结构体变量**的。
+
+### '->'运算符
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 定义结构体类型
+struct student_s{ // struct studentn_s 是结构体类型的名字
+	int id;
+	char name[25];
+	char gender;
+	float Politics;
+	float English;
+	float Math;
+	float cs408;
+}; //分号是不可省略的
+
+int main(){
+	// struct student_s stu; // 结构体类型的变量
+	struct student_s stu = {2023211033,"LvZiyuan",'m',60,75,115,115};
+	
+	// '.'运算符 —— 根据结构体去访问内部的成员
+	printf("stu = %d %s %c %f %f %f %f\n",stu.id,stu.name,stu.gender,stu.Politics,stu.English,stu.Math,stu.cs408);
+	
+	// '='运算符
+	struct student_s stu1;
+	stu1 = stu;
+	printf("stu1 = %d %s %c %f %f %f %f\n",stu1.id,stu1.name,stu1.gender,stu1.Politics,stu1.English,stu1.Math,stu1.cs408);
+	
+	// 指针
+	struct student_s *pstu = &stu; // 可能会存在一个坑！！！
+	// '*'运算符的优先级低于'.'运算符
+	//(*pstu).id // 这种访问方式过于复杂，因此我们引入'->'运算符
+	// '->'运算符 —— 先解引用再访问结构体成员
+	//引入'->'运算符后，(*pstu).id 可以改为 pstu -> id
+	printf("(*pstu).id = %d,pstu -> id = %d\n",(*pstu).id,pstu -> id);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+stu = 2023211033 LvZiyuan m 60.000000 75.000000 115.000000 115.000000
+stu1 = 2023211033 LvZiyuan m 60.000000 75.000000 115.000000 115.000000
+(*pstu).id = 2023211033,pstu -> id = 2023211033
+```
+
+---
+## 15.4 typedef
+
+>[!definieion]
+>**typedef(给类型起别名)：** **关键字** `typedef` 允许你从一个现有的类型中创建一个新类型。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+typedef int type_t; // 给int起了一个别名叫type_t
+```
