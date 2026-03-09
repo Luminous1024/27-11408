@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔗 单链表可视化模型 · 交互演示</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f6f9fc 0%, #e9f1f8 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 2rem 2rem 2rem 2rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 20, 40, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            width: fit-content;
+            max-width: 1000px;
+        }
+
+        h2 {
+            margin: 0 0 0.5rem 0;
+            font-weight: 500;
+            color: #0b2b40;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        h2 span {
+            background: #1f4a6e;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 400;
+        }
+
+        .canvas-wrapper {
+            background: #ffffffd9;
+            border-radius: 28px;
+            padding: 20px 10px 20px 10px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.02), 0 10px 15px -8px rgba(0, 32, 64, 0.2);
+            border: 1px solid #ffffff;
+            margin: 20px 0 20px 0;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 0 0 1px #d9e2ec;
+            width: 100%;
+            height: auto;
+            cursor: default;
+        }
+
+        .info-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .node-count {
+            background: #d7e5f0;
+            padding: 0.45rem 1.1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #103a53;
+            border: 1px solid #c2d6e8;
+            box-shadow: inset 0 1px 3px white;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            background: #f0f6fd;
+            border: 1px solid #bed0e3;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #113750;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -4px rgba(0, 32, 64, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn:hover {
+            background: #e3edf7;
+            border-color: #8fb3d1;
+            box-shadow: 0 6px 8px -4px rgba(0, 44, 75, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            background: #cbdae7;
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1) inset;
+        }
+
+        .btn.reset {
+            background: #e2eefc;
+            color: #0b3a57;
+            border-color: #9fb9d4;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #3f5f79;
+            font-size: 0.8rem;
+            margin-top: 18px;
+            opacity: 0.8;
+            border-top: 1px dashed #b9d0e3;
+            padding-top: 12px;
+        }
+
+        .footer-note code {
+            background: #dbe7f3;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>
+            ⛓️ 单链表 · 可视化模型
+            <span>next 指针</span>
+        </h2>
+        <!-- canvas 绘图区域 -->
+        <div class="canvas-wrapper">
+            <canvas id="linkedListCanvas" width="800" height="250"></canvas>
+        </div>
+
+        <!-- 控制栏 + 节点计数 -->
+        <div class="info-panel">
+            <div class="node-count" id="nodeCountDisplay">节点数: 3</div>
+            <div class="button-group">
+                <button class="btn" id="insertHeadBtn" title="在头部插入随机值">➕ 头插</button>
+                <button class="btn" id="insertTailBtn" title="在尾部插入随机值">➕ 尾插</button>
+                <button class="btn" id="removeHeadBtn" title="删除头节点">✖️ 删头</button>
+                <button class="btn" id="removeTailBtn" title="删除尾节点">✖️ 删尾</button>
+                <button class="btn reset" id="resetBtn" title="恢复默认链表 [10, 20, 30]">⟲ 重置</button>
+            </div>
+        </div>
+        <div class="footer-note">
+            <code>head</code> 指向第一个节点 · 每个节点保存一个数值 · 最多容纳 <strong>10</strong> 个节点
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            // ---------- 链表节点定义 ----------
+            class Node {
+                constructor(value) {
+                    this.value = value;
+                    this.next = null;
+                }
+            }
+
+            // ---------- 全局状态 ----------
+            let head = null;                 // 头节点引用
+            const MAX_NODES = 10;            // 画布容量限制
+
+            // 初始化默认链表: 10 → 20 → 30
+            function initDefault() {
+                head = new Node(10);
+                head.next = new Node(20);
+                head.next.next = new Node(30);
+            }
+            initDefault();  // 默认状态
+
+            // ---------- 辅助函数: 获取链表长度 & 节点数组 (用于绘图) ----------
+            function getNodeArray() {
+                const nodes = [];
+                let current = head;
+                let count = 0;
+                while (current && count < MAX_NODES + 1) {  // 安全遍历，避免环
+                    nodes.push(current);
+                    current = current.next;
+                    count++;
+                }
+                return nodes;
+            }
+
+            function getLength() {
+                let len = 0;
+                let current = head;
+                while (current) {
+                    len++;
+                    current = current.next;
+                }
+                return len;
+            }
+
+            // 更新节点计数显示
+            function updateCountDisplay() {
+                const len = getLength();
+                document.getElementById('nodeCountDisplay').innerText = `节点数: ${len}`;
+            }
+
+            // ---------- Canvas 绘制配置 ----------
+            const canvas = document.getElementById('linkedListCanvas');
+            const ctx = canvas.getContext('2d');
+            const W = 800, H = 250;
+
+            // 节点几何参数
+            const NODE_W = 50;          // 宽度
+            const NODE_H = 25;          // 高度
+            const X_SPACING = 70;       // 节点水平间隔 (起始x到下一个起始x)
+            const START_X = 40;          // 第一个节点的左上角 x
+            const Y_LEVEL = 130;         // 节点矩形左上角 y (使垂直居中)
+
+            // 绘制箭头 (带三角形)
+            function drawArrowLine(fromX, fromY, toX, toY, withArrowHead = true) {
+                const arrowSize = 10;     // 箭头三角形大小
+
+                // 计算方向向量
+                let dx = toX - fromX;
+                let dy = toY - fromY;
+                const len = Math.sqrt(dx * dx + dy * dy);
+                if (len < 0.1) return;    // 忽略无长度的线
+
+                const unitX = dx / len;
+                const unitY = dy / len;
+
+                // 为了使箭头尖恰触及目标点，线终点应往回缩 arrowSize 距离
+                const lineEndX = toX - unitX * arrowSize;
+                const lineEndY = toY - unitY * arrowSize;
+
+                // 画线条 (半透明深色)
+                ctx.beginPath();
+                ctx.moveTo(fromX, fromY);
+                ctx.lineTo(lineEndX, lineEndY);
+                ctx.strokeStyle = '#4b6f8c';
+                ctx.lineWidth = 1.8;
+                ctx.stroke();
+
+                if (withArrowHead) {
+                    // 画箭头三角形 (顶点在 toX, toY)
+                    const backAngle = Math.atan2(unitY, unitX); // 指向目标的方向
+                    const leftAngle = backAngle + 0.3;          // 稍微偏左
+                    const rightAngle = backAngle - 0.3;         // 稍微偏右
+
+                    const leftX = toX - arrowSize * 0.9 * Math.cos(leftAngle);
+                    const leftY = toY - arrowSize * 0.9 * Math.sin(leftAngle);
+                    const rightX = toX - arrowSize * 0.9 * Math.cos(rightAngle);
+                    const rightY = toY - arrowSize * 0.9 * Math.sin(rightAngle);
+
+                    ctx.beginPath();
+                    ctx.moveTo(toX, toY);
+                    ctx.lineTo(leftX, leftY);
+                    ctx.lineTo(rightX, rightY);
+                    ctx.closePath();
+                    ctx.fillStyle = '#1f4a6e';
+                    ctx.shadowColor = '#a0b8cc';
+                    ctx.shadowBlur = 4;
+                    ctx.shadowOffsetY = 1;
+                    ctx.fill();
+                    ctx.shadowColor = 'transparent'; // 避免阴影影响后续绘图
+                    ctx.shadowBlur = 0;
+                    ctx.shadowOffsetY = 0;
+                }
+            }
+
+            // 绘制矩形节点 (带值和边框)
+            function drawNodeRect(x, y, value, isFirst = false) {
+                // 圆角矩形
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowColor = '#bacddc';
+                ctx.shadowBlur = 6;
+                ctx.shadowOffsetY = 2;
+                ctx.beginPath();
+                ctx.roundRect(x, y, NODE_W, NODE_H, 8);
+                ctx.fill();
+                ctx.shadowColor = 'transparent';
+                ctx.strokeStyle = '#2b5f84';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // 绘制文本
+                ctx.font = '500 13px "Segoe UI", "Courier New", monospace';
+                ctx.fillStyle = '#103a53';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(value, x + NODE_W / 2, y + NODE_H / 2);
+            }
+
+            // 工具: canvas 圆角矩形
+            CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+                if (w < 2 * r) r = w / 2;
+                if (h < 2 * r) r = h / 2;
+                this.moveTo(x + r, y);
+                this.lineTo(x + w - r, y);
+                this.quadraticCurveTo(x + w, y, x + w, y + r);
+                this.lineTo(x + w, y + h - r);
+                this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+                this.lineTo(x + r, y + h);
+                this.quadraticCurveTo(x, y + h, x, y + h - r);
+                this.lineTo(x, y + r);
+                this.quadraticCurveTo(x, y, x + r, y);
+                return this;
+            };
+
+            // 绘制"null" 终点标记
+            function drawNullMarker(x, y) {
+                const nullW = 38;
+                const nullH = 22;
+                const rectX = x - nullW / 2;
+                const rectY = y - nullH / 2;
+
+                ctx.fillStyle = '#e6eff9';
+                ctx.shadowBlur = 3;
+                ctx.shadowColor = '#9fb4c9';
+                ctx.beginPath();
+                ctx.roundRect(rectX, rectY, nullW, nullH, 10);
+                ctx.fill();
+                ctx.shadowColor = 'transparent';
+                ctx.strokeStyle = '#8facc9';
+                ctx.lineWidth = 1.2;
+                ctx.stroke();
+
+                ctx.font = '500 12px "Segoe UI", sans-serif';
+                ctx.fillStyle = '#3b5777';
+                ctx.fillText('null', x, y);
+            }
+
+            // ---------- 核心绘图函数 ----------
+            function drawLinkedList() {
+                ctx.clearRect(0, 0, W, H);
+                ctx.shadowColor = 'transparent'; // 基础重置
+
+                // 获取所有可达节点 (按遍历顺序)
+                const nodes = [];
+                let current = head;
+                while (current && nodes.length < MAX_NODES + 1) { // 避免死循环
+                    nodes.push(current);
+                    current = current.next;
+                }
+
+                // 如果链表为空，显示空状态
+                if (nodes.length === 0) {
+                    // 绘制 head 标记指向 null
+                    ctx.font = '500 14px "Segoe UI"';
+                    ctx.fillStyle = '#1e4968';
+                    ctx.fillText('head', 25, Y_LEVEL - 20);
+                    // 画虚线指示线
+                    ctx.beginPath();
+                    ctx.setLineDash([5, 4]);
+                    ctx.moveTo(65, Y_LEVEL - 16);
+                    ctx.lineTo(95, Y_LEVEL + 2);
+                    ctx.strokeStyle = '#6f8faf';
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
+                    ctx.setLineDash([]); // 恢复实线
+
+                    // 绘制 null 标记
+                    drawNullMarker(130, Y_LEVEL + NODE_H / 2);
+                    return;
+                }
+
+                // ----- 1. 计算每个节点的绘制坐标 (基于遍历顺序索引) -----
+                const nodePositions = nodes.map((node, index) => {
+                    const x = START_X + index * X_SPACING;
+                    const y = Y_LEVEL;
+                    return { node, x, y };
+                });
+
+                // ----- 2. 绘制所有节点矩形 -----
+                nodePositions.forEach((pos, idx) => {
+                    drawNodeRect(pos.x, pos.y, pos.node.value, idx === 0);
+                });
+
+                // ----- 3. 绘制节点间的箭头 (以及指向 null) -----
+                for (let i = 0; i < nodePositions.length; i++) {
+                    const currentNode = nodePositions[i].node;
+                    const fromX = nodePositions[i].x + NODE_W;          // 右侧中点
+                    const fromY = nodePositions[i].y + NODE_H / 2;
+
+                    if (currentNode.next) {
+                        // 查找下一个节点在位置数组中的索引 (通过对象引用)
+                        const nextIndex = nodePositions.findIndex(p => p.node === currentNode.next);
+                        if (nextIndex !== -1) {
+                            const toX = nodePositions[nextIndex].x;     // 下一个节点左侧
+                            const toY = nodePositions[nextIndex].y + NODE_H / 2;
+                            drawArrowLine(fromX, fromY, toX, toY, true);
+                        } else {
+                            // 理论上不会发生 (除非next指向外部) 忽略
+                        }
+                    } else {
+                        // 没有next: 指向null标记
+                        // null标记位置: 当前节点右侧 + 40 偏移
+                        const nullCenterX = nodePositions[i].x + NODE_W + 42;
+                        const nullCenterY = fromY;
+                        // 画箭头 到 null 标记的左侧 (偏移使指向矩形中心偏左)
+                        const toX = nullCenterX - 15;  // 指向null矩形的左边中点附近
+                        const toY = nullCenterY;
+                        drawArrowLine(fromX, fromY, toX, toY, true);
+                        // 绘制null矩形
+                        drawNullMarker(nullCenterX, nullCenterY);
+                    }
+                }
+
+                // ----- 4. 绘制 head 标记 (指向第一个节点) -----
+                if (nodePositions.length > 0) {
+                    const firstX = nodePositions[0].x;
+                    const firstY = nodePositions[0].y;
+
+                    ctx.font = '500 14px "Segoe UI"';
+                    ctx.fillStyle = '#1e4968';
+                    ctx.fillText('head', firstX - 8, firstY - 22);
+
+                    ctx.beginPath();
+                    ctx.setLineDash([4, 3]);
+                    ctx.moveTo(firstX + 6, firstY - 18);
+                    ctx.lineTo(firstX + NODE_W / 2, firstY - 4);
+                    ctx.strokeStyle = '#3f6990';
+                    ctx.lineWidth = 1.3;
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+            }
+
+            // ---------- 操作函数 (带长度限制 & 重绘) ----------
+            function insertHead() {
+                if (getLength() >= MAX_NODES) {
+                    alert(`最多只能容纳 ${MAX_NODES} 个节点，请先删除部分节点。`);
+                    return;
+                }
+                const newVal = Math.floor(Math.random() * 90) + 10; // 10~99
+                const newNode = new Node(newVal);
+                newNode.next = head;
+                head = newNode;
+                drawLinkedList();
+                updateCountDisplay();
+            }
+
+            function insertTail() {
+                if (getLength() >= MAX_NODES) {
+                    alert(`最多只能容纳 ${MAX_NODES} 个节点，请先删除部分节点。`);
+                    return;
+                }
+                const newVal = Math.floor(Math.random() * 90) + 10;
+                const newNode = new Node(newVal);
+                if (!head) {
+                    head = newNode;
+                } else {
+                    let cur = head;
+                    while (cur.next) {
+                        cur = cur.next;
+                    }
+                    cur.next = newNode;
+                }
+                drawLinkedList();
+                updateCountDisplay();
+            }
+
+            function removeHead() {
+                if (!head) return;
+                head = head.next;
+                drawLinkedList();
+                updateCountDisplay();
+            }
+
+            function removeTail() {
+                if (!head) return;
+                if (!head.next) {
+                    // 只有一个节点
+                    head = null;
+                } else {
+                    let cur = head;
+                    while (cur.next && cur.next.next) {
+                        cur = cur.next;
+                    }
+                    cur.next = null; // 断开最后一个
+                }
+                drawLinkedList();
+                updateCountDisplay();
+            }
+
+            function resetList() {
+                head = new Node(10);
+                head.next = new Node(20);
+                head.next.next = new Node(30);
+                drawLinkedList();
+                updateCountDisplay();
+            }
+
+            // ---------- 绑定按钮事件 ----------
+            document.getElementById('insertHeadBtn').addEventListener('click', insertHead);
+            document.getElementById('insertTailBtn').addEventListener('click', insertTail);
+            document.getElementById('removeHeadBtn').addEventListener('click', removeHead);
+            document.getElementById('removeTailBtn').addEventListener('click', removeTail);
+            document.getElementById('resetBtn').addEventListener('click', resetList);
+
+            // 初始绘制
+            drawLinkedList();
+            updateCountDisplay();
+
+            // 可选：窗口大小自适应不用处理，canvas固定800px
+        })();
+    </script>
+</body>
+
+</html>

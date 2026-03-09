@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "06_408/00_C语言/C语言入门课程.md",
-                "mode": "preview",
+                "file": "日记/2026-03-09.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "C语言入门课程"
+              "title": "2026-03-09"
             }
           }
         ]
@@ -124,13 +124,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "06_408/00_C语言/C语言入门课程.md",
+                "file": "日记/2026-03-09.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "C语言入门课程 的大纲"
+              "title": "2026-03-09 的大纲"
             }
           },
           {
@@ -208,8 +208,7 @@
               "title": "C语言入门课程的笔记属性"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "e21fac3be92ccc06",
@@ -269,8 +268,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316,
-    "collapsed": true
+    "width": 316
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -291,14 +289,20 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "5654df20690a02df",
+  "active": "8fb154fdd5fa5a1e",
   "lastOpenFiles": [
-    "日记/2026-03-09.md",
     "06_408/00_C语言/C语言入门课程.md",
+    "00_目录/408.md",
+    "00_目录/考研数学.md",
+    "00_目录/考研英语.md",
+    "00_目录/diary.md",
+    "日记/2026-03-09.md",
+    "07_GIS/三维GIS开发.md",
+    "07_GIS/ENVI实验.md",
+    "06_408/00_C语言/singly-linked-list-visualization.html",
     "随笔/Obsidian笔记跳转指南.md",
     "06_408/00_C语言/数组的性质.md",
     "日记/2026-03-06.md",
-    "07_GIS/三维GIS开发.md",
     "Pasted image 20260309120447.png",
     "Pasted image 20260309120204.png",
     "c9824a14d32b568901f350a6e58ba5d3.jpg",
@@ -321,24 +325,18 @@
     "Pasted image 20260203150510.png",
     "Pasted image 20260201152910.png",
     "936a0255bdccc52feb47f963c1be1250.jpg",
-    "07_GIS/ENVI实验.md",
     "日记/2026-03-03.md",
     "日记/2026-03-02.md",
     "日记/2026-02-28.md",
     "日记/2026-02-27.md",
     "日记/2026-02-26.md",
     "日记/2026-02-24.md",
-    "00_目录/考研数学.md",
-    "00_目录/408.md",
-    "00_目录/考研英语.md",
-    "数据库/考研数学基础30讲 —— 高等数学.md",
     "数据库/diary.base",
     "数据库/张宇1000题基础篇 —— 线性代数.base",
     "数据库/张宇1000题基础篇 —— 高等数学.base",
     "数据库/张宇1000题基础篇.base",
     "数据库/张宇1000题.base",
     "数据库/考研数学.base",
-    "数据库/考研数学基础30讲.base",
     "未命名.canvas"
   ]
 }

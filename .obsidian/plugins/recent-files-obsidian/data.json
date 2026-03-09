@@ -1,12 +1,36 @@
 {
   "recentFiles": [
     {
+      "basename": "2026-03-09",
+      "path": "日记/2026-03-09.md"
+    },
+    {
       "basename": "C语言入门课程",
       "path": "06_408/00_C语言/C语言入门课程.md"
     },
     {
-      "basename": "2026-03-09",
-      "path": "日记/2026-03-09.md"
+      "basename": "408",
+      "path": "00_目录/408.md"
+    },
+    {
+      "basename": "考研数学",
+      "path": "00_目录/考研数学.md"
+    },
+    {
+      "basename": "考研英语",
+      "path": "00_目录/考研英语.md"
+    },
+    {
+      "basename": "diary",
+      "path": "00_目录/diary.md"
+    },
+    {
+      "basename": "三维GIS开发",
+      "path": "07_GIS/三维GIS开发.md"
+    },
+    {
+      "basename": "ENVI实验",
+      "path": "07_GIS/ENVI实验.md"
     },
     {
       "basename": "Obsidian笔记跳转指南",
@@ -19,10 +43,6 @@
     {
       "basename": "2026-03-06",
       "path": "日记/2026-03-06.md"
-    },
-    {
-      "basename": "三维GIS开发",
-      "path": "07_GIS/三维GIS开发.md"
     },
     {
       "basename": "内存对齐",
@@ -93,10 +113,6 @@
       "path": "207dcd69ff71616d97c39a22515a0884.jpg"
     },
     {
-      "basename": "ENVI实验",
-      "path": "07_GIS/ENVI实验.md"
-    },
-    {
       "basename": "2026-03-03",
       "path": "日记/2026-03-03.md"
     },
@@ -121,24 +137,12 @@
       "path": "日记/2026-02-24.md"
     },
     {
-      "basename": "408",
-      "path": "00_目录/408.md"
-    },
-    {
-      "basename": "考研英语",
-      "path": "00_目录/考研英语.md"
-    },
-    {
       "basename": "考研数学基础30讲 —— 高等数学",
       "path": "数据库/考研数学基础30讲 —— 高等数学.md"
     },
     {
       "basename": "考研数学基础30讲",
       "path": "数据库/考研数学基础30讲.md"
-    },
-    {
-      "basename": "考研数学",
-      "path": "00_目录/考研数学.md"
     },
     {
       "basename": "值传递",
@@ -195,10 +199,6 @@
     {
       "basename": "Pasted image 20260223115316",
       "path": "Pasted image 20260223115316.png"
-    },
-    {
-      "basename": "2026-02-22",
-      "path": "日记/2026-02-22.md"
     }
   ],
   "omittedPaths": [],

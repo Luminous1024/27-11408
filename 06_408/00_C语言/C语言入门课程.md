@@ -5267,3 +5267,97 @@ flowchart LR
 >*4)* 链表插入和删除元素的效率较高。
 
 ---
+## 16.2 链表的类型定义
+
+>[!declaration]
+>**链表的代码实现：**
+>在*C语言阶段* 我们*只学习一种链表* —— *不带头节点* 但是带*头指针和尾指针* 的**单链表( 只有一个指针域 —— 只能通过前一个节点找到它的后继，但是没有办法通过后一个节点去找它的前驱)**。
+
+```mermaid
+flowchart LR
+    classDef dataNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold,r:20px;
+    classDef dataNode2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold,r:20px;
+    classDef dataNode3 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c,font-weight:bold,r:20px;
+    classDef dataNode4 fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c,font-weight:bold,r:20px;
+    classDef dataNodeGray fill:#eeeeee,stroke:#9e9e9e,stroke-width:2px,color:#616161,font-weight:bold,r:20px;
+    classDef pointerStyle fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4b,font-weight:bold,r:10px;
+
+    Head["Head (头指针)"]:::pointerStyle --> Node1
+    Tail["Tail (尾指针)"]:::pointerStyle --> Node5
+    Node1["data: 10 | next"]:::dataNode4 --> Node2
+    Node2["data: 20 | next"]:::dataNode2 --> Node3
+    Node3["data: 30 | next"]:::dataNode --> Node4
+    Node4["data: 40 | next"]:::dataNode3 --> Node5
+    Node5["data: 50 | NULL"]:::dataNodeGray
+```
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct node_s{
+	// 数据域
+	int data;
+	// 指针域
+	struct node_s *next;
+	// struct node_s next // 这样写是不行的
+}node_t;
+
+typedef struct link_list_s{
+	node_t *phead;
+	node_t *ptail;
+}link_list_t;
+
+int main(){
+	return 0;
+}
+```
+
+---
+## 16.3 链表头插法和遍历
+
+>[!method]
+>**头插法：** 
+>最开始链表为空，*phead* 和*ptail* 的指向都是**NULL**就可以了。
+
+>[!step]
+>**头插法的步骤：**
+>**1.** 将新节点的**指针域**改为指向原来的*phead* ；
+>**2.** 将*phead* 改为指向新节点；
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct node_s{
+	// 数据域
+	int data;
+	// 指针域
+	struct node_s *next;
+	// struct node_s next // 这样写是不行的
+}node_t;
+
+typedef struct link_list_s{
+	node_t *phead;
+	node_t *ptail;
+}link_list_t;
+
+// 头插法
+void head_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+}
+
+int main(){
+	return 0;
+}
+```
+

@@ -5,47 +5,68 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
-    {
-      "query": "tag:#408_计算机学科专业基础  ",
-      "color": {
-        "a": 1,
-        "rgb": 5431008
-      }
-    },
     {
       "query": "tag:#考研数学  ",
       "color": {
         "a": 1,
-        "rgb": 5682672
+        "rgb": 1761500
+      }
+    },
+    {
+      "query": "tag:#408_计算机学科专业基础  ",
+      "color": {
+        "a": 1,
+        "rgb": 846309
       }
     },
     {
       "query": "tag:#考研英语  ",
       "color": {
         "a": 1,
-        "rgb": 4774452
+        "rgb": 3465757
       }
     },
     {
       "query": "tag:#diary  ",
       "color": {
         "a": 1,
-        "rgb": 15297046
+        "rgb": 14710098
+      }
+    },
+    {
+      "query": "tag:#随笔  ",
+      "color": {
+        "a": 1,
+        "rgb": 15974930
+      }
+    },
+    {
+      "query": "tag:#GIS  ",
+      "color": {
+        "a": 1,
+        "rgb": 5408992
+      }
+    },
+    {
+      "query": "tag:#目录  ",
+      "color": {
+        "a": 1,
+        "rgb": 14035241
       }
     }
   ],
   "collapse-display": true,
-  "showArrow": true,
+  "showArrow": false,
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1,
   "lineSizeMultiplier": 1,
   "collapse-forces": true,
-  "centerStrength": 0.518713248970312,
+  "centerStrength": 0.597713097713098,
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.5522357478305574,
+  "scale": 0.7001034896046963,
   "close": true
 }
