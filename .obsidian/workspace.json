@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "a29ee3aedc860382",
+        "id": "b88aa5e94735a222",
         "type": "tabs",
         "children": [
           {
-            "id": "44c4a423b2b8ca07",
+            "id": "5654df20690a02df",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -208,7 +208,8 @@
               "title": "C语言入门课程的笔记属性"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "e21fac3be92ccc06",
@@ -268,7 +269,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316
+    "width": 316,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -289,10 +291,18 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "44c4a423b2b8ca07",
+  "active": "5654df20690a02df",
   "lastOpenFiles": [
-    "日记/2026-03-06.md",
+    "日记/2026-03-09.md",
     "06_408/00_C语言/C语言入门课程.md",
+    "随笔/Obsidian笔记跳转指南.md",
+    "06_408/00_C语言/数组的性质.md",
+    "日记/2026-03-06.md",
+    "07_GIS/三维GIS开发.md",
+    "Pasted image 20260309120447.png",
+    "Pasted image 20260309120204.png",
+    "c9824a14d32b568901f350a6e58ba5d3.jpg",
+    "1b69328adcc54a85a31e7df4ebb24966.jpg",
     "06_408/00_C语言/内存对齐.md",
     "日记/2026-03-05.md",
     "06_408/00_C语言/hanoi_subtrees_independent.py",
@@ -303,7 +313,6 @@
     "随笔/学习构建一个功能完整的Code Agent.md",
     "随笔/考研压力管理.md",
     "随笔/随笔.md",
-    "07_GIS/三维GIS开发.md",
     "06_408/00_C语言/深入了解EOF.md",
     "日记/2026-03-04.md",
     "Pasted image 20260304111445.png",
@@ -312,9 +321,6 @@
     "Pasted image 20260203150510.png",
     "Pasted image 20260201152910.png",
     "936a0255bdccc52feb47f963c1be1250.jpg",
-    "3aa4907461dd1cc17bb6ee7e2dd50a99.jpg",
-    "74ffbd8b94935c53cdcdc682f2b1b8a0.jpg",
-    "207dcd69ff71616d97c39a22515a0884.jpg",
     "07_GIS/ENVI实验.md",
     "日记/2026-03-03.md",
     "日记/2026-03-02.md",
@@ -322,14 +328,10 @@
     "日记/2026-02-27.md",
     "日记/2026-02-26.md",
     "日记/2026-02-24.md",
-    "d27e91665c44ef36b9f9b80432aeead6.jpg",
     "00_目录/考研数学.md",
     "00_目录/408.md",
     "00_目录/考研英语.md",
     "数据库/考研数学基础30讲 —— 高等数学.md",
-    "数据库/考研数学基础30讲.md",
-    "06_408/00_C语言/内存布局.md",
-    "06_408/00_C语言/指针交换程序内存变化分析.md",
     "数据库/diary.base",
     "数据库/张宇1000题基础篇 —— 线性代数.base",
     "数据库/张宇1000题基础篇 —— 高等数学.base",
