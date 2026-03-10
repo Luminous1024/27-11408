@@ -7,7 +7,7 @@ tags:
 阶段: 零基础
 老师: 泥鳅
 开始日期: 2026-01-11
-结束日期:
+结束日期: 2026-03-10
 ---
 ---
 [[2026-01-16]]
@@ -4333,49 +4333,6 @@ flowchart TD
 ---
 ## 14.3 汉诺塔问题
 
->[!question]
->**汉诺塔问题：** 现在有n个从小到大排列的圆盘，我们需要将圆盘全部移动到另一个柱子上，并遵守**以下规则**：
->1.每次只能移动一个圆盘；
->2.移动过程中，大盘不能放在小盘上面；
->3.只能移动最顶端的圆盘。
-
->[!challenge]
->如果我们用**枚举**的思路( *从全局的角度* )去解决`汉诺塔问题`显然是很困难的。
-
->[!solution]
->因此我们退而求其次选择**分治法**来解决`汉诺塔问题`。
-
->[!method]
->**数学归纳法：** 假设我们已经知道如何移动 n-1 个盘子，那么就可以解决 n 个盘子的移动问题。
-
->[!principle]
->**分治策略：** 将 n 个盘子的移动问题分解为三个子问题：
->1. 将上面的 n-1 个盘子从起始柱移动到辅助柱；
->2. 将最大的盘子从起始柱移动到目标柱；
->3. 将 n-1 个盘子从辅助柱移动到目标柱。
-
->[!derivation]
->**递归公式：** 设移动 n 个盘子所需的最少步数为 $T_n$，则有：
->$$
->T_n = 2T_{n-1} + 1, \quad T_1 = 1
->$$
->**通项公式推导（迭代法）：**
->$$
->\begin{aligned}
->T_n &= 2T_{n-1} + 1 \\
->&= 2(2T_{n-2} + 1) + 1 = 2^2 T_{n-2} + 2 + 1 \\
->&= 2^2(2T_{n-3} + 1) + 2 + 1 = 2^3 T_{n-3} + 2^2 + 2 + 1 \\
->&\quad \vdots \\
->&= 2^{n-1} T_1 + (2^{n-2} + 2^{n-3} + \cdots + 2 + 1)
->\end{aligned}
->$$
->代入 $T_1 = 1$，并利用等比数列求和公式 $2^{n-2} + 2^{n-3} + \cdots + 2 + 1 = 2^{n-1} - 1$，得：
->$$
->T_n = 2^{n-1} \cdot 1 + (2^{n-1} - 1) = 2^n - 1
->$$
-
->[!ideology]
->当 $T_{n-1}$ 逐步分解直到 $T_1$ 时，问题变得极为简单：直接移动一个盘子即可。这就是 ( *divide：递推* ) 的过程。求出 $T_1$ 后，我们可以根据 $T_1$ 计算出 $T_2$，进而得到 $T_3$，以此类推，最终得到 $T_n$。这就是 ( *conquer：回归* ) 的过程。
 
 ```c
 #define _CRT_SECURE_NO_WARNINGS
@@ -5316,6 +5273,7 @@ int main(){
 ```
 
 ---
+[[2026-03-10]]
 ## 16.3 链表头插法和遍历
 
 >[!method]
@@ -5337,7 +5295,7 @@ typedef struct node_s{
 	// 数据域
 	int data;
 	// 指针域
-	struct node_s *next;
+	struct node_s *next; // 指针变量本身所占的内存大小为4个字节，是一个固定值
 	// struct node_s next // 这样写是不行的
 }node_t;
 
@@ -5354,10 +5312,755 @@ void head_insert(link_list_t *plist,int data){
 	pnew_node -> data = data;
 	
 	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		pnew_node -> next = plist -> phead;
+		plist -> phead = pnew_node;
+	}
 }
 
 int main(){
+	link_list_t list;
+	// 初始化
+	list.phead = NULL;
+	list.ptail = NULL;
+	
+	head_insert(&list,1);
+	head_insert(&list,3);
+	head_insert(&list,5);
+	
 	return 0;
 }
 ```
+
+>[!quote]
+>若想深入理解**单链表头插法**是**如何实现**的 —— 详见[[C语言单链表头插法实现详解( 带头尾指针 )]]
+
+>[!method]
+>通过**打印链表**的方式来检验**单链表头插法**是否正确：
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct node_s{
+	// 数据域
+	int data;
+	// 指针域
+	struct node_s *next; // 指针变量本身所占的内存大小为4个字节，是一个固定值
+	// struct node_s next // 这样写是不行的
+}node_t;
+
+typedef struct link_list_s{
+	node_t *phead;
+	node_t *ptail;
+}link_list_t;
+
+// 头插法
+void head_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		pnew_node -> next = plist -> phead;
+		plist -> phead = pnew_node;
+	}
+}
+
+// 打印链表
+void print_list(link_list_t *plist){
+	node_t *pcur = plist -> phead;
+	while(pcur != NULL){
+		printf("%d",pcur -> data);
+		if(pcur -> next != NULL){
+			printf(" -> ");
+		}
+		pcur = pcur -> next; // 每次都需要将游标后移
+	}
+	printf("\n");
+}
+
+int main(){
+	link_list_t list;
+	// 初始化
+	list.phead = NULL;
+	list.ptail = NULL;
+	
+	head_insert(&list,1);
+	print_list(&list);
+	head_insert(&list,3);
+	print_list(&list);
+	head_insert(&list,5);
+	print_list(&list);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+1
+3 -> 1
+5 -> 3 -> 1
+```
+
+---
+## 16.4 链表尾插法
+
+>[!method]
+>**尾插法：**
+>尾插法将新节点插入到链表末尾，需要维护尾指针*ptail*。
+
+>[!step]
+>**尾插法的步骤：**
+>**1.** 将新节点的**指针域**置为**NULL**；
+>**2.** 若链表为空（*phead* 为**NULL**），则将*phead* 和*ptail* 都指向新节点；
+>**3.** 若链表非空，则将*ptail* 所指向节点的**指针域**指向新节点，然后更新*ptail* 指向新节点。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct node_s{
+	// 数据域
+	int data;
+	// 指针域
+	struct node_s *next; // 指针变量本身所占的内存大小为4个字节，是一个固定值
+	// struct node_s next // 这样写是不行的
+}node_t;
+
+typedef struct link_list_s{
+	node_t *phead;
+	node_t *ptail;
+}link_list_t;
+
+// 头插法
+void head_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		pnew_node -> next = plist -> phead;
+		plist -> phead = pnew_node;
+	}
+}
+
+// 尾插法
+void tail_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		plist -> ptail -> next = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+}
+
+// 打印链表
+void print_list(link_list_t *plist){
+	node_t *pcur = plist -> phead;
+	while(pcur != NULL){
+		printf("%d",pcur -> data);
+		if(pcur -> next != NULL){
+			printf(" -> ");
+		}
+		pcur = pcur -> next; // 每次都需要将游标后移
+	}
+	printf("\n");
+}
+
+int main(){
+	link_list_t list;
+	// 初始化
+	list.phead = NULL;
+	list.ptail = NULL;
+	
+	//head_insert(&list,1);
+	//print_list(&list);
+	//head_insert(&list,3);
+	//print_list(&list);
+	//head_insert(&list,5);
+	//print_list(&list);
+	
+	tail_insert(&list,1);
+	print_list(&list);
+	tail_insert(&list,3);
+	print_list(&list);
+	tail_insert(&list,5);
+	print_list(&list);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+1
+1 -> 3
+1 -> 3 -> 5
+```
+
+>[!quote]
+>若想深入理解**单链表尾插法**是**如何实现**的 —— 详见[[C语言单链表尾插法实现详解( 带头尾指针 )]]
+
+>[!quote]
+>在实际编程中，尾插法是最常用的链表插入方式，因为它能保持元素的插入顺序。头插法则较少使用，但它的优势在于：当链表没有尾指针（`ptail`）时，头插法的实现比尾插法更为简洁。因此，在具备尾指针（`ptail`）的情况下，应优先使用尾插法以保持元素的插入顺序；仅在链表没有尾指针时，才考虑使用头插法，因为此时头插法的实现更为简洁。
+
+---
+## 16.5 链表有序插入法
+
+>[!method]
+>**有序插入：** 将一组乱序的数据逐个插入链表，并保证每次插入后链表始终保持有序（如升序或降序）。即在插入每个新节点时，需找到正确的位置，使链表整体有序。
+
+>[!question]
+>**给定一个有序链表，如何插入一个新节点，使得插入后链表依然保持有序？**
+>若要在某个节点之前插入新节点，关键在于找到该节点的前驱节点，并修改其指针域，使其指向新节点。
+
+>[!question]
+>**当待插入位置的前驱节点与需要修改指针的节点并非同一节点时，应如何应对？**
+
+>[!method]
+>**双指针法（两个指针协同遍历）：** 当我们需要在链表中定位某个节点的前驱节点时，可以同时维护两个指针——一个在前（`pcur`）用于遍历目标节点，一个在后（`ppre`）紧随其后记录其前驱。这两个指针既可以“一前一后”同步移动，也可以根据业务需求设计为“一快一慢”的节奏。
+
+>[!step]
+>**双指针定位插入位置：** 初始化两个指针 `pre`（前驱）指向 `NULL`，`cur`（当前）指向链表头节点。然后进入循环：只要 `cur` 不为空且 `cur->data` 小于待插入数据，就同步移动两个指针（`pre = cur; cur = cur->next`）。循环终止后，`prev` 即为插入位置的前驱节点，`cur` 指向第一个不小于新数据的节点（可能为 `NULL`）。此时，创建新节点 `new_node`，令 `new_node->next = cur`，再根据 `pre` 是否为 `NULL` 决定插入方式：若 `pre` 为空，则新节点成为新的头节点；否则将 `pre->next` 指向 `new_node`，完成插入。
+
+>[!quote]
+>以下是用 Mermaid 绘制的双指针定位插入位置的过程示意图，每一步链表结构变化对应一张图。示例链表为有序链表 `1 -> 3 -> 5 -> 7`，待插入数据 `4`。指针 `pre` 标记为紫色，`cur` 标记为橙色。
+
+### 步骤1：初始状态
+- `prev` 指向 `NULL`，`cur` 指向头节点 `1`。
+
+```mermaid
+flowchart LR
+    classDef dataNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold,r:20px;
+    classDef dataNode2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold,r:20px;
+    classDef dataNode3 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c,font-weight:bold,r:20px;
+    classDef dataNode4 fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c,font-weight:bold,r:20px;
+    classDef dataNodeGray fill:#eeeeee,stroke:#9e9e9e,stroke-width:2px,color:#616161,font-weight:bold,r:20px;
+    classDef pointerStyle fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4b,font-weight:bold,r:10px;
+    classDef prevStyle fill:#f3e5f5,stroke:#8e24aa,stroke-width:3px,color:#4a148c,font-weight:bold,r:10px;
+    classDef curStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#e65100,font-weight:bold,r:10px;
+
+    subgraph 初始状态
+        Pre["pre (NULL)"]:::prevStyle
+        Cur["cur"]:::curStyle --> N1
+        N1["1"]:::dataNode --> N3["3"]:::dataNode2
+        N3 --> N5["5"]:::dataNode3 --> N7["7"]:::dataNode4 --> Null["NULL"]:::dataNodeGray
+    end
+```
+
+### 步骤2：第一次比较（`1 < 4`），移动指针
+- `prev` 移到 `1`，`cur` 移到 `3`。
+
+```mermaid
+flowchart LR
+    classDef dataNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold,r:20px;
+    classDef dataNode2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold,r:20px;
+    classDef dataNode3 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c,font-weight:bold,r:20px;
+    classDef dataNode4 fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c,font-weight:bold,r:20px;
+    classDef dataNodeGray fill:#eeeeee,stroke:#9e9e9e,stroke-width:2px,color:#616161,font-weight:bold,r:20px;
+    classDef pointerStyle fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4b,font-weight:bold,r:10px;
+    classDef prevStyle fill:#f3e5f5,stroke:#8e24aa,stroke-width:3px,color:#4a148c,font-weight:bold,r:10px;
+    classDef curStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#e65100,font-weight:bold,r:10px;
+
+    subgraph 第一次移动后
+        Pre["pre"]:::prevStyle --> N1
+        Cur["cur"]:::curStyle --> N3
+        N1["1"]:::dataNode --> N3["3"]:::dataNode2
+        N3 --> N5["5"]:::dataNode3 --> N7["7"]:::dataNode4 --> Null["NULL"]:::dataNodeGray
+    end
+```
+
+### 步骤3：第二次比较（`3 < 4`），移动指针
+- `prev` 移到 `3`，`cur` 移到 `5`。
+
+```mermaid
+flowchart LR
+    classDef dataNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold,r:20px;
+    classDef dataNode2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold,r:20px;
+    classDef dataNode3 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c,font-weight:bold,r:20px;
+    classDef dataNode4 fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c,font-weight:bold,r:20px;
+    classDef dataNodeGray fill:#eeeeee,stroke:#9e9e9e,stroke-width:2px,color:#616161,font-weight:bold,r:20px;
+    classDef pointerStyle fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4b,font-weight:bold,r:10px;
+    classDef prevStyle fill:#f3e5f5,stroke:#8e24aa,stroke-width:3px,color:#4a148c,font-weight:bold,r:10px;
+    classDef curStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#e65100,font-weight:bold,r:10px;
+
+    subgraph 第二次移动后
+        Pre["pre"]:::prevStyle --> N3
+        Cur["cur"]:::curStyle --> N5
+        N1["1"]:::dataNode --> N3["3"]:::dataNode2
+        N3 --> N5["5"]:::dataNode3 --> N7["7"]:::dataNode4 --> Null["NULL"]:::dataNodeGray
+    end
+```
+
+### 步骤4：第三次比较（`5 >= 4`），停止移动，找到插入位置
+- `prev` 指向 `3`，`cur` 指向 `5`，插入位置在 `3` 和 `5` 之间。
+
+```mermaid
+flowchart LR
+    classDef dataNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold,r:20px;
+    classDef dataNode2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold,r:20px;
+    classDef dataNode3 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c,font-weight:bold,r:20px;
+    classDef dataNode4 fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c,font-weight:bold,r:20px;
+    classDef dataNodeGray fill:#eeeeee,stroke:#9e9e9e,stroke-width:2px,color:#616161,font-weight:bold,r:20px;
+    classDef pointerStyle fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4b,font-weight:bold,r:10px;
+    classDef prevStyle fill:#f3e5f5,stroke:#8e24aa,stroke-width:3px,color:#4a148c,font-weight:bold,r:10px;
+    classDef curStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#e65100,font-weight:bold,r:10px;
+
+    subgraph 找到插入位置
+        Pre["pre"]:::prevStyle --> N3
+        Cur["cur"]:::curStyle --> N5
+        N1["1"]:::dataNode --> N3["3"]:::dataNode2
+        N3 -.->|待插入| Ins["4 (新节点)"]:::dataNode4
+        N5["5"]:::dataNode3 --> N7["7"]:::dataNode4 --> Null["NULL"]:::dataNodeGray
+    end
+```
+
+### 步骤5：插入新节点 `4`
+- 新节点 `4` 的 `next` 指向 `cur`（即 `5`），`prev->next` 指向新节点。
+
+```mermaid
+flowchart LR
+    classDef dataNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold,r:20px;
+    classDef dataNode2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold,r:20px;
+    classDef dataNode3 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c,font-weight:bold,r:20px;
+    classDef dataNode4 fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c,font-weight:bold,r:20px;
+    classDef dataNodeGray fill:#eeeeee,stroke:#9e9e9e,stroke-width:2px,color:#616161,font-weight:bold,r:20px;
+    classDef pointerStyle fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4b,font-weight:bold,r:10px;
+    classDef prevStyle fill:#f3e5f5,stroke:#8e24aa,stroke-width:3px,color:#4a148c,font-weight:bold,r:10px;
+    classDef curStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#e65100,font-weight:bold,r:10px;
+
+    subgraph 插入后
+        N1["1"]:::dataNode --> N3["3"]:::dataNode2 --> Ins["4"]:::dataNode4 --> N5["5"]:::dataNode3 --> N7["7"]:::dataNode4 --> Null["NULL"]:::dataNodeGray
+    end
+```
+
+>[!caution]
+>**在使用双指针法之前，必须满足以下前提：** 链表中至少要有一个节点。因为双指针法的**核心是**同时维护“当前节点”和“前驱节点”两个指针，用于在遍历过程中定位插入或删除的位置；若链表为空，则没有节点可供遍历，也就不存在前驱和当前节点的概念，此时**只需**直接操作头指针即可，无需使用双指针。
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct node_s{
+	// 数据域
+	int data;
+	// 指针域
+	struct node_s *next; // 指针变量本身所占的内存大小为4个字节，是一个固定值
+	// struct node_s next // 这样写是不行的
+}node_t;
+
+typedef struct link_list_s{
+	node_t *phead;
+	node_t *ptail;
+}link_list_t;
+
+// 头插法
+void head_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		pnew_node -> next = plist -> phead;
+		plist -> phead = pnew_node;
+	}
+}
+
+// 尾插法
+void tail_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		plist -> ptail -> next = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+}
+
+// 有序插入
+void sort_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){ // 没有节点的情况下不能使用双指针法
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else if(plist -> phead -> data > data){
+		// 插入的节点比第一个节点还要小，退化成头插法
+		pnew_node -> next = plist -> phead;
+		plist -> phead = pnew_node;
+	}
+	else{ // 插在中间或插在末尾 —— 使用双指针法寻找待插入的位置
+		node_t *ppre = plist -> phead; // 慢指针
+		node_t *pcur = ppre -> next; 
+		while(pcur != NULL){
+			if(pcur -> data > data){
+				ppre -> next = pnew_node;
+				pnew_node -> next = pcur;
+				break;
+			}
+			ppre = ppre -> next;
+			pcur = pcur -> next;
+		}
+		if(pcur == NULL){ // 尾插法
+			plist -> ptail -> next = pnew_node;
+			plist -> ptail = pnew_node;
+		}
+	}
+}
+
+// 打印链表
+void print_list(link_list_t *plist){
+	node_t *pcur = plist -> phead;
+	while(pcur != NULL){
+		printf("%d",pcur -> data);
+		if(pcur -> next != NULL){
+			printf(" -> ");
+		}
+		pcur = pcur -> next; // 每次都需要将游标后移
+	}
+	printf("\n");
+}
+
+int main(){
+	link_list_t list;
+	// 初始化
+	list.phead = NULL;
+	list.ptail = NULL;
+	
+	//head_insert(&list,1);
+	//print_list(&list);
+	//head_insert(&list,3);
+	//print_list(&list);
+	//head_insert(&list,5);
+	//print_list(&list);
+	
+	//tail_insert(&list,1);
+	//print_list(&list);
+	//tail_insert(&list,3);
+	//print_list(&list);
+	//tail_insert(&list,5);
+	//print_list(&list);
+	
+	sort_insert(&list,2);
+	print_list(&list);
+	sort_insert(&list,4);
+	print_list(&list);
+	sort_insert(&list,6);
+	print_list(&list);
+	sort_insert(&list,1);
+	print_list(&list);
+	sort_insert(&list,3);
+	print_list(&list);
+	sort_insert(&list,5);
+	print_list(&list);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+2
+2 -> 4
+2 -> 4 -> 6
+1 -> 2 -> 4 -> 6
+1 -> 2 -> 3 -> 4 -> 6
+1 -> 2 -> 3 -> 4 -> 5 -> 6
+```
+
+>[!quote]
+>若想深入理解**单链表有序插入( 双指针法 )** 是**如何实现**的 —— 详见[[C语言单链表有序插入( 双指针法 )实现详解]]
+
+---
+## 16.6 链表的删除
+
+>[!method]
+>**链表的删除：**
+>**1.** 链表为空时 —— 无法删除，直接返回或抛出异常。
+>**2.** 删除链表的第一个节点时 —— 将头指针指向原头节点的下一个节点，并释放原头节点（若需手动管理内存）。
+>**3.** 删除链表的其他节点时 —— 找到待删节点的前一个节点，将其 next 指针指向待删节点的下一个节点，然后释放待删节点。
+	
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct node_s{
+	// 数据域
+	int data;
+	// 指针域
+	struct node_s *next; // 指针变量本身所占的内存大小为4个字节，是一个固定值
+	// struct node_s next // 这样写是不行的
+}node_t;
+
+typedef struct link_list_s{
+	node_t *phead;
+	node_t *ptail;
+}link_list_t;
+
+// 头插法
+void head_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		pnew_node -> next = plist -> phead;
+		plist -> phead = pnew_node;
+	}
+}
+
+// 尾插法
+void tail_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else{
+		plist -> ptail -> next = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+}
+
+// 有序插入
+void sort_insert(link_list_t *plist,int data){
+	// 1.给新节点申请内存 & 初始化
+	node_t *pnew_node = (node_t*)malloc(sizeof(node_t));
+	pnew_node -> next = NULL; // 新节点的指针域一开始总是NULL
+	pnew_node -> data = data;
+	
+	// 2.分类讨论
+	if(plist -> phead == NULL){ // 没有节点的情况下不能使用双指针法
+		plist -> phead = pnew_node;
+		plist -> ptail = pnew_node;
+	}
+	else if(plist -> phead -> data > data){
+		// 插入的节点比第一个节点还要小，退化成头插法
+		pnew_node -> next = plist -> phead;
+		plist -> phead = pnew_node;
+	}
+	else{ // 插在中间或插在末尾 —— 使用双指针法寻找待插入的位置
+		node_t *ppre = plist -> phead; // 慢指针
+		node_t *pcur = ppre -> next; 
+		while(pcur != NULL){
+			if(pcur -> data > data){
+				ppre -> next = pnew_node;
+				pnew_node -> next = pcur;
+				break;
+			}
+			ppre = ppre -> next;
+			pcur = pcur -> next;
+		}
+		if(pcur == NULL){ // 尾插法
+			plist -> ptail -> next = pnew_node;
+			plist -> ptail = pnew_node;
+		}
+	}
+}
+
+// 删除
+void list_delete(link_list_t *plist,int data){
+	node_t *pcur = plist -> phead; // pcur用来记录待删除节点的地址
+	if(plist -> phead == NULL){
+		printf("Error:List is empty!\n");
+		return;
+	}
+	else if(pcur -> data == data){
+		plist -> phead = pcur -> next;
+		if(plist -> phead == NULL){ // 删除目标节点后，链表为空
+			plist -> ptail = NULL;
+		}
+	}
+	else{ // 某一个节点的指针域会发生改变 —— 使用双指针法
+		node_t *ppre = plist -> phead;
+		pcur = ppre -> next;
+		while(pcur != NULL){
+			if(pcur -> data == data){
+				ppre -> next = pcur -> next;
+				break;
+			}
+			ppre = ppre -> next;
+			pcur = pcur -> next;
+		}
+		if(pcur == NULL){ // 目标节点不存在
+			printf("Error:No such node!\n");
+			return;
+		}
+		if(pcur == plist -> ptail){
+			plist -> ptail = ppre;
+		}
+	}
+	
+	free(pcur);
+	pcur = NULL;
+}
+
+// 打印链表
+void print_list(link_list_t *plist){
+	node_t *pcur = plist -> phead;
+	while(pcur != NULL){
+		printf("%d",pcur -> data);
+		if(pcur -> next != NULL){
+			printf(" -> ");
+		}
+		pcur = pcur -> next; // 每次都需要将游标后移
+	}
+	printf("\n");
+}
+
+int main(){
+	link_list_t list;
+	// 初始化
+	list.phead = NULL;
+	list.ptail = NULL;
+	
+	//head_insert(&list,1);
+	//print_list(&list);
+	//head_insert(&list,3);
+	//print_list(&list);
+	//head_insert(&list,5);
+	//print_list(&list);
+	
+	//tail_insert(&list,1);
+	//print_list(&list);
+	//tail_insert(&list,3);
+	//print_list(&list);
+	//tail_insert(&list,5);
+	//print_list(&list);
+	
+	sort_insert(&list,2);
+	print_list(&list);
+	sort_insert(&list,4);
+	print_list(&list);
+	sort_insert(&list,6);
+	print_list(&list);
+	sort_insert(&list,1);
+	print_list(&list);
+	sort_insert(&list,3);
+	print_list(&list);
+	sort_insert(&list,5);
+	print_list(&list);
+	
+	list_delete(&list,7);
+	print_list(&list);
+	list_delete(&list,2);
+	print_list(&list);
+	list_delete(&list,4);
+	print_list(&list);
+	list_delete(&list,6);
+	print_list(&list);
+	list_delete(&list,1);
+	print_list(&list);
+	list_delete(&list,3);
+	print_list(&list);
+	list_delete(&list,5);
+	print_list(&list);
+	list_delete(&list,5);
+	print_list(&list);
+	
+	return 0;
+}
+```
+
+```c
+结果：
+2
+2 -> 4
+2 -> 4 -> 6
+1 -> 2 -> 4 -> 6
+1 -> 2 -> 3 -> 4 -> 6
+1 -> 2 -> 3 -> 4 -> 5 -> 6
+Error:No such node!
+1 -> 2 -> 3 -> 4 -> 5 -> 6
+1 -> 3 -> 4 -> 5 -> 6
+1 -> 3 -> 5 -> 6
+1 -> 3 -> 5
+3 -> 5
+5
+
+Error:List is empty!
+
+```
+
+>[!quote]
+>若想深入理解**单链表删除( 双指针法 )** 是**如何实现**的 —— 详见[[C语言单链表删除( 双指针法 )实现详解]]
+
+---
+# 致谢
+
+>[!quote]
+>恭喜我自己！C语言入门课程的理论部分到这里就圆满结束了！🎉
+>
+>一路走来，从变量、指针到链表，从懵懵懂懂到能自己写出带头尾指针的插入、删除、有序插入……每一步都见证了我的成长和坚持。那些曾经让我困惑的 `->` 符号、`malloc` 的强制转换、双指针的巧妙运用，如今都已成为我工具箱里的利器。
+>
+>感谢自己在这段学习旅程中的投入和专注，也感谢王道C语言课程清晰扎实的讲解。虽然理论课已经结束，但接下来的七节习题课将是巩固知识、查漏补缺、真正把“听懂”变成“会写”的关键阶段。编程之路没有终点，只有不断积累和突破。
+>
+>愿我继续保持这份热情和耐心，在习题课中继续挑战自己，写出更优雅、更健壮的代码。也期待我在未来的C语言学习和实践中，不断发现编程的乐趣，解决更多有趣的问题。
+>
+>加油，未来的C语言高手！🚀
+
+---
 

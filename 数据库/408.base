@@ -19,7 +19,7 @@ views:
       - 结束日期
     sort:
       - property: file.ctime
-        direction: ASC
+        direction: DESC
     columnSize:
       note.创建时间: 163
   - type: table

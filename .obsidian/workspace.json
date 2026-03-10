@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "b88aa5e94735a222",
+        "id": "64f2fbc11958dce7",
         "type": "tabs",
         "children": [
           {
-            "id": "5654df20690a02df",
+            "id": "73bcd28561109c6b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "日记/2026-03-09.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-03-09"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
             }
           }
         ]
@@ -124,13 +120,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "日记/2026-03-09.md",
+                "file": "06_408/00_C语言/C语言单链表头插法实现详解(带头尾指针).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026-03-09 的大纲"
+              "title": "C语言单链表头插法实现详解(带头尾指针) 的大纲"
             }
           },
           {
@@ -241,7 +237,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "06_408/00_C语言/C语言入门课程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -251,7 +246,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "C语言入门课程 的反向链接列表"
+              "title": "反向链接"
             }
           },
           {
@@ -289,48 +284,48 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "8fb154fdd5fa5a1e",
+  "active": "73bcd28561109c6b",
   "lastOpenFiles": [
     "06_408/00_C语言/C语言入门课程.md",
+    "06_408/00_C语言/C语言单链表删除( 双指针法 )实现详解.md",
+    "日记/2026-03-10.md",
+    "06_408/00_C语言/C语言单链表尾插法实现详解( 带头尾指针 ).md",
+    "06_408/00_C语言/C语言单链表有序插入( 双指针法 )实现详解.md",
     "00_目录/408.md",
-    "00_目录/考研数学.md",
-    "00_目录/考研英语.md",
-    "00_目录/diary.md",
-    "日记/2026-03-09.md",
-    "07_GIS/三维GIS开发.md",
-    "07_GIS/ENVI实验.md",
-    "06_408/00_C语言/singly-linked-list-visualization.html",
-    "随笔/Obsidian笔记跳转指南.md",
+    "06_408/00_C语言/C语言单链表头插法实现详解( 带头尾指针 ).md",
+    "日记/2026-01-26.md",
+    "06_408/00_C语言/C语言运算符优先级.md",
+    "06_408/00_C语言/C语言数组声明详解：int arr[5].md",
+    "06_408/00_C语言/C语言常用的32个关键字.md",
+    "06_408/00_C语言/C程序内存动态分析：malloc与函数返回示例.md",
+    "06_408/00_C语言/ASCII码表(完整版).md",
+    "06_408/00_C语言/指针交换程序内存变化分析.md",
+    "06_408/00_C语言/值传递.md",
+    "06_408/00_C语言/数组元素的内存布局与越界问题.md",
     "06_408/00_C语言/数组的性质.md",
-    "日记/2026-03-06.md",
+    "06_408/00_C语言/局部数组的长度限制与栈溢出.md",
+    "06_408/00_C语言/内存布局.md",
+    "06_408/00_C语言/内存对齐.md",
+    "06_408/00_C语言/深入了解EOF.md",
+    "06_408/00_C语言/计算二维数组元素的内存地址.md",
+    "06_408/00_C语言/函数调用的详细过程.md",
+    "06_408/00_C语言/函数调用的内存原理.md",
+    "06_408/00_C语言/二进制与十进制相互转换方法.md",
+    "06_408/00_C语言/8.4 小写转大写解题思路.md",
+    "06_408/00_C语言/singly-linked-list-visualization.html",
     "Pasted image 20260309120447.png",
     "Pasted image 20260309120204.png",
     "c9824a14d32b568901f350a6e58ba5d3.jpg",
     "1b69328adcc54a85a31e7df4ebb24966.jpg",
-    "06_408/00_C语言/内存对齐.md",
-    "日记/2026-03-05.md",
     "06_408/00_C语言/hanoi_subtrees_independent.py",
     "06_408/00_C语言/hanoi_subtrees.py",
     "06_408/00_C语言/hanoi_tree.py",
-    "随笔/个人独立博客搭建方案.md",
-    "随笔/大学生就业“难”的个人成因.md",
-    "随笔/学习构建一个功能完整的Code Agent.md",
-    "随笔/考研压力管理.md",
-    "随笔/随笔.md",
-    "06_408/00_C语言/深入了解EOF.md",
-    "日记/2026-03-04.md",
     "Pasted image 20260304111445.png",
     "Pasted image 20260304143343.png",
     "Pasted image 20260304111537.png",
     "Pasted image 20260203150510.png",
     "Pasted image 20260201152910.png",
     "936a0255bdccc52feb47f963c1be1250.jpg",
-    "日记/2026-03-03.md",
-    "日记/2026-03-02.md",
-    "日记/2026-02-28.md",
-    "日记/2026-02-27.md",
-    "日记/2026-02-26.md",
-    "日记/2026-02-24.md",
     "数据库/diary.base",
     "数据库/张宇1000题基础篇 —— 线性代数.base",
     "数据库/张宇1000题基础篇 —— 高等数学.base",
