@@ -9,12 +9,16 @@
       "path": "07_GIS/三维GIS开发.md"
     },
     {
-      "basename": "2026-03-10",
-      "path": "日记/2026-03-10.md"
+      "basename": "ENVI实验",
+      "path": "07_GIS/ENVI实验.md"
     },
     {
       "basename": "C语言入门课程",
       "path": "06_408/00_C语言/C语言入门课程.md"
+    },
+    {
+      "basename": "2026-03-10",
+      "path": "日记/2026-03-10.md"
     },
     {
       "basename": "C语言单链表删除( 双指针法 )实现详解",
@@ -131,10 +135,6 @@
     {
       "basename": "diary",
       "path": "00_目录/diary.md"
-    },
-    {
-      "basename": "ENVI实验",
-      "path": "07_GIS/ENVI实验.md"
     },
     {
       "basename": "Obsidian笔记跳转指南",
