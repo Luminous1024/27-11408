@@ -486,9 +486,47 @@ $$
 
 ![[Pasted image 20260304111537.png]]
 
+```python
+import pyvista as pv # 导入pyvista库  
+  
+mesh = pv.read(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\klein.vtk') # 读取模型文件  
+mesh.plot() # 显示网格
+```
+
 ##### 3.5.7.2 *VTK* 读取空间数据并展示
 
 ![[Pasted image 20260304111445.png]]
+
+```python
+import vtk # 导入vtk库，用于构建点集、顶点集和多边形数据集  
+  
+r = vtk.vtkPolyDataReader() # 构建一个多边形数据集读取器  
+r.SetFileName(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\klein.vtk') # 设置读取文件名  
+r.Update() # 更新读取器，读取模型文件  
+  
+pd = vtk.vtkPolyData() # 构建一个多边形数据集  
+pd.ShallowCopy(r.GetOutput()) # 从读取器r获取输出并浅拷贝到多边形数据集pd  
+  
+actor = vtk.vtkActor() # 构建一个演员  
+m = vtk.vtkPolyDataMapper() # 构建一个多边形数据集映射器  
+m.SetInputData(pd) # 为映射器m添加多边形数据集pd  
+actor.SetMapper(m) # 为演员actor设置映射器m  
+  
+ren = vtk.vtkRenderer() # 构建一个渲染器  
+ren.AddActor(actor) # 为渲染器ren添加演员actor  
+  
+# 创建渲染窗口  
+rw = vtk.vtkRenderWindow() # 构建一个渲染窗口  
+rw.AddRenderer(ren)  # 为渲染窗口rw添加渲染器ren  
+rw.SetWindowName("Klein Bottle - VTK Visualization") # 设置渲染窗口标题  
+  
+# 创建渲染窗口交互器，用于处理用户与3D模型的交互  
+ri = vtk.vtkRenderWindowInteractor()  # 实例化交互器对象  
+ri.SetRenderWindow(rw)  # 将交互器与渲染窗口关联  
+ri.Render()  # 触发初始渲染  
+  
+ri.Start()  # 启动交互循环，开始接收用户输入事件
+```
 
 ##### 3.5.7.3 *gdal* / *xarray* 读取 *netcdf* / *hdf*
 
@@ -577,15 +615,270 @@ $$
 
 ![[Pasted image 20260309120204.png]]
 
+```python
+import pandas as pan # 导入pandas库，用于读取CSV文件  
+import vtk # 导入vtk库，用于构建点集、顶点集和多边形数据集  
+import numpy as np # 导入numpy库，用于数组操作  
+  
+df = pan.read_csv(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\monthly_summary_202001_fit.csv') # 读取CSV文件  
+x = df['x'] # 从DataFrame中提取x列  
+y = df['y'] # 从DataFrame中提取y列  
+z = df['z'] # 从DataFrame中提取z列  
+#print(x,len(x)) # 输出x列和其长度  
+  
+pts = vtk.vtkPoints() # 构建点集  
+for i in range(len(x)): # 对len(x)进行遍历  
+    pts.InsertNextPoint(x[i],y[i],z[i])  
+    #pts.InsertNextPoint(i,np.array([x[i],y[i],z[i]]))  
+print(pts.GetNumberOfPoints()) # 输出点集的点数  
+  
+vtx = vtk.vtkCellArray() # 构建顶点集  
+#for i in range(len(x)): #存在风险：i可能会超出范围  
+for i in range(pts.GetNumberOfPoints()): # 使用点集的点数更安全  
+    v = vtk.vtkVertex() # 构建一个顶点  
+    v.GetPointIds().SetId(0,i) # 为顶点v添加一个点索引i  
+    vtx.InsertNextCell(v) # 为顶点集vtx添加一个顶点v  
+  
+pd = vtk.vtkPolyData() # 构建一个多边形数据集  
+pd.SetPoints(pts) # 为多边形数据集pd添加点集pts  
+pd.SetVerts(vtx) # 为多边形数据集pd添加顶点集vtx  
+  
+w = vtk.vtkPolyDataWriter() # 构建一个多边形数据集写入器  
+w.SetFileName(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\monthly_summary_202001_fit.vtk') # 设置写入文件名  
+w.SetInputData(pd) # 为写入器w添加多边形数据集pd  
+w.Write() # 写入文件
+```
+
 ###### 4.1.2.4.2 **Pyvista** 读取空间数据并展示
 
 ![[Pasted image 20260309120447.png]]
 
+```python
+import pandas as pan # 导入pandas库，用于读取CSV文件  
+import pyvista as pv # 导入pyvista库，用于可视化网格  
+import numpy as np # 导入numpy库，用于数组操作  
+  
+df = pan.read_csv(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\monthly_summary_202001_fit.csv') # 读取CSV文件  
+x = df['x'] # 从DataFrame中提取x列  
+y = df['y'] # 从DataFrame中提取y列  
+z = df['z'] # 从DataFrame中提取z列  
+cords = np.array([x,y,z]).T # 将x、y、z列转换为点坐标数组  
+  
+#使用pyvista与使用vtk时的区别：  
+# 1. pyvista直接使用点坐标构建网格，而vtk需要先构建点集和顶点集  
+# 2. pyvista的plot()方法可以直接显示网格，而vtk需要通过渲染器、渲染窗口和交互器来显示  
+# 3. 数据类型上，pyvista使用numpy数组，而vtk使用vtkPoints对象  
+  
+points = pv.PolyData(cords) # 从点坐标数组构建PolyData对象  
+points.plot() # 显示网格
+```
+
 ---
+[[2026-03-11]]
 ### 4.2 散点格式与可视化
+
+>[!summary]
+>**总结：**
+>**1.** 散点是0维空间对象的抽象，不与其它的点或高维对象相关联，因而点( *表* )就是**几何**；
+>**2.** 而由点构线 / 线构面 / 面构体的组合关系形成高维对象时，无一不涉及到组合与空间关系，因而几何单元( *cell* )就是**拓扑**；
+>**3.** 通俗意义上的拓扑就是空间关系，但组合拓扑是一个维度的邻接关系( *incidence* )，是细粒度的“空间关系”，更宏观的空间关系如“包含”、“相切”、“方位”可以由几何体的组合拓扑计算。
 
 ---
 ### 4.3 折线与曲线
+
+#### 4.3.1 定义与格式
+
+>[!definition]
+>**线段：** 由0维点组成边界形成的1维空间对象；
+>**折线** ( 多义线，*polyline* )：多个点有序连成线段的集合；
+>**简单曲线** ( *Jordan Curve* )：没有自相交的曲线；
+>**♦操作4：** 使用Paraview打开*data/structure_from_asc_points.vtk* 研究其形状；
+>**♦操作5：** 使用Editplus或Nodepad打开*data/structure_from_asc_points.vtk* 研究其多义线数据的存储结构。
+
+![[05616a46a80b1318fb7e42829c8de3f4.jpg]]
+
+##### 4.3.1.1 练习
+
+###### 4.3.1.1.1 基于 **GeoPandas** 的 *Shapefile数据读取* 与 *VTK/PyVista可视化*
+
+![[Pasted image 20260311105658.png]]
+
+![[Pasted image 20260311105714.png]]
+
+![[Pasted image 20260311111104.png]]
+
+![[Pasted image 20260311111749.png]]
+
+![[Pasted image 20260311112335.png]]
+
+![[Pasted image 20260311112446.png]]
+
+![[Pasted image 20260311112642.png]]
+
+![[Pasted image 20260311112852.png]]
+
+
+
+```python
+import geopandas as gpd # 导入geopandas库，用于读取SHP文件  
+import vtk # 导入vtk库，用于构建点集、顶点集和多边形数据集  
+import numpy as numpy # 导入numpy库，用于数组操作  
+import pyvista as pv # 导入pyvista库，用于可视化  
+  
+df = gpd.read_file(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\REG.shp',encoding = 'gbk') # 读取REG.shp文件  
+print(df.columns) # 打印列名  
+print(df.geometry[2].exterior.coords) # 打印第3个几何对象的外部坐标  
+l = len(df.geometry[2].exterior.coords) # 提取第3个几何对象的外部坐标的长度  
+  
+# x = [df.geometry[2].exterior.coords[i][0] for i in range(l)] # 提取x坐标  
+# x = [] # 提取x坐标  
+# y = [] # 提取y坐标  
+# z = [] # 提取z坐标  
+# for i in range(l): # 遍历所有点  
+#     x.append(df.geometry[2].exterior.coords[i][0]) # 提取x坐标  
+#     y.append(df.geometry[2].exterior.coords[i][1]) # 提取y坐标  
+#     z.append(0) # 提取z坐标  
+  
+pts = vtk.vtkPoints() # 创建点对象  
+pts.SetDataTypeToDouble() # 设置数据类型为双精度浮点数  
+for i in range(l): # 遍历所有点  
+    pts.InsertNextPoint(df.geometry[2].exterior.coords[i][0], df.geometry[2].exterior.coords[i][1], 0) # 插入点  
+ca = vtk.vtkCellArray() # 创建单元数组对象  
+  
+# 提取所有点的索引  
+# for i in range(pts.GetNumberOfPoints()): # 遍历所有点  
+#     v = vtk.vtkVertex() # 创建顶点对象  
+#     v.GetPointIds().SetId(0,i) # 设置顶点的点索引  
+#     ca.InsertNextCell(v) # 插入单元  
+# pd = vtk.vtkPolyData() # 创建多边形数据对象  
+# pd.SetPoints(pts) # 设置点对象  
+# pd.SetVerts(ca) # 设置单元数组对象  
+#  
+# pp = pv.PolyData(pd) # 创建PyVista多边形数据对象  
+# pp.plot(color = 'green') # 绘制多边形数据对象  
+  
+# 提取所有线的索引  
+# for i in range(pts.GetNumberOfPoints() - 1): # 遍历所有点  
+#     ln = vtk.vtkLine() # 创建线对象  
+#     ln.GetPointIds().SetId(0,i) # 设置线的点索引  
+#     ln.GetPointIds().SetId(1,(i+1)) # 设置线的点索引  
+#     ca.InsertNextCell(ln) # 插入单元  
+# ln = vtk.vtkLine() # 创建线对象  
+# ln.GetPointIds().SetId(0,(pts.GetNumberOfPoints() - 1)) # 设置线的点索引  
+# ln.GetPointIds().SetId(1,0) # 设置线的点索引  
+# ca.InsertNextCell(ln) # 插入单元  
+#  
+# pd = vtk.vtkPolyData() # 创建多边形数据对象  
+# pd.SetPoints(pts) # 设置点对象  
+# pd.SetLines(ca) # 设置单元数组对象  
+#  
+# pp = pv.PolyData(pd) # 创建PyVista多边形数据对象  
+# pp.plot(color = 'green') # 绘制多边形数据对象  
+  
+# 提取所有线的索引  
+pln = vtk.vtkPolyLineSource() # 创建折线源对象  
+pln.SetPoints(pts) # 设置折线源对象的点对象  
+pln.Update() # 更新折线源对象  
+  
+pp = pv.PolyData(pln.GetOutput()) # 创建PyVista折线数据对象  
+pp.plot(color = 'red') # 绘制折线数据对象  
+  
+# 提取所有线的索引  
+plg = vtk.vtkPolygon() # 创建多边形对象  
+plg.GetPointIds().SetNumberOfIds(pts.GetNumberOfPoints()) # 设置折线点对象的点索引数量  
+for i in range(pts.GetNumberOfPoints()): # 遍历所有点  
+    plg.GetPointIds().SetId(i, i) # 设置折线点对象的点索引  
+ca.InsertNextCell(plg) # 插入单元  
+  
+pd = vtk.vtkPolyData() # 创建多边形数据对象  
+pd.SetPoints(pts) # 设置点对象  
+pd.SetPolys(ca) # 设置单元数组对象 # 来自人的先验知识，而不是vtk的自动三角化  
+  
+# 进行Delaunay2D三角化  
+# d2d = vtk.vtkDelaunay2D() # 创建Delaunay2D对象  
+# d2d.SetInputData(pd) # 设置Delaunay2D对象的输入数据  
+# d2d.Update() # 更新Delaunay2D对象  
+  
+# 提取所有三角形的索引  
+# tri = vtk.vtkTriangleFilter() # 创建三角形过滤器对象  
+# tri.SetInputData(pd) # 设置三角形过滤器对象的输入数据  
+# tri.Update() # 更新三角形过滤器对象  
+  
+pp = pv.PolyData(pd) # 创建PyVista多边形数据对象  
+pp = pp.triangulate() # 三角化多边形数据对象  
+pp.plot(color = 'green') # 绘制三角化多边形数据对象  
+  
+# 单纯形simplex:  
+# 一个单纯形是一个n维空间中的一个n-1维的子空间，它由n个点组成，这些点在n维空间中是线性独立的。  
+# 例如，在二维空间中，一个三角形就是一个单纯形，它由三个点组成，这些点在二维空间中是线性独立的。  
+# 在三维空间中，一个四面体就是一个单纯形，它由四个点组成，这些点在三维空间中是线性独立的。  
+  
+#pyvsita渲染折线源和多边形数据对象的区别:  
+# 折线源对象是一个vtk对象，它可以直接渲染出来。  
+# 多边形数据对象是一个vtk对象，它可以直接渲染出来。  
+# 但是，折线源对象和多边形数据对象的渲染结果是不同的。  
+# 折线源对象的渲染结果是一条折线，它由多个点组成，这些点之间是连续的。  
+# 多边形数据对象的渲染结果是一个多边形，它由多个点组成，这些点之间是不连续的。  
+  
+#solid和wireframe:  
+# solid: 渲染出一个实心的多边形，它由多个点组成，这些点之间是不连续的。  
+# wireframe: 渲染出一个空心的多边形，它由多个点组成，这些点之间是不连续的。  
+  
+#共线与Delaunay三角化：  
+# 共线：如果在一个n维空间中，n个点是共线的，那么这n个点就构成了一个n-1维的子空间，这个子空间就是一个单纯形。  
+# Delaunay三角化：Delaunay三角化是一种三角化算法，它可以将一个平面上的点集三角化，使得每个三角形的外接圆都不包含其他点。  
+  
+#凸多边形和Delaunay三角化：  
+# 凸多边形：如果一个多边形的所有内角都小于180度，那么这个多边形就是一个凸多边形。  
+# Delaunay三角化：Delaunay三角化是一种三角化算法，它可以将一个平面上的点集三角化，使得每个三角形的外接圆都不包含其他点。  
+  
+#显卡能接受的多边形都是三角形，所以不能渲染出非三角形的多边形。只有通过三角化才能渲染出非三角形的多边形。
+```
+
+>[!quote] 代码功能概述
+> 这段代码主要利用 `geopandas` 读取 Shapefile 文件，提取其中的几何对象（第三个要素），然后通过 `vtk` 和 `pyvista` 库对提取的二维多边形点集进行多种形式的几何构建与可视化。包括注释部分在内，实现了以下功能：
+> 
+> 1. **读取 Shapefile 数据**  
+>    - 使用 `geopandas.read_file()` 读取指定路径的 `REG.shp` 文件，并指定编码为 `gbk`。  
+>    - 打印数据框的列名，以及第三个几何对象（索引为2）的外环坐标点列表。
+> 
+> 2. **提取坐标点**  
+>    - 从第三个几何对象的外环中获取所有点的二维坐标（`x`, `y`），并为每个点设置 `z=0`。  
+>    - 注释部分展示了分别提取 `x`, `y`, `z` 列表的代码（z 全部为 0）。
+> 
+> 3. **构建 VTK 点集（vtkPoints）**  
+>    - 创建 `vtk.vtkPoints` 对象，设置为双精度浮点类型。  
+>    - 将提取的所有点插入到 `vtkPoints` 中。
+> 
+> 4. **绘制点云（注释部分）**  
+>    - 遍历所有点，为每个点创建 `vtk.vtkVertex` 单元。  
+>    - 将这些顶点单元存入 `vtkCellArray`。  
+>    - 构建 `vtkPolyData` 数据对象，设置点集和顶点单元。  
+>    - 通过 `pyvista.PolyData` 包装并绘制（绿色点云）。
+> 
+> 5. **绘制闭合折线（两种方式）**  
+>    - **手动构建线段单元**（注释部分）  
+>      - 遍历相邻点对，创建 `vtk.vtkLine` 单元，并添加最后一个点到第一个点的线段，形成闭合环。  
+>      - 存入 `vtkCellArray`，构建 `vtkPolyData` 并设置为线（`SetLines`）。  
+>      - 通过 `pyvista` 绘制（绿色线）。  
+>    - **使用 `vtkPolyLineSource` 直接生成折线**（激活部分）  
+>      - 创建 `vtk.vtkPolyLineSource` 对象，设置点集。  
+>      - 调用 `Update()` 后获取输出，用 `pyvista` 绘制（红色线）。
+> 
+> 6. **创建多边形并三角化渲染**（激活部分）  
+>    - 创建 `vtk.vtkPolygon` 单元，将所有点的索引依次加入（形成多边形）。  
+>    - 将该多边形单元存入 `vtkCellArray`。  
+>    - 构建 `vtkPolyData`，设置点集和多边形单元（`SetPolys`）。  
+>    - 使用 `pyvista.PolyData` 包装该数据，并调用 `.triangulate()` 将其三角化（因为显卡只能渲染三角形）。  
+>    - 绘制三角化后的多边形（绿色填充）。  
+>    - 注释部分还提到可以通过 `vtkDelaunay2D` 或 `vtkTriangleFilter` 进行三角化。
+> 
+> 7. **附带的概念说明**（注释中的文字）  
+>    - 解释了单纯形（simplex）、共线、凸多边形、Delaunay 三角化的基本概念。  
+>    - 比较了折线源与多边形数据对象的渲染区别，以及 solid 与 wireframe 渲染模式。  
+>    - 说明了为什么需要将非三角形多边形三角化后才能被显卡正常渲染。
+> 
+> 总之，代码完整演示了从 Shapefile 读取地理数据，到使用 VTK 进行几何建模，最后通过 PyVista 实现多种可视化形式的全过程，涵盖了点、线、面的构建与显示。
 
 ---
 ### 4.4 三角形与曲面
