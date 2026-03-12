@@ -1,8 +1,36 @@
 {
   "recentFiles": [
     {
+      "basename": "2026-03-12",
+      "path": "日记/2026-03-12.md"
+    },
+    {
+      "basename": "如何宣传我的C语言笔记并吸引GitHub Star？",
+      "path": "随笔/如何宣传我的C语言笔记并吸引GitHub Star？.md"
+    },
+    {
+      "basename": "C语言入门课程",
+      "path": "06_408/00_C语言/C语言入门课程.md"
+    },
+    {
       "basename": "2026-03-11",
       "path": "日记/2026-03-11.md"
+    },
+    {
+      "basename": "2026-03-10",
+      "path": "日记/2026-03-10.md"
+    },
+    {
+      "basename": "05616a46a80b1318fb7e42829c8de3f4",
+      "path": "05616a46a80b1318fb7e42829c8de3f4.jpg"
+    },
+    {
+      "basename": "完全背包问题：从识别到解法的完整指南",
+      "path": "06_408/00_C语言/完全背包问题：从识别到解法的完整指南.md"
+    },
+    {
+      "basename": "408",
+      "path": "00_目录/408.md"
     },
     {
       "basename": "三维GIS开发",
@@ -11,14 +39,6 @@
     {
       "basename": "ENVI实验",
       "path": "07_GIS/ENVI实验.md"
-    },
-    {
-      "basename": "C语言入门课程",
-      "path": "06_408/00_C语言/C语言入门课程.md"
-    },
-    {
-      "basename": "2026-03-10",
-      "path": "日记/2026-03-10.md"
     },
     {
       "basename": "C语言单链表删除( 双指针法 )实现详解",
@@ -31,10 +51,6 @@
     {
       "basename": "C语言单链表有序插入( 双指针法 )实现详解",
       "path": "06_408/00_C语言/C语言单链表有序插入( 双指针法 )实现详解.md"
-    },
-    {
-      "basename": "408",
-      "path": "00_目录/408.md"
     },
     {
       "basename": "C语言单链表头插法实现详解( 带头尾指针 )",
@@ -183,22 +199,6 @@
     {
       "basename": "Pasted image 20260203150510",
       "path": "Pasted image 20260203150510.png"
-    },
-    {
-      "basename": "Pasted image 20260201152910",
-      "path": "Pasted image 20260201152910.png"
-    },
-    {
-      "basename": "936a0255bdccc52feb47f963c1be1250",
-      "path": "936a0255bdccc52feb47f963c1be1250.jpg"
-    },
-    {
-      "basename": "3aa4907461dd1cc17bb6ee7e2dd50a99",
-      "path": "3aa4907461dd1cc17bb6ee7e2dd50a99.jpg"
-    },
-    {
-      "basename": "74ffbd8b94935c53cdcdc682f2b1b8a0",
-      "path": "74ffbd8b94935c53cdcdc682f2b1b8a0.jpg"
     }
   ],
   "omittedPaths": [],

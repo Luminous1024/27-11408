@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "50bdf5b31a6d6005",
+        "id": "5a5acb583182fdb8",
         "type": "tabs",
         "children": [
           {
-            "id": "cde9281b91b2d701",
+            "id": "298e6ea3841b5610",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "日记/2026-03-12.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "2026-03-12"
             }
           }
         ]
@@ -120,13 +124,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "07_GIS/三维GIS开发.md",
+                "file": "日记/2026-03-12.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "三维GIS开发 的大纲"
+              "title": "2026-03-12 的大纲"
             }
           },
           {
@@ -135,12 +139,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "06_408/00_C语言/C语言入门课程.md",
+                "file": "日记/2026-03-12.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "C语言入门课程 的出链列表"
+              "title": "2026-03-12 的出链列表"
             }
           },
           {
@@ -204,8 +208,7 @@
               "title": "C语言入门课程的笔记属性"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "e21fac3be92ccc06",
@@ -264,8 +267,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316,
-    "collapsed": true
+    "width": 316
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -286,12 +288,19 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "cde9281b91b2d701",
+  "active": "8fb154fdd5fa5a1e",
   "lastOpenFiles": [
-    "日记/2026-03-11.md",
-    "07_GIS/ENVI实验.md",
+    "随笔/如何宣传我的C语言笔记并吸引GitHub Star？.md",
+    "日记/2026-03-12.md",
     "06_408/00_C语言/C语言入门课程.md",
+    "06_408/00_C语言/C语言入门课程.pdf",
+    "日记/2026-03-11.md",
+    "日记/2026-03-10.md",
+    "05616a46a80b1318fb7e42829c8de3f4.jpg",
+    "06_408/00_C语言/完全背包问题：从识别到解法的完整指南.md",
+    "00_目录/408.md",
     "07_GIS/三维GIS开发.md",
+    "07_GIS/ENVI实验.md",
     "Pasted image 20260311112852.png",
     "Pasted image 20260311112642.png",
     "Pasted image 20260311112446.png",
@@ -301,12 +310,9 @@
     "Pasted image 20260311111441.png",
     "Pasted image 20260311111340.png",
     "Pasted image 20260311111104.png",
-    "Pasted image 20260311110850.png",
-    "日记/2026-03-10.md",
     "06_408/00_C语言/C语言单链表删除( 双指针法 )实现详解.md",
     "06_408/00_C语言/C语言单链表尾插法实现详解( 带头尾指针 ).md",
     "06_408/00_C语言/C语言单链表有序插入( 双指针法 )实现详解.md",
-    "00_目录/408.md",
     "06_408/00_C语言/C语言单链表头插法实现详解( 带头尾指针 ).md",
     "日记/2026-01-26.md",
     "06_408/00_C语言/C语言运算符优先级.md",
@@ -321,9 +327,6 @@
     "06_408/00_C语言/局部数组的长度限制与栈溢出.md",
     "06_408/00_C语言/内存布局.md",
     "06_408/00_C语言/内存对齐.md",
-    "06_408/00_C语言/深入了解EOF.md",
-    "06_408/00_C语言/计算二维数组元素的内存地址.md",
-    "06_408/00_C语言/函数调用的详细过程.md",
     "06_408/00_C语言/singly-linked-list-visualization.html",
     "06_408/00_C语言/hanoi_subtrees_independent.py",
     "06_408/00_C语言/hanoi_subtrees.py",
@@ -333,7 +336,6 @@
     "数据库/张宇1000题基础篇 —— 高等数学.base",
     "数据库/张宇1000题基础篇.base",
     "数据库/张宇1000题.base",
-    "数据库/考研数学.base",
     "未命名.canvas"
   ]
 }
