@@ -1,16 +1,40 @@
 {
   "recentFiles": [
     {
-      "basename": "2026-03-12",
-      "path": "日记/2026-03-12.md"
+      "basename": "2026-03-13",
+      "path": "日记/2026-03-13.md"
     },
     {
-      "basename": "如何宣传我的C语言笔记并吸引GitHub Star？",
-      "path": "随笔/如何宣传我的C语言笔记并吸引GitHub Star？.md"
+      "basename": "手机话费问题（空瓶换汽水变体）",
+      "path": "06_408/00_C语言/手机话费问题（空瓶换汽水变体）.md"
     },
     {
       "basename": "C语言入门课程",
       "path": "06_408/00_C语言/C语言入门课程.md"
+    },
+    {
+      "basename": "完全背包问题：从识别到解法的完整指南",
+      "path": "06_408/00_C语言/完全背包问题：从识别到解法的完整指南.md"
+    },
+    {
+      "basename": "C语言单链表删除( 双指针法 )实现详解",
+      "path": "06_408/00_C语言/C语言单链表删除( 双指针法 )实现详解.md"
+    },
+    {
+      "basename": "2026-03-12",
+      "path": "日记/2026-03-12.md"
+    },
+    {
+      "basename": "GNSS原理与应用",
+      "path": "07_GIS/GNSS原理与应用.md"
+    },
+    {
+      "basename": "三维GIS开发",
+      "path": "07_GIS/三维GIS开发.md"
+    },
+    {
+      "basename": "如何宣传我的C语言笔记并吸引GitHub Star？",
+      "path": "随笔/如何宣传我的C语言笔记并吸引GitHub Star？.md"
     },
     {
       "basename": "2026-03-11",
@@ -25,24 +49,12 @@
       "path": "05616a46a80b1318fb7e42829c8de3f4.jpg"
     },
     {
-      "basename": "完全背包问题：从识别到解法的完整指南",
-      "path": "06_408/00_C语言/完全背包问题：从识别到解法的完整指南.md"
-    },
-    {
       "basename": "408",
       "path": "00_目录/408.md"
     },
     {
-      "basename": "三维GIS开发",
-      "path": "07_GIS/三维GIS开发.md"
-    },
-    {
       "basename": "ENVI实验",
       "path": "07_GIS/ENVI实验.md"
-    },
-    {
-      "basename": "C语言单链表删除( 双指针法 )实现详解",
-      "path": "06_408/00_C语言/C语言单链表删除( 双指针法 )实现详解.md"
     },
     {
       "basename": "C语言单链表尾插法实现详解( 带头尾指针 )",
@@ -187,18 +199,6 @@
     {
       "basename": "2026-03-04",
       "path": "日记/2026-03-04.md"
-    },
-    {
-      "basename": "Pasted image 20260304111445",
-      "path": "Pasted image 20260304111445.png"
-    },
-    {
-      "basename": "Pasted image 20260304111537",
-      "path": "Pasted image 20260304111537.png"
-    },
-    {
-      "basename": "Pasted image 20260203150510",
-      "path": "Pasted image 20260203150510.png"
     }
   ],
   "omittedPaths": [],
