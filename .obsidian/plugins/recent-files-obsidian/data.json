@@ -1,16 +1,44 @@
 {
   "recentFiles": [
     {
+      "basename": "三维GIS开发",
+      "path": "07_GIS/三维GIS开发.md"
+    },
+    {
+      "basename": "2026-03-16",
+      "path": "日记/2026-03-16.md"
+    },
+    {
+      "basename": "C语言入门课程",
+      "path": "06_408/00_C语言/C语言入门课程.md"
+    },
+    {
+      "basename": "408",
+      "path": "00_目录/408.md"
+    },
+    {
+      "basename": "diary",
+      "path": "00_目录/diary.md"
+    },
+    {
+      "basename": "考研数学",
+      "path": "00_目录/考研数学.md"
+    },
+    {
+      "basename": "ENVI实验",
+      "path": "07_GIS/ENVI实验.md"
+    },
+    {
+      "basename": "2026-03-14",
+      "path": "日记/2026-03-14.md"
+    },
+    {
       "basename": "2026-03-13",
       "path": "日记/2026-03-13.md"
     },
     {
       "basename": "手机话费问题（空瓶换汽水变体）",
       "path": "06_408/00_C语言/手机话费问题（空瓶换汽水变体）.md"
-    },
-    {
-      "basename": "C语言入门课程",
-      "path": "06_408/00_C语言/C语言入门课程.md"
     },
     {
       "basename": "完全背包问题：从识别到解法的完整指南",
@@ -29,10 +57,6 @@
       "path": "07_GIS/GNSS原理与应用.md"
     },
     {
-      "basename": "三维GIS开发",
-      "path": "07_GIS/三维GIS开发.md"
-    },
-    {
       "basename": "如何宣传我的C语言笔记并吸引GitHub Star？",
       "path": "随笔/如何宣传我的C语言笔记并吸引GitHub Star？.md"
     },
@@ -47,14 +71,6 @@
     {
       "basename": "05616a46a80b1318fb7e42829c8de3f4",
       "path": "05616a46a80b1318fb7e42829c8de3f4.jpg"
-    },
-    {
-      "basename": "408",
-      "path": "00_目录/408.md"
-    },
-    {
-      "basename": "ENVI实验",
-      "path": "07_GIS/ENVI实验.md"
     },
     {
       "basename": "C语言单链表尾插法实现详解( 带头尾指针 )",
@@ -153,16 +169,8 @@
       "path": "日记/2026-03-09.md"
     },
     {
-      "basename": "考研数学",
-      "path": "00_目录/考研数学.md"
-    },
-    {
       "basename": "考研英语",
       "path": "00_目录/考研英语.md"
-    },
-    {
-      "basename": "diary",
-      "path": "00_目录/diary.md"
     },
     {
       "basename": "Obsidian笔记跳转指南",
@@ -187,18 +195,6 @@
     {
       "basename": "学习构建一个功能完整的Code Agent",
       "path": "随笔/学习构建一个功能完整的Code Agent.md"
-    },
-    {
-      "basename": "考研压力管理",
-      "path": "随笔/考研压力管理.md"
-    },
-    {
-      "basename": "随笔",
-      "path": "随笔/随笔.md"
-    },
-    {
-      "basename": "2026-03-04",
-      "path": "日记/2026-03-04.md"
     }
   ],
   "omittedPaths": [],
