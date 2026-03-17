@@ -901,12 +901,19 @@ pp.plot(color = 'green') # 绘制三角化多边形数据对象
 >- **属性语义准确性**：地理信息通常包含丰富的语义标签（如地物类别），AI 可能误判或混淆，需确保分类、命名等属性的正确性和一致性。
 
 ---
+[[2026-03-16]]
 #### 4.3.2
 
 
 
 ---
 #### 4.3.3 曲线
+
+>[!note]
+>**人工&自然曲线要素：**
+>**1.** 道路
+>**2.** 河流
+>**3.** 等高线/等深线
 
 >[!note]
 >自然对象很少有纯粹的形状，因而不太可能由**简单函数**来描述其形状。
@@ -926,15 +933,60 @@ pp.plot(color = 'green') # 绘制三角化多边形数据对象
 
 >[!note]
 >**径向基函数逼近** ( *Radial Basis Function* )：用一组基本形状( 函数 )去逼近目标的任意形状。
->高斯函数( gaussian )：$\phi(x) \ = \ exp(-\frac{x^2}{2σ^2})$
+>高斯函数( gaussian )：$\varphi(x) \ = \ exp(-\frac{x^2}{2σ^2})$
+>多面函数( multiquadric )：$\varphi(x) \ = \ \sqrt{1 + \frac{x^2}{\sigma^2}}$
+>薄板曲面( thin - plate )：$\varphi(x) \ = \ x^2\ln{(x+1)}$
+>
+>所谓径向基函数，是说函数的影像随着距离( 径向! )向四周而变化，函数中的 *x* 即是距离。
 
-##### 4.3.3.1 练习1
+>[!note]
+>现在假设有 *N* 个采样点，每一个采样点对其余
+>影响的权重即是点之间距离 *x* 的RBF值，每
+>参量，即：
+>$$\color{#adc094}{F(r) = \sum_{i=1}^{n}\omega_{i}\varphi(||r - r_{i}||)}$$
+>![[Pasted image 20260317203112.png]]
+>对此 *N* 个点，注意它有真值{ $y_{i}$ }
+>$$ \underbrace{ \begin{bmatrix} \varphi_{11} & \varphi_{12} & \cdots & \varphi_{1N} \\ \varphi_{21} & \varphi_{22} & \cdots & \varphi_{2N} \\ \vdots & \vdots & \ddots & \vdots \\ \varphi_{N1} & \varphi_{N2} & \cdots & \varphi_{NN} \end{bmatrix} }_{\Phi} \qquad \underbrace{ \begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_N \end{bmatrix} }_{\mathbf{w}} \qquad = \qquad \underbrace{ \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_N \end{bmatrix} }_{\mathbf{y}}, \quad \text{其中} \ \varphi_{ji} = \varphi\!\left(\left\|\boldsymbol{r}_j - \boldsymbol{r}_i\right\|\right) $$
+>
+>这样可得到当前条件下各点的系数$\color{#c36e75}\Phi$和权重$\color{#c36e75}W$，这些参数对其它任意点也适用！
+
+---
+#### 4.3.4 样条与RBF光滑曲线
+
+>[!note]
+>在Python的scipy包中，已经具有RBF插值及实现RBF的接口。
+>
+>但RBF接收不了三维曲线；
+>`c = RBF(x,y,z,function = 'multiquadric')`
+>
+>VTK提供的样条可以拟合三维曲线：
+> - **vtkParametric + vtkParametricFunctionSource**  
+>   - 用于定义并生成参数化的三维曲线或曲面。  
+>   - `vtkParametric` 提供数学公式，`vtkParametricFunctionSource` 将其采样为几何数据。  
+>   - 适合 **生成型**：通过公式生成曲线。
+>
+> - **vtkSplineFilter**  
+>   - 用于对已有的 polyline 数据进行样条插值和平滑。  
+>   - 输入是离散点或折线，输出是拟合后的光滑三维曲线。  
+>   - 适合 **拟合型**：通过数据点拟合曲线。
+>
+> 👉 总结：  
+> - **生成曲线**：`vtkParametric` + `vtkParametricFunctionSource`  
+> - **拟合已有点集**：`vtkSplineFilter`  
+> 三者都能得到三维曲线，但用途不同：前两个偏向数学建模，后者偏向数据拟合。
+>
+>$\color{#eeb074} Hermite \ / \ Bezier \ / \ Lagrange \ 曲线及用法，参见 \ vtkBezierCurve \ / \ vtkLagrangeCurve$
+
+---
+#### 4.3.5 练习
+
+##### 4.3.5.1 练习1
 
 ![[Pasted image 20260316104234.png]]
 
 ![[Pasted image 20260316104618.png]]
 
-##### 4.3.3.2 练习2
+##### 4.3.5.2 练习2
 
 ![[Pasted image 20260316112152.png]]
 
@@ -942,7 +994,7 @@ pp.plot(color = 'green') # 绘制三角化多边形数据对象
 
 ![[Pasted image 20260316112242.png]]
 
-##### 4.3.3.3 练习3
+##### 4.3.5.3 练习3
 
 ![[Pasted image 20260316112509.png]]
 
