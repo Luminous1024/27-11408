@@ -1099,3 +1099,119 @@ pp.plot(color = 'green') # 绘制三角化多边形数据对象
 
 ![[Pasted image 20260318093953.png]]
 
+---
+## 第三次作业
+### 1. 智慧城市建设中三维地理要素的建设内容
+
+在智慧城市与实景三维中国的建设背景下，三维地理要素的建设不仅仅是“建个三维模型”，而是构建一个结构化、语义化、可计算的城市数字空间。综合多个城市的实践经验，其建设内容通常可以归纳为以下四个核心方面：
+
+| **建设维度** | **核心内容** | **具体描述与技术手段** |
+| :--- | :--- | :--- |
+| **多维地理场景构建** | 基础地形与地表覆盖 | 利用数字高程模型、数字表面模型和正射影像，真实还原地形起伏、地表覆盖等宏观自然地理场景，形成统一的空间基底。 |
+| **模型分级与实体化** | 从“可视”到“可算” | 对建筑、道路等进行结构化、语义化处理，构建LOD1.3、LOD2等标准的城市三维模型。为每个实体赋予唯一编码，使其成为可识别、可分析、可查询的“城市细胞”。 |
+| **全空间数据融合** | 地上地下、室内外一体化 | 融合地下空间（地铁、管网）、地表建筑及低空经济（无人机航线）等多源数据，打破“数据孤岛”，实现陆海一体、空地协同的全域二三维时空数据体系。 |
+| **业务应用与智慧赋能** | 面向场景的专题应用 | 基于三维底座开发如城市规划“一键监督”、土地招商“一图统揽”、城市安全监测（如内涝模拟、火灾应急）、智慧交通（车路协同）和历史文化保护等应用场景。 |
+
+### 2. 地图可视化中的属性量表及其与几何数据的关联
+
+在地图学中，为了将调查数据（属性数据）准确地可视化，需要先理解数据的测量尺度，即属性量表。根据史蒂文斯（S.S. Stevens）的分类体系，主要分为四大类：
+
+| **量表类型** | **描述** | **数学特性** | **可视化示例** | **关联的几何数据结构** |
+| :--- | :--- | :--- | :--- | :--- |
+| **定名量表** | 定性描述，仅用于区分不同类别，无顺序、无大小关系。 | `=` 或 `≠` | 土地利用类型图（森林、水域、居民地），用不同颜色或图案填充面状区域。 | **面状要素**：用于表示不同类别的封闭区域。 |
+| **顺序量表** | 定性描述，有明确的顺序或等级，但无法量化等级间的具体差距。 | `>` 或 `<` | 教育程度图（小学、中学、大学）、道路等级图（高速、国道、乡道）。 | **线状要素**：用于表示具有等级差异的线性特征。 |
+| **间隔量表** | 定量描述，有固定的度量单位，但没有绝对的、有意义的零值点。 | `+` 或 `-` | 温度分布图、年份图。不能说20℃是10℃的两倍“热”。 | **点状要素**：通常通过点的大小或颜色的连续变化来表示数值。 |
+| **比率量表** | 定量描述，既有固定的度量单位，也有绝对零值，可以进行比率运算。 | `×` 或 `÷` | 人口密度图、降雨量图、收入分布图。可以说100万人口是50万人口的两倍。 | **点/线/面要素**：是最常用的数值型数据。 |
+
+**与几何数据结构的关联：**
+在几何数据（空间数据）中，属性量表通常与不同的**几何图元（Primitives）** 关联。
+- **点（Points）：** 通常关联**定名量表**（如特定地点的名称）或**比率/间隔量表**（如气象站点的温度、PM2.5值）。
+- **线（Lines）：** 通常关联**顺序量表**（如河流的级别、道路的等级）。
+- **面（Polygons）：** 通常关联**定名量表**（如地块的用途类别）或**比率量表**（如各行政区的GDP密度）。
+
+### 3. 读取 sh.vtk 进行 Voronoi 聚类分析
+
+**核心逻辑：**
+1. **读取文件**：使用`pyvista.read()`读取地形三角网VTK文件，获取顶点坐标数组和三角面片索引数组。
+2. **随机选择产生子**：从所有顶点中随机选取10个顶点作为Voronoi图的产生子（种子点），固定随机种子以保证结果可重现。
+3. **计算距离与聚类**：
+   - **欧氏距离聚类**：利用NumPy广播计算机械所有顶点到每个种子点的三维直线距离，取距离最近的种子点索引作为该点的簇标签。
+   - **测地距离聚类**：使用`pygeodesic`库创建测地距离计算对象，对每个种子点计算其到所有顶点的沿地表最短路径距离，取最近种子点索引作为簇标签。
+4. **可视化比较**：将两种聚类结果分别作为标量字段添加到原始网格的副本中，使用PyVista的`Plotter`创建一行两列的子图，并排显示欧氏距离和测地距离的Voronoi划分结果，同时用红点标记种子点位置，直观对比两种距离度量下的聚类差异。
+
+```python
+import pyvista as pv  
+import numpy as np  
+import pygeodesic  
+  
+# -------------------- 1. 读取数据 --------------------tin = pv.read(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\sh10.vtk') # 读取vtk文件，返回一个pyvista对象  
+pts = tin.points                     # 所有顶点坐标 (n,3)faces = tin.faces.reshape(-1, 4)[:, 1:]  # 三角形面片索引 (m,3)  
+# -------------------- 2. 随机选取 10 个种子点 --------------------np.random.seed(24)  # 固定随机种子，便于结果重现  
+n_seeds = 10  
+seed_indices = np.random.choice(len(pts), size=n_seeds, replace=False)  
+print(f"随机选取的种子点索引: {seed_indices}")  
+  
+# -------------------- 3. 欧氏距离聚类 --------------------print("正在计算欧氏距离聚类...")  
+seed_coords = pts[seed_indices]                     # (10,3)  
+# 计算每个点到所有种子点的欧氏距离，取最近种子的索引  
+# 利用广播计算 (n,10) 的距离矩阵  
+dist_euc = np.linalg.norm(pts[:, np.newaxis, :] - seed_coords[np.newaxis, :, :], axis=2)  
+euc_labels = np.argmin(dist_euc, axis=1)            # 每个点的簇标签 (0~9)  
+# -------------------- 4. 测地距离聚类 --------------------print("正在计算测地距离聚类（可能需要一些时间）...")  
+# 创建测地距离计算对象  
+geo_algo = pygeodesic.geodesic.PyGeodesicAlgorithmExact(pts, faces)  
+  
+# 存储每个种子点到所有点的测地距离  
+geo_distances = []  
+for i, seed_idx in enumerate(seed_indices):  
+    print(f"  计算种子 {i+1}/{n_seeds} ...")  
+    dist, _ = geo_algo.geodesicDistances([seed_idx])  
+    geo_distances.append(dist)          # dist 是长度为 n 的数组  
+  
+# 转换为 (n_seeds, n) 的数组  
+geo_dist_matrix = np.array(geo_distances)   # shape (10, n)  
+geo_labels = np.argmin(geo_dist_matrix, axis=0)   # 每个点的最近种子索引  
+  
+# -------------------- 5. 将结果添加到 PyVista 对象并可视化比较 --------------------# 复制一份，分别保存两种聚类结果（避免相互覆盖）  
+tin_euc = tin.copy()  
+tin_geo = tin.copy()  
+  
+tin_euc['Voronoi (Euclidean)'] = euc_labels  
+tin_geo['Voronoi (Geodesic)'] = geo_labels  
+  
+# 设置活动标量，以便着色显示  
+tin_euc.set_active_scalars('Voronoi (Euclidean)')  
+tin_geo.set_active_scalars('Voronoi (Geodesic)')  
+  
+# 创建多窗口可视化  
+plotter = pv.Plotter(shape=(1, 2))  # 一行两列  
+  
+# 左图：欧氏距离 Voronoiplotter.subplot(0, 0)  
+plotter.add_mesh(tin_euc, cmap='tab10', show_edges=True)  
+plotter.add_text("Euclidean Distance", position='upper_edge')  
+# 标记种子点位置  
+seed_points_euc = pv.PolyData(pts[seed_indices])  
+plotter.add_mesh(seed_points_euc, color='red', point_size=10, render_points_as_spheres=True)  
+  
+# 右图：测地距离 Voronoiplotter.subplot(0, 1)  
+plotter.add_mesh(tin_geo, cmap='tab10', show_edges=True)  
+plotter.add_text("Geodesic Distance", position='upper_edge')  
+seed_points_geo = pv.PolyData(pts[seed_indices])  
+plotter.add_mesh(seed_points_geo, color='red', point_size=10, render_points_as_spheres=True)  
+  
+# 显示窗口  
+plotter.show()  
+  
+# 可选：保存结果到文件（例如 VTK 格式）  
+tin_euc.save('voronoi_euclidean.vtk')  
+tin_geo.save('voronoi_geodesic.vtk')  
+print("结果已保存为 voronoi_euclidean.vtk 和 voronoi_geodesic.vtk")
+```
+
+![[Snipaste_2026-03-18_21-07-20.jpg]]
+
+![[Snipaste_2026-03-18_21-11-32.jpg]]
+
+**关于可视化结果的差异说明：**
+- **欧氏距离（直线距离）**：这种聚类方式无视地形起伏。如果你的地形是一个有山谷和山脊的山脉，聚类边界在三维空间中是直的。这会导致在现实地形中，一个点虽然在平面投影上离某个种子点很近，但实际上可能隔着一座山，但根据欧氏距离，它仍被归为同一类。结果看起来像是用平直的平面切割地形。
+- **测地距离（表面距离）**：这种聚类方式沿着地形表面计算“走过去有多远”。聚类边界会严格遵循地形的“分水岭”或山脊线。例如，一个山谷两侧的点，虽然空间直线距离很近，但由于被山脊阻隔，测地距离很远，因此会被划分到不同的Voronoi单元中。可视化结果会显示出沿着地形起伏的自然划分边界，更具地理意义。

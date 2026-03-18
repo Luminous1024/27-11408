@@ -1,6 +1,18 @@
 {
   "recentFiles": [
     {
+      "basename": "2026-03-18",
+      "path": "日记/2026-03-18.md"
+    },
+    {
+      "basename": "三维GIS开发",
+      "path": "07_GIS/三维GIS开发.md"
+    },
+    {
+      "basename": "第一讲 函数极限与连续",
+      "path": "05_数学/01_基础/第一讲 函数极限与连续.md"
+    },
+    {
       "basename": "C语言入门课程",
       "path": "06_408/00_C语言/C语言入门课程.md"
     },
@@ -11,14 +23,6 @@
     {
       "basename": "完全背包问题：从识别到解法的完整指南",
       "path": "06_408/00_C语言/完全背包问题：从识别到解法的完整指南.md"
-    },
-    {
-      "basename": "2026-03-18",
-      "path": "日记/2026-03-18.md"
-    },
-    {
-      "basename": "三维GIS开发",
-      "path": "07_GIS/三维GIS开发.md"
     },
     {
       "basename": "2026-03-17",
@@ -191,10 +195,6 @@
     {
       "basename": "Obsidian笔记跳转指南",
       "path": "随笔/Obsidian笔记跳转指南.md"
-    },
-    {
-      "basename": "2026-03-06",
-      "path": "日记/2026-03-06.md"
     }
   ],
   "omittedPaths": [],
