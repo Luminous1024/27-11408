@@ -11,10 +11,14 @@
             "id": "2714154952030b0e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "06_408/00_C语言/C语言入门课程.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "C语言入门课程"
             }
           }
         ]
@@ -92,7 +96,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -119,12 +124,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "06_408/00_C语言/C语言入门课程.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "C语言入门课程 的大纲"
             }
           },
           {
@@ -263,7 +269,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316
+    "width": 316,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -286,9 +293,16 @@
   },
   "active": "2714154952030b0e",
   "lastOpenFiles": [
-    "日记/2026-03-17.md",
+    "06_408/00_C语言/空瓶换汽水问题：从识别到解法的完整指南.md",
+    "06_408/00_C语言/完全背包问题：从识别到解法的完整指南.md",
     "06_408/00_C语言/C语言入门课程.md",
+    "日记/2026-03-18.md",
     "07_GIS/三维GIS开发.md",
+    "Pasted image 20260318093953.png",
+    "Pasted image 20260318091806.png",
+    "Pasted image 20260318090618.png",
+    "Pasted image 20260318090108.png",
+    "日记/2026-03-17.md",
     "Pasted image 20260317203112.png",
     "Pasted image 20260316113639.png",
     "Pasted image 20260317202903.png",
@@ -300,16 +314,10 @@
     "00_目录/diary.md",
     "00_目录/考研数学.md",
     "Pasted image 20260316113623.png",
-    "Pasted image 20260316113351.png",
-    "Pasted image 20260316112509.png",
-    "Pasted image 20260316112242.png",
-    "Pasted image 20260316112152.png",
     "07_GIS/ENVI实验.md",
     "日记/2026-03-14.md",
     "实验截图.png.md",
     "日记/2026-03-13.md",
-    "06_408/00_C语言/手机话费问题（空瓶换汽水变体）.md",
-    "06_408/00_C语言/完全背包问题：从识别到解法的完整指南.md",
     "06_408/00_C语言/C语言单链表删除( 双指针法 )实现详解.md",
     "日记/2026-03-12.md",
     "随笔/南昌咖啡店合集.md",
@@ -321,7 +329,6 @@
     "06_408/00_C语言/C语言单链表尾插法实现详解( 带头尾指针 ).md",
     "06_408/00_C语言/C语言单链表有序插入( 双指针法 )实现详解.md",
     "06_408/00_C语言/C语言单链表头插法实现详解( 带头尾指针 ).md",
-    "日记/2026-01-26.md",
     "06_408/00_C语言/singly-linked-list-visualization.html",
     "06_408/00_C语言/hanoi_subtrees_independent.py",
     "06_408/00_C语言/hanoi_subtrees.py",
