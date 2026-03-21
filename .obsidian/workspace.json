@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "日记/2026-03-21.md",
+                "file": "06_408/00_C语言/C语言入门课程.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-03-21"
+              "title": "C语言入门课程"
             }
           }
         ]
@@ -124,13 +124,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "日记/2026-03-21.md",
+                "file": "06_408/00_C语言/C语言入门课程.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026-03-21 的大纲"
+              "title": "C语言入门课程 的大纲"
             }
           },
           {
@@ -289,11 +289,11 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "27b1c8ebda7e2a80",
+  "active": "8fb154fdd5fa5a1e",
   "lastOpenFiles": [
+    "日记/2026-03-21.md",
     "06_408/00_C语言/C语言入门课程.md",
     "06_408/00_C语言/空瓶换汽水问题：从识别到解法的完整指南.md",
-    "日记/2026-03-21.md",
     "日记/2026-03-20.md",
     "日记/2026-03-18.md",
     "07_GIS/三维GIS开发.md",
