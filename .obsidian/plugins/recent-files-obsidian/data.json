@@ -1,12 +1,16 @@
 {
   "recentFiles": [
     {
-      "basename": "2026-03-20",
-      "path": "日记/2026-03-20.md"
+      "basename": "2026-03-21",
+      "path": "日记/2026-03-21.md"
     },
     {
       "basename": "C语言入门课程",
       "path": "06_408/00_C语言/C语言入门课程.md"
+    },
+    {
+      "basename": "2026-03-20",
+      "path": "日记/2026-03-20.md"
     },
     {
       "basename": "2026-03-18",
@@ -195,10 +199,6 @@
     {
       "basename": "考研英语",
       "path": "00_目录/考研英语.md"
-    },
-    {
-      "basename": "Obsidian笔记跳转指南",
-      "path": "随笔/Obsidian笔记跳转指南.md"
     }
   ],
   "omittedPaths": [],
