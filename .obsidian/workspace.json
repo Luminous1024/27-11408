@@ -4,33 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "cc762632bdee6688",
+        "id": "bd40ad1b784f4d2f",
         "type": "tabs",
         "children": [
           {
-            "id": "752231042cfd5064",
+            "id": "8144f667f22c3c10",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "日记/2026-03-25.md",
-                "mode": "preview",
+                "file": "日记/2026-03-29.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-03-25"
-            }
-          },
-          {
-            "id": "1cacb33599a56cc6",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.12.7"
-              },
-              "icon": "lucide-book-up",
-              "title": "版本说明 1.12.7"
+              "title": "2026-03-29"
             }
           }
         ]
@@ -135,13 +123,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "日记/2026-03-25.md",
+                "file": "三维GIS开发第四次作业.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026-03-25 的大纲"
+              "title": "三维GIS开发第四次作业 的大纲"
             }
           },
           {
@@ -203,10 +191,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "06_408/00_C语言/C语言入门课程.md"
+                "file": "日记/2026-03-29.md"
               },
               "icon": "lucide-info",
-              "title": "C语言入门课程的笔记属性"
+              "title": "2026-03-29的笔记属性"
             }
           },
           {
@@ -300,8 +288,26 @@
       "obsidian-day-planner:Open Multi-Day View": false
     }
   },
-  "active": "752231042cfd5064",
+  "active": "8144f667f22c3c10",
   "lastOpenFiles": [
+    "日记/2026-03-28.md",
+    "日记/2026-03-27.md",
+    "日记/2026-03-26.md",
+    "日记/2026-03-25.md",
+    "日记/2026-03-24.md",
+    "日记/2026-03-23.md",
+    "日记/2026-03-29.md",
+    "1b69328adcc54a85a31e7df4ebb24966.jpg",
+    "3aa4907461dd1cc17bb6ee7e2dd50a99.jpg",
+    "74ffbd8b94935c53cdcdc682f2b1b8a0.jpg",
+    "Snipaste_2026-03-18_21-07-20.jpg",
+    "Snipaste_2026-03-18_21-11-32.jpg",
+    "日记/2026-03-21.md",
+    "07_GIS/三维GIS开发.md",
+    "Pasted image 20260329205804.png",
+    "三维GIS开发第四次作业.md",
+    "06_408/00_C语言/ASCII码表(完整版).md",
+    "06_408/00_C语言/C语言核心进阶：位运算与文件操作.md",
     "06_408/00_C语言/C语言入门课程.md",
     "数据库/考研数学基础30讲 —— 线性代数.base",
     "数据库/张宇1000题基础篇.base",
@@ -312,34 +318,16 @@
     "数据库/张宇1000题基础篇.md",
     "数据库/考研数学基础30讲.md",
     "数据库/考研数学基础30讲 —— 高等数学.md",
-    "日记/2026-03-25.md",
     "00_目录/考研英语.md",
-    "06_408/00_C语言/ASCII码表(完整版).md",
     "06_408/00_C语言/内存布局.md",
     "06_408/00_C语言/函数调用的内存原理.md",
     "06_408/00_C语言/C语言常用的32个关键字.md",
     "06_408/00_C语言/数组的性质.md",
-    "日记/2026-03-23.md",
     "日记/2026-03-22.md",
-    "00_目录/408.md",
-    "07_GIS/三维GIS开发.md",
     "dd5ed183d7774b78d0e868037c26c592.jpg",
     "784bf7e37fac3e9a740d30b9ff4df3f6.jpg",
     "Pasted image 20260325093813.png",
     "Pasted image 20260325092419.png",
-    "Pasted image 20260325083808.png",
-    "Pasted image 20260325083713.png",
-    "日记/2026-03-21.md",
-    "06_408/00_C语言/C语言运算符优先级.md",
-    "06_408/00_C语言/空瓶换汽水问题：从识别到解法的完整指南.md",
-    "日记/2026-03-20.md",
-    "日记/2026-03-18.md",
-    "三维GIS开发第三次作业.md",
-    "Snipaste_2026-03-18_21-11-32.jpg",
-    "Snipaste_2026-03-18_21-07-20.jpg",
-    "05_数学/01_基础/第一讲 函数极限与连续.md",
-    "Pasted image 20260318093953.png",
-    "Pasted image 20260318091806.png",
     "06_408/00_C语言/C语言入门课程.pdf",
     "06_408/00_C语言/singly-linked-list-visualization.html",
     "06_408/00_C语言/hanoi_subtrees_independent.py",
