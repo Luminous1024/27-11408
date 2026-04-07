@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "07_GIS/三维GIS开发.md",
+                "file": "日记/2026-04-07.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "三维GIS开发"
+              "title": "2026-04-07"
             }
           }
         ]
@@ -96,7 +96,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -123,13 +124,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "07_GIS/三维GIS开发.md",
+                "file": "日记/2026-04-07.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "三维GIS开发 的大纲"
+              "title": "2026-04-07 的大纲"
             }
           },
           {
@@ -137,9 +138,11 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {},
+              "state": {
+                "file": "日记/2026-04-01.md"
+              },
               "icon": "lucide-info",
-              "title": "笔记属性"
+              "title": "2026-04-01的笔记属性"
             }
           },
           {
@@ -148,12 +151,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "07_GIS/三维GIS开发.md",
+                "file": "日记/2026-04-01.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "三维GIS开发 的出链列表"
+              "title": "2026-04-01 的出链列表"
             }
           },
           {
@@ -205,8 +208,7 @@
               "title": "Calendar"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "e21fac3be92ccc06",
@@ -266,7 +268,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316
+    "width": 316,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -289,16 +292,28 @@
   },
   "active": "82643d5e41476ce2",
   "lastOpenFiles": [
-    "日记/2026-03-30.md",
-    "07_GIS/VTK 网格数据读取与几何查询示例.md",
+    "06_408/01_基础/数据结构.md",
+    "日记/2026-04-07.md",
+    "06_408/00_C语言/C语言入门课程.md",
+    "1b69328adcc54a85a31e7df4ebb24966.jpg",
+    "07_GIS/布尔运算代码对比分析（立方体与球体）.md",
+    "数据类型.md",
+    "日记/2026-04-06.md",
+    "日记/2026-04-01.md",
     "07_GIS/三维GIS开发.md",
+    "Pasted image 20260401161744.png",
+    "Pasted image 20260401161705.png",
+    "Pasted image 20260401161446.png",
+    "Pasted image 20260401161350.png",
+    "日记/2026-03-30.md",
+    "06_408/01_基础/计算机组成原理.md",
+    "07_GIS/VTK 网格数据读取与几何查询示例.md",
     "Pasted image 20260330194249.png",
     "Pasted image 20260330192145.png",
     "VTK网格数据读取与几何查询示例.md",
     "Pasted image 20260330175951.png",
     "Pasted image 20260330175934.png",
     "Pasted image 20260330111603.png",
-    "Pasted image 20260330111553.png",
     "日记/2026-03-09.md",
     "日记/2026-03-10.md",
     "日记/2026-03-11.md",
@@ -312,18 +327,6 @@
     "日记/2026-03-21.md",
     "日记/2026-03-22.md",
     "日记/2026-03-23.md",
-    "日记/2026-03-24.md",
-    "日记/2026-03-25.md",
-    "日记/2026-03-26.md",
-    "日记/2026-03-27.md",
-    "日记/2026-03-28.md",
-    "日记/2026-03-29.md",
-    "1b69328adcc54a85a31e7df4ebb24966.jpg",
-    "3aa4907461dd1cc17bb6ee7e2dd50a99.jpg",
-    "74ffbd8b94935c53cdcdc682f2b1b8a0.jpg",
-    "Snipaste_2026-03-18_21-07-20.jpg",
-    "三维GIS开发第四次作业.md",
-    "06_408/00_C语言/ASCII码表(完整版).md",
     "数据库/考研数学基础30讲 —— 线性代数.base",
     "数据库/张宇1000题基础篇.base",
     "数据库/考研数学基础30讲 —— 高等数学.base",
