@@ -1811,3 +1811,145 @@ flowchart TD
 ![[Pasted image 20260401161705.png]]
 
 ![[Pasted image 20260401161744.png]]
+
+---
+[[2026-04-08]]
+## 10. 点云与表面重建
+
+### 10.1 摄影测量中的病态问题
+#### 10.1.1 投射与不投射的“遥感”
+
+>[!caution] 投射与不投射的“遥感”
+>概念构想 —— 计算机断层扫描( CT ) —— 计算机三维重建
+> - “遥感”中的电磁波并非$x / \gamma$穿透性射线
+> - 内扫描也不能解决问题
+
+#### 10.1.2 非适定的表面重建
+
+>[!caution] 非适定的表面重建
+> - “遥感”中的电磁波并非$x / \gamma$穿透性射线
+> 	- **遮挡问题**
+> 	- **粘连问题**
+> 	- **歧义与重复问题**
+
+### 10.2 点云格式与读写
+#### 10.2.2 las点云
+##### 10.2.2.1 点格式
+###### 10.2.2.1.1 Point Format 0
+|    `Dimensions`     |  `Type`  | `Size(bit)` |
+| :-----------------: | :------: | :---------: |
+|          X          |  signed  |     32      |
+|          Y          |  signed  |     32      |
+|          Z          |  signed  |     32      |
+|      intensity      | unsigned |     16      |
+|    return_number    | unsigned |      3      |
+| number_of_retrurns  | unsigned |      3      |
+| scan_direction_flag |   bool   |      1      |
+| edge_of_flight_line |   bool   |      1      |
+|   classification    | unsigned |      5      |
+|      synthetic      |   bool   |      1      |
+|      key_point      |   bool   |      1      |
+|      withheld       |   bool   |      1      |
+|   scan_angle_rank   |  signed  |      8      |
+|      user_data      | unsigned |      8      |
+|   point_source_id   | unsigned |      8      |
+###### 10.2.2.1.2 Point Format 1
+| `Added dimensions` |  `Type`  | `Size(bit)` |
+| :----------------: | :------: | :---------: |
+|      gps_time      | Floating |     64      |
+###### 10.2.2.1.3 Point Format 2
+| `Added dimensions` |  `Type`  | `Size(bit)` |
+| :----------------: | :------: | :---------: |
+|        red         | unsigned |     16      |
+|       green        | unsigned |     16      |
+|        blue        | unsigned |     16      |
+###### 10.2.2.1.4 Point Format 3
+| `Added dimensions` |  `Type`  | `Size(bit)` |
+| :----------------: | :------: | :---------: |
+|      gps_time      | Floating |     64      |
+|        red         | unsigned |     16      |
+|       green        | unsigned |     16      |
+|        blue        | unsigned |     16      |
+###### 10.2.2.1.5 Point Format 4
+|     `Added dimensions`     |  `Type`  | `Size(bit)` |
+| :------------------------: | :------: | :---------: |
+|          gps_time          | Floating |     64      |
+|      wavepacket_index      | unsigned |      8      |
+|     wavepacket_offset      | unsigned |     64      |
+|      wavepacket_size       | unsigned |     32      |
+| return_point_wave_location | unsigned |     32      |
+|            x_t             | floating |     32      |
+|            y_t             | floating |     32      |
+|            z_t             | floating |     32      |
+##### 10.2.2.2 分类
+| `Classification`        |
+| ----------------------- |
+| `1 - Unclassified`      |
+| `2 - Groud`             |
+| `4 - Medium vegetation` |
+| `6 - Building`          |
+| `7 - Low point(noise)`  |
+| `10 - Rail`             |
+| `11 - Road surface`     |
+### 10.3 两种主要的表面重建
+#### 10.3.1 隐函数的Marching Cubes方法
+
+>[!method] 隐函数的Marching Cubes方法
+> - **流程：**
+> 	- 点云数据
+> 	- 潜在曲面的隐函数
+> 	- 八叉树顶点分类( 曲面内外 )
+> 	- MC方法提取三角网表面
+> - **局部方法：**
+> 	- 有符号距离法( SDF )
+> 	- 截断符号距离法( TSDF )
+> 	- 最小二乘法
+> - **全局方法：**
+> 	- 泊松表面重建
+
+#### 10.3.2 3D Delaunay Triangulation方法
+
+>[!method] 3D Delaunay Triangulation方法
+> - **流程：**
+> 	- 以点云建四面体
+> 	- 四面体集合转为图结构：一个四面体一个节点，相邻节点用边连接
+> 	- 图割算法( visibility information )对节点进行二分
+> 	- 二分后的空间边界即重建表面
+
+>[!operation] 对点云`cactus.3337.pts`使用`vtkSurfaceReconstruction`重建
+> - **流程：**
+> 	- 建*vtkPoints / vtkPolyData*
+> 	- 建立*vtkSurfaceReconstructionFilter*
+> 	- 建立*vtkContourFilter*，提取*0* 等值面
+> 	- 写入到文件
+> - **注意：**
+> 	- 表面重建非常消耗内存与CPU，对大体量点云慎用
+
+### 10.4 点云过滤与分割
+
+### 10.5 地形表面重建
+
+### 10.6 练习
+#### 10.6.1 练习1
+
+![[Pasted image 20260408091234.png]]
+
+#### 10.6.2 练习2
+
+![[Pasted image 20260408091334.png]]
+
+#### 10.6.3 练习3
+
+![[Pasted image 20260408091714.png]]
+
+![[Pasted image 20260408091731.png]]
+
+#### 10.6.4 练习4
+
+![[Pasted image 20260408092959.png]]
+
+![[Pasted image 20260408093015.png]]
+
+![[Pasted image 20260408093904.png]]
+
+---
