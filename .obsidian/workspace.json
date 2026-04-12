@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "902602f1a2c3fbfd",
+        "id": "996d40759635a9ae",
         "type": "tabs",
         "children": [
           {
-            "id": "82643d5e41476ce2",
+            "id": "d0187ff8885f25fa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "日记/2026-04-08.md",
-                "mode": "preview",
+                "file": "随笔/鹅鸭杀游戏须知及复盘.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-04-08"
+              "title": "鹅鸭杀游戏须知及复盘"
             }
           }
         ]
@@ -96,8 +96,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "62aabfd23b165e7a",
@@ -124,13 +123,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "07_GIS/三维GIS开发.md",
+                "file": "日记/2026-04-12.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "三维GIS开发 的大纲"
+              "title": "2026-04-12 的大纲"
             }
           },
           {
@@ -268,8 +267,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 316,
-    "collapsed": true
+    "width": 316
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -287,13 +285,28 @@
       "tags-overview:Tags overview": false,
       "templater-obsidian:Templater": false,
       "obsidian-day-planner:Open Timeline": false,
-      "obsidian-day-planner:Open Multi-Day View": false
+      "obsidian-day-planner:Open Multi-Day View": false,
+      "spreadsheets:New Spreadsheet": false
     }
   },
-  "active": "82643d5e41476ce2",
+  "active": "d0187ff8885f25fa",
   "lastOpenFiles": [
+    "日记/2026-04-12.md",
+    "07_GIS/GNSS原理与应用.md",
+    "07_GIS/载波相位高次差法：周跳检测与计算.sheet",
+    "07_GIS/VTK 网格数据读取与几何查询示例.md",
+    "Pasted image 20260412205217.png",
+    "LICENSE",
+    "随笔/鹅鸭杀游戏须知及复盘.md",
+    "日记/2026-04-11.md",
+    "随笔/如何宣传我的C语言笔记并吸引GitHub Star？.md",
+    "随笔/个人独立博客搭建方案.md",
     "07_GIS/三维GIS开发.md",
+    "日记/2026-03-30.md",
+    "07_GIS/布尔运算代码对比分析（立方体与球体）.md",
     "日记/2026-04-08.md",
+    "日记/2026-04-10.md",
+    "1b69328adcc54a85a31e7df4ebb24966.jpg",
     "Pasted image 20260408093904.png",
     "Pasted image 20260408093015.png",
     "Pasted image 20260408092959.png",
@@ -305,28 +318,16 @@
     "日记/2026-04-07.md",
     "06_408/01_基础/数据结构.md",
     "06_408/00_C语言/C语言入门课程.md",
-    "1b69328adcc54a85a31e7df4ebb24966.jpg",
-    "07_GIS/布尔运算代码对比分析（立方体与球体）.md",
     "数据类型.md",
     "日记/2026-04-06.md",
     "日记/2026-04-01.md",
-    "Pasted image 20260401161744.png",
-    "日记/2026-03-30.md",
     "06_408/01_基础/计算机组成原理.md",
-    "07_GIS/VTK 网格数据读取与几何查询示例.md",
     "VTK网格数据读取与几何查询示例.md",
     "日记/2026-03-09.md",
     "日记/2026-03-10.md",
     "日记/2026-03-11.md",
     "日记/2026-03-12.md",
     "日记/2026-03-13.md",
-    "日记/2026-03-14.md",
-    "日记/2026-03-16.md",
-    "日记/2026-03-17.md",
-    "日记/2026-03-18.md",
-    "日记/2026-03-20.md",
-    "日记/2026-03-21.md",
-    "日记/2026-03-22.md",
     "数据库/考研数学基础30讲 —— 线性代数.base",
     "数据库/张宇1000题基础篇.base",
     "数据库/考研数学基础30讲 —— 高等数学.base",
@@ -335,8 +336,6 @@
     "06_408/00_C语言/hanoi_subtrees_independent.py",
     "06_408/00_C语言/hanoi_subtrees.py",
     "06_408/00_C语言/hanoi_tree.py",
-    "数据库/diary.base",
-    "数据库/张宇1000题基础篇 —— 线性代数.base",
     "未命名.canvas"
   ]
 }
