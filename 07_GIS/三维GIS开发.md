@@ -1953,3 +1953,109 @@ flowchart TD
 ![[Pasted image 20260408093904.png]]
 
 ---
+[[2026-04-13]]
+## 11. 二维栅格的基本操作
+
+>[!lead-in] 引入
+> - **1.栅格** —— Raster( 光栅/栅格 ) —— Rasterization( 光栅化/栅格化 )
+> - **2.影像** —— Image
+> - **3.规则格网** —— RSG( Regular Square Grid ) —— 数据场( Data Field )
+> - $$
+>\text{数据场}
+>\begin{cases}
+>\text{神经辐射场(NeRF) —— 体可视化} \\
+>\text{3DGS(3D Gaussian Splatting) —— } \\
+>\end{cases}
+>$$
+
+---
+### 11.1 画布Canvas
+#### 11.1.1 画布的来历
+>[!note] 画布的来历
+> - 早期计算机都是字符界面
+> 	- 设想一下打印机的工作方式
+> 	- 已经输出的内容不能返回去修改，这种“制图方式”非常不符合人的思想习惯。
+> - 人们更习惯于在整个“屏幕”上随机地**增删改**。
+> - 相比早期前端的HTML字符与*CSS，H5/WebGL* 中也增加了画布。
+
+#### 11.1.2 用法
+
+>[!usage] 用法
+> - SetExtent
+> - SetDrawColor
+>   DrawCircle
+> - DrawSegment
+> - FillBox
+> - FillPixel
+> - **操作1：** 创建一个*vtkImageCanvasSource2D*，自由画线/圆/方框。
+> - **注意：** 创作前先要“**擦除**”画布。
+
+### 11.2 栅格格式与逐点操作
+#### 11.2.1 格式探索
+
+>[!note] 格式探索
+> - 画布的基本原理就是一个栅格，一个随意可填充颜色( 半透明度 )的格子；这个基本的格式是一个**二维数组**。
+> - 影像栅格的格式繁多，在VTK中，可以将它们统一读出为*vtkStructuredPoints/vtkImageData* 对象，如同矢量经常读出为*vtkPolyData* 对象一样。
+> - origin[3]
+> - dimensions[3]
+> - spacing[3]
+> - bounds[6]
+> - GetScalarType：像元格式
+> - **NumberOfScalarComponents[1]：像元组份数/通道数**
+
+### 11.3 栅格的布尔运算
+#### 11.3.1 实现方式
+
+>[!note] 实现方式
+> - *vtkImageLogic*
+> - *vtkImageMask*
+> - *vtkImageDifference*
+> - *vtkImagePadFilter*
+> - **注意1：** *ITK( Insight Toolkit —— 医学图像处理引擎)* 可能在相关算法上更全面
+> - **注意2：** *vtkImageMathematics* 是对**逐像元**的操作，布尔运算主要是两幅影像之间的操作。
+> 	- 意味着两幅图像除了像素值不同外，规格要完全一样。
+
+### 11.4 
+
+### 11.5 练习
+#### 11.5.1 练习1
+
+![[Pasted image 20260413103550.png]]
+
+![[Pasted image 20260413103622.png]]
+
+![[Pasted image 20260413104023.png]]
+
+![[Pasted image 20260413104213.png]]
+
+![[Pasted image 20260413104604.png]]
+
+![[Pasted image 20260413112849.png]]
+
+![[Pasted image 20260413112113.png]]
+
+#### 11.5.2 练习2
+
+![[Pasted image 20260413110635.png]]
+
+![[Pasted image 20260413110755.png]]
+
+#### 11.5.3 练习3
+
+![[Pasted image 20260413111714.png]]
+
+![[Pasted image 20260413111804.png]]
+
+#### 11.5.4 练习4
+
+![[Pasted image 20260413112459.png]]
+
+![[Pasted image 20260413112534.png]]
+
+![[Pasted image 20260413112648.png]]
+
+![[Pasted image 20260413113147.png]]
+
+![[Pasted image 20260413113317.png]]
+
+---

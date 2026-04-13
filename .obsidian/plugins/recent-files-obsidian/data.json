@@ -1,6 +1,46 @@
 {
   "recentFiles": [
     {
+      "basename": "三维GIS开发",
+      "path": "07_GIS/三维GIS开发.md"
+    },
+    {
+      "basename": "git常用命令",
+      "path": "随笔/git常用命令.md"
+    },
+    {
+      "basename": "pip常用命令",
+      "path": "随笔/pip常用命令.md"
+    },
+    {
+      "basename": "2026-04-13",
+      "path": "日记/2026-04-13.md"
+    },
+    {
+      "basename": "Snipaste_2026-03-18_21-11-32",
+      "path": "Snipaste_2026-03-18_21-11-32.jpg"
+    },
+    {
+      "basename": "1b69328adcc54a85a31e7df4ebb24966",
+      "path": "1b69328adcc54a85a31e7df4ebb24966.jpg"
+    },
+    {
+      "basename": "Snipaste_2026-03-18_21-07-20",
+      "path": "Snipaste_2026-03-18_21-07-20.jpg"
+    },
+    {
+      "basename": "Pasted image 20260413104604",
+      "path": "Pasted image 20260413104604.png"
+    },
+    {
+      "basename": "Pasted image 20260413104213",
+      "path": "Pasted image 20260413104213.png"
+    },
+    {
+      "basename": "27考研深大人工智能140500学硕 全周期逐天逐时段备考规划",
+      "path": "随笔/27考研深大人工智能140500学硕 全周期逐天逐时段备考规划.md"
+    },
+    {
       "basename": "鹅鸭杀游戏须知及复盘",
       "path": "随笔/鹅鸭杀游戏须知及复盘.md"
     },
@@ -23,10 +63,6 @@
     {
       "basename": "数据结构",
       "path": "06_408/01_基础/数据结构.md"
-    },
-    {
-      "basename": "三维GIS开发",
-      "path": "07_GIS/三维GIS开发.md"
     },
     {
       "basename": "2026-04-11",
@@ -161,44 +197,8 @@
       "path": "74ffbd8b94935c53cdcdc682f2b1b8a0.jpg"
     },
     {
-      "basename": "Snipaste_2026-03-18_21-07-20",
-      "path": "Snipaste_2026-03-18_21-07-20.jpg"
-    },
-    {
-      "basename": "Snipaste_2026-03-18_21-11-32",
-      "path": "Snipaste_2026-03-18_21-11-32.jpg"
-    },
-    {
       "basename": "ASCII码表(完整版)",
       "path": "06_408/00_C语言/ASCII码表(完整版).md"
-    },
-    {
-      "basename": "C语言核心进阶：位运算与文件操作",
-      "path": "06_408/00_C语言/C语言核心进阶：位运算与文件操作.md"
-    },
-    {
-      "basename": "考研数学基础30讲 —— 线性代数",
-      "path": "数据库/考研数学基础30讲 —— 线性代数.base"
-    },
-    {
-      "basename": "张宇1000题基础篇",
-      "path": "数据库/张宇1000题基础篇.base"
-    },
-    {
-      "basename": "张宇1000题基础篇 —— 高等数学",
-      "path": "数据库/张宇1000题基础篇 —— 高等数学.md"
-    },
-    {
-      "basename": "考研数学基础30讲 —— 高等数学",
-      "path": "数据库/考研数学基础30讲 —— 高等数学.base"
-    },
-    {
-      "basename": "考研数学",
-      "path": "00_目录/考研数学.md"
-    },
-    {
-      "basename": "张宇1000题",
-      "path": "数据库/张宇1000题.md"
     }
   ],
   "omittedPaths": [],

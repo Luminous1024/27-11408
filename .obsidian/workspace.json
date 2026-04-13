@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "随笔/鹅鸭杀游戏须知及复盘.md",
-                "mode": "source",
+                "file": "07_GIS/三维GIS开发.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "鹅鸭杀游戏须知及复盘"
+              "title": "三维GIS开发"
             }
           }
         ]
@@ -123,13 +123,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "日记/2026-04-12.md",
+                "file": "07_GIS/三维GIS开发.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026-04-12 的大纲"
+              "title": "三维GIS开发 的大纲"
             }
           },
           {
@@ -207,7 +207,8 @@
               "title": "Calendar"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "e21fac3be92ccc06",
@@ -291,30 +292,34 @@
   },
   "active": "d0187ff8885f25fa",
   "lastOpenFiles": [
+    "随笔/git常用命令.md",
+    "随笔/pip常用命令.md",
+    "07_GIS/三维GIS开发.md",
+    "日记/2026-04-13.md",
+    "Pasted image 20260413113317.png",
+    "Pasted image 20260413113147.png",
+    "Pasted image 20260413112849.png",
+    "Pasted image 20260413112648.png",
+    "Pasted image 20260413112534.png",
+    "Pasted image 20260413112459.png",
+    "Pasted image 20260413112113.png",
+    "Pasted image 20260413111804.png",
+    "Pasted image 20260413111714.png",
+    "Pasted image 20260413110755.png",
+    "随笔/27考研深大人工智能140500学硕 全周期逐天逐时段备考规划.md",
+    "随笔/鹅鸭杀游戏须知及复盘.md",
     "日记/2026-04-12.md",
     "07_GIS/GNSS原理与应用.md",
     "07_GIS/载波相位高次差法：周跳检测与计算.sheet",
     "07_GIS/VTK 网格数据读取与几何查询示例.md",
-    "Pasted image 20260412205217.png",
     "LICENSE",
-    "随笔/鹅鸭杀游戏须知及复盘.md",
     "日记/2026-04-11.md",
     "随笔/如何宣传我的C语言笔记并吸引GitHub Star？.md",
     "随笔/个人独立博客搭建方案.md",
-    "07_GIS/三维GIS开发.md",
     "日记/2026-03-30.md",
     "07_GIS/布尔运算代码对比分析（立方体与球体）.md",
     "日记/2026-04-08.md",
     "日记/2026-04-10.md",
-    "1b69328adcc54a85a31e7df4ebb24966.jpg",
-    "Pasted image 20260408093904.png",
-    "Pasted image 20260408093015.png",
-    "Pasted image 20260408092959.png",
-    "Pasted image 20260408091731.png",
-    "Pasted image 20260408091714.png",
-    "Pasted image 20260408091334.png",
-    "Pasted image 20260408091234.png",
-    "Pasted image 20260408091232.png",
     "日记/2026-04-07.md",
     "06_408/01_基础/数据结构.md",
     "06_408/00_C语言/C语言入门课程.md",
@@ -325,9 +330,6 @@
     "VTK网格数据读取与几何查询示例.md",
     "日记/2026-03-09.md",
     "日记/2026-03-10.md",
-    "日记/2026-03-11.md",
-    "日记/2026-03-12.md",
-    "日记/2026-03-13.md",
     "数据库/考研数学基础30讲 —— 线性代数.base",
     "数据库/张宇1000题基础篇.base",
     "数据库/考研数学基础30讲 —— 高等数学.base",
