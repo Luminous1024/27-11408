@@ -1964,7 +1964,7 @@ flowchart TD
 >\text{数据场}
 >\begin{cases}
 >\text{神经辐射场(NeRF) —— 体可视化} \\
->\text{3DGS(3D Gaussian Splatting) —— } \\
+>\text{3DGS(3D Gaussian Splatting) —— 点基元光栅化(Point-based Rasterzation)} \\
 >\end{cases}
 >$$
 
@@ -2059,3 +2059,467 @@ flowchart TD
 ![[Pasted image 20260413113317.png]]
 
 ---
+[[2026-04-15]]
+## 12. 三维栅格
+
+>[!lead-in] 引入
+> - **1.栅格** —— Raster( 光栅/栅格 ) —— Rasterization( 光栅化/栅格化 )
+> - **2.影像** —— Image、PIL( *Python Imaging Library* )
+> 	- 模式
+> - **3.点云** —— 建立地球表面的几何框架( 测绘领域 ) —— 数据场( Data Field )
+> - $$
+>\text{数据场}
+>\begin{cases}
+>\text{神经辐射场(NeRF) —— 体可视化} \\
+>\text{3DGS(3D Gaussian Splatting) —— 点基元光栅化(Point-based Rasterzation)} \\
+>\end{cases}
+>$$
+
+### 12.1 三维栅格与数据场
+#### 12.1.1 三位数据场模型
+
+>[!model] 三维数据场模型
+> - 三维矢量一般描述几何与性状
+> - 三维栅格一般描述三维空间分布
+> - 三维栅格有时用另一个名字：**三维场模型**
+> 	- 标量场
+> 	- 矢量场
+
+### 12.2 直接体绘制与间接面绘制
+#### 12.2.1 区别
+
+>[!difference] 区别
+
+#### 12.2.2 体绘制
+
+>[!operation] 操作1
+> - **操作1：**
+
+#### 12.2.3 面绘制
+
+>[!operation] 操作2
+> - **操作2：** 为地形曲面建立缓冲区 *C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\sh10.vtk*
+> - 缓冲区的定义一：Minkowski Sum，形体A+B，B是一个半径( 缓冲区半径 )为R的球；
+> - 缓冲区的定义二：目标对周围空间最近的影响区域，即将周围空间按距离最近形成三维栅格；
+> - 流程：
+> 	- 三维栅格规格；使用CellLocator查找栅格每一点至sh10最近距离；提取等值面；
+
+### 12.3 练习
+#### 12.3.1 练习1
+
+![[Pasted image 20260415093303.png]]
+
+#### 12.3.2 练习2
+
+![[Pasted image 20260415092657.png]]
+
+![[Pasted image 20260415093148.png]]
+
+---
+[[2026-04-16]]
+## 第六次作业
+### 1. 点云的结构特点与加工算法设计
+
+> [!quiz]
+> 点云是由大量三维坐标点构成的离散数据集，通常来源于激光雷达、摄影测量等。其核心结构特点及对应的算法设计要求如下：
+> 
+| 特点            | 说明                              | 对算法设计的影响                                               |
+| :------------ | :------------------------------ | :----------------------------------------------------- |
+| **无序性**       | 点云中点的存储顺序无几何意义，改变排列不影响表达的三维形状。  | 算法不能依赖点的索引顺序；需使用空间数据结构（如 KD‑tree、八叉树）进行邻域搜索。           |
+| **稀疏性与非均匀密度** | 点只分布在物体表面，且扫描角度、遮挡等因素导致局部密度差异大。 | 需要自适应邻域半径的搜索策略（如半径搜索或 k 近邻）；下采样、上采样或法向估计时需考虑密度变化。      |
+| **非结构化**      | 无规则的拓扑连接信息，不同于网格的顶点-面片关系。       | 直接基于点集进行特征提取（如法向量、曲率）常需借助局部协方差分析（PCA）；表面重建需额外构建网格或隐式场。 |
+| **海量性与高维属性**  | 单次扫描可达百万至亿级点，且可能附带颜色、强度、法向等属性。  | 算法须考虑内存效率与计算复杂度，常用分块处理、流式读取、GPU 加速、体素降采样等策略。           |
+| **噪声与离群点**    | 测量误差、运动物体或多次反射会产生噪点。            | 需设计滤波预处理步骤（如半径滤波、统计滤波）以保证后续处理稳定性。                      |
+
+### 2. 两幅影像进行布尔运算的条件
+
+> [!quiz]
+> 两幅影像（栅格图像）要进行像素级的布尔运算（如与、或、非、异或），需满足以下条件：
+> - **相同的空间参考**  
+>   - 两影像必须具有完全相同的地理坐标系或投影坐标系，否则像素在空间位置上不匹配。
+> - **相同的地理范围与起始坐标**  
+>   - 左上角（或左下角）的坐标必须一致，确保像素格网完全对齐。
+> - **相同的分辨率（像元大小）**  
+>   - 每个像素代表的地面尺寸必须相同，否则同一地物对应不同数量的像素。
+> - **相同的行列数（尺寸）**  
+>   - 宽度（列数）和高度（行数）须一致，以保证像素一一对应。
+> 
+> 若上述任一条件不满足，需先进行**影像配准**、**重采样**或**裁剪/镶嵌**，使两幅影像在空间上严格对齐后再执行布尔运算。
+
+### 3. 三维格网至地形网格的距离计算与等值面可视化深度解析
+
+> [!quiz]
+> 本节围绕课堂练习代码，系统分析基于 `vtkImageData` 的三维距离场计算与等值面提取方法，并对比两种不同计算策略（基于顶点 vs. 基于单元格中心）的实现细节与效果差异。
+
+#### 3.1 原代码（基于顶点）完整版及知识点分析
+
+> [!info]
+> **原代码**采用遍历 `vtkImageData` 所有**顶点**的方式，计算每个顶点到地形网格的最短距离，并将结果直接存储为点属性。
+
+**完整原代码：**
+```python
+import vtk
+import pyvista as pv
+import numpy as np
+
+# 读取地形网格数据
+r = vtk.vtkPolyDataReader()
+r.SetFileName(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\sh10.vtk')
+r.Update()
+
+pd = vtk.vtkPolyData()
+pd.ShallowCopy(r.GetOutput())
+
+# 获取地形边界并扩展 Z 范围（使格网包含地形上方空间）
+bnds = np.zeros(6, dtype=float)
+pd.GetBounds(bnds)
+xr = bnds[1] - bnds[0]
+yr = bnds[3] - bnds[2]
+zr = (bnds[5] - bnds[4]) * 2
+
+# 设置三维规则格网尺寸与间距
+dims = [100, 100, 100]
+dx = xr / (dims[0] - 1)
+dy = yr / (dims[1] - 1)
+dz = zr / (dims[2] - 1)
+
+img = vtk.vtkImageData()
+img.SetOrigin(bnds[0], bnds[2], bnds[4])
+img.SetDimensions(dims)
+img.SetSpacing(dx, dy, dz)
+img.AllocateScalars(vtk.VTK_FLOAT, 1)
+
+# 建立地形网格的空间搜索定位器
+cloc = vtk.vtkCellLocator()
+cloc.SetDataSet(pd)
+cloc.BuildLocator()
+
+print('格网点数量:', img.GetNumberOfPoints())
+print('格网单元数量:', img.GetNumberOfCells())
+
+# ------------------------------------------------------------
+# 原方案：遍历顶点计算距离，结果存入 PointData
+# ------------------------------------------------------------
+da = vtk.vtkFloatArray()
+da.SetName('distance')
+
+for i in range(img.GetNumberOfPoints()):
+    p = np.zeros(3, dtype=float)
+    img.GetPoint(i, p)                      # 获取第 i 个顶点的坐标
+    x = np.zeros(3, dtype=float)
+    cid = vtk.reference(0)
+    sid = vtk.reference(0)
+    ds2 = vtk.reference(0.0)
+    cloc.FindClosestPoint(p, x, cid, sid, ds2)   # 查询最近点
+    da.InsertNextTuple1(np.sqrt(float(ds2)))     # 存储距离
+
+# 包装为 PyVista 对象并将距离设为点属性
+pimg = pv.ImageData(img)
+pimg.GetPointData().SetScalars(da)
+pimg.set_active_scalars('distance')
+
+# ------------------------------------------------------------
+# 可视化部分：地形网格 + 等值面
+# ------------------------------------------------------------
+pl = pv.Plotter()
+pl.add_mesh(pd, color='cyan', opacity=0.7)
+
+# 提取距离为 700 的等值面
+conf = vtk.vtkContourFilter()
+conf.SetInputData(pimg)
+conf.SetValue(0, 700)
+conf.Update()
+
+pconf = pv.PolyData(conf.GetOutput())
+pl.add_mesh(pconf, color='green', opacity=0.6)
+
+pl.show()
+```
+
+**知识点总结：**
+
+| 步骤 | 关键 API / 操作 | 知识点说明 |
+| :--- | :--- | :--- |
+| 1. 数据读取 | `vtkPolyDataReader` → `ShallowCopy` | 从 VTK 文件读取多边形网格（地形），浅拷贝减少内存开销。 |
+| 2. 获取边界 | `pd.GetBounds(bnds)` | 返回 `[xmin, xmax, ymin, ymax, zmin, zmax]`，用于确定格网范围。 |
+| 3. 创建规则格网 | `vtkImageData` + `SetOrigin/SetDimensions/SetSpacing` | 定义三维标量场的载体，尺寸为 `dims`，间距由范围计算得出。 |
+| 4. 空间搜索定位器 | `vtkCellLocator` + `BuildLocator()` | 构建加速结构，用于快速查找网格上距离查询点最近的单元及距离。 |
+| 5. 遍历顶点 | `img.GetNumberOfPoints()` | 顶点数 = `100 × 100 × 100 = 1,000,000`。 |
+| 6. 顶点坐标获取 | `img.GetPoint(i, p)` | 直接返回顶点坐标，无需额外计算。 |
+| 7. 最近点查询 | `FindClosestPoint(p, x, cid, sid, ds2)` | 输入查询点 `p`，输出最近点坐标 `x`、单元 ID、子 ID 和距离平方 `ds2`。 |
+| 8. 距离存储 | `InsertNextTuple1(np.sqrt(float(ds2)))` | 将欧氏距离存入 `vtkFloatArray`。 |
+| 9. 属性绑定 | `GetPointData().SetScalars(da)` | 将距离数组赋给格网的**点属性**（Point Data）。 |
+| 10. 等值面提取 | `vtkContourFilter` + `SetValue(0, 700)` | 从标量场中提取值为 700 的等值面（即所有距离地形 700 单位的点）。 |
+| 11. 可视化 | `pyvista.Plotter` + `add_mesh` | 同时显示地形网格和等值面。 |
+
+---
+
+#### 3.2 修改后代码（基于单元格中心）完整版及知识点分析
+
+> [!info]
+> **修改目标**：将遍历对象从顶点改为**单元格**，先计算单元格中心到地形的距离并存入 `CellData`，再通过 `vtkCellDataToPointData` 转换为 `PointData`，以满足等值面滤波器对点属性的要求。
+
+**完整修改后代码：**
+```python
+import vtk
+import pyvista as pv
+import numpy as np
+
+# 读取地形网格数据
+r = vtk.vtkPolyDataReader()
+r.SetFileName(r'C:\Users\吕梓源\Desktop\课程\大三上学期\数据分析程序设计（Python）\sh10.vtk')
+r.Update()
+
+pd = vtk.vtkPolyData()
+pd.ShallowCopy(r.GetOutput())
+
+# 获取地形边界并扩展 Z 范围（使格网包含地形上方空间）
+bnds = np.zeros(6, dtype=float)
+pd.GetBounds(bnds)
+xr = bnds[1] - bnds[0]
+yr = bnds[3] - bnds[2]
+zr = (bnds[5] - bnds[4]) * 2
+
+# 设置三维规则格网尺寸与间距
+dims = [100, 100, 100]
+dx = xr / (dims[0] - 1)
+dy = yr / (dims[1] - 1)
+dz = zr / (dims[2] - 1)
+
+img = vtk.vtkImageData()
+img.SetOrigin(bnds[0], bnds[2], bnds[4])
+img.SetDimensions(dims)
+img.SetSpacing(dx, dy, dz)
+img.AllocateScalars(vtk.VTK_FLOAT, 1)
+
+# 建立地形网格的空间搜索定位器
+cloc = vtk.vtkCellLocator()
+cloc.SetDataSet(pd)
+cloc.BuildLocator()
+
+print('格网点数量:', img.GetNumberOfPoints())
+print('格网单元数量:', img.GetNumberOfCells())
+
+# ------------------------------------------------------------
+# 方案一（原课堂代码）：遍历顶点计算距离，结果存入 PointData
+# 以下部分保留但注释掉
+# ------------------------------------------------------------
+# da = vtk.vtkFloatArray()
+# da.SetName('distance')
+# for i in range(img.GetNumberOfPoints()):
+#     p = np.zeros(3, dtype=float)
+#     img.GetPoint(i, p)
+#     x = np.zeros(3, dtype=float)
+#     cid = vtk.reference(0)
+#     sid = vtk.reference(0)
+#     ds2 = vtk.reference(0.0)
+#     cloc.FindClosestPoint(p, x, cid, sid, ds2)
+#     da.InsertNextTuple1(np.sqrt(float(ds2)))
+# pimg = pv.ImageData(img)
+# pimg.GetPointData().SetScalars(da)
+# pimg.set_active_scalars('distance')
+
+# ------------------------------------------------------------
+# 方案二：遍历单元格，计算每个单元格中心到地形的距离，
+#         存入 CellData，再转换为 PointData
+# ------------------------------------------------------------
+da_cell = vtk.vtkFloatArray()
+da_cell.SetName('distance_cell')
+
+for i in range(img.GetNumberOfCells()):
+    # 获取单元格边界 (xmin, xmax, ymin, ymax, zmin, zmax)
+    bounds = img.GetCell(i).GetBounds()
+    # 计算单元格中心坐标
+    center = [(bounds[0] + bounds[1]) / 2.0,
+              (bounds[2] + bounds[3]) / 2.0,
+              (bounds[4] + bounds[5]) / 2.0]
+    # 查找距离地形网格最近的点
+    x = np.zeros(3, dtype=float)
+    cid = vtk.reference(0)
+    sid = vtk.reference(0)
+    ds2 = vtk.reference(0.0)
+    cloc.FindClosestPoint(center, x, cid, sid, ds2)
+    da_cell.InsertNextTuple1(np.sqrt(float(ds2)))
+
+# 将距离数组附加到格网的 CellData
+img.GetCellData().SetScalars(da_cell)
+
+# 使用 vtkCellDataToPointData 将单元属性转换为点属性
+c2p = vtk.vtkCellDataToPointData()
+c2p.SetInputData(img)
+c2p.Update()
+
+# 获取转换后的 ImageData，其中包含点属性 'distance_cell'
+img_point = c2p.GetOutput()
+
+# 包装为 PyVista 对象以便可视化
+pimg = pv.ImageData(img_point)
+pimg.set_active_scalars('distance_cell')
+
+# ------------------------------------------------------------
+# 可视化部分：地形网格 + 等值面
+# ------------------------------------------------------------
+pl = pv.Plotter()
+pl.add_mesh(pd, color='cyan', opacity=0.7)
+
+# 提取距离为 700 的等值面
+conf = vtk.vtkContourFilter()
+conf.SetInputData(pimg)
+conf.SetValue(0, 700)
+conf.Update()
+
+pconf = pv.PolyData(conf.GetOutput())
+pl.add_mesh(pconf, color='green', opacity=0.6)
+
+pl.show()
+```
+
+**程序运行结果：**
+> [!Program execution result]
+> ![[Pasted image 20260416174343.png]]
+> 
+> ![[Pasted image 20260416174423.png]]
+
+**知识点总结：**
+
+>[!summary]
+>
+| 步骤 | 关键 API / 操作 | 知识点说明 |
+| :--- | :--- | :--- |
+| 1. 遍历单元格 | `img.GetNumberOfCells()` | 单元格数 = `99 × 99 × 99 = 970,299`，略少于顶点数。 |
+| 2. 获取单元格边界 | `img.GetCell(i).GetBounds()` | 返回包围盒的 `[xmin, xmax, ymin, ymax, zmin, zmax]`。 |
+| 3. 计算中心坐标 | `(xmin+xmax)/2` 等 | 体素中心用于代表该体素的空间位置。 |
+| 4. 最近点查询与距离计算 | 同原代码 | 计算体素中心到地形网格的最短距离。 |
+| 5. 数据绑定 | `img.GetCellData().SetScalars(da_cell)` | 将距离数组设置为**单元格属性**（Cell Data）。 |
+| 6. 属性转换 | `vtkCellDataToPointData()` | 将单元格标量场转换为顶点标量场，通常采用邻域平均。 |
+| 7. 获取新数据集 | `c2p.GetOutput()` | 转换后生成新 `vtkImageData`，其 `PointData` 中包含转换后的距离标量。 |
+| 8. 后续处理 | 同原代码 | 等值面提取、可视化。 |
+
+---
+
+#### 3.3 原代码与修改后代码的对比分析及结论
+
+>[!comparison]
+>
+| 对比维度        | 原代码（顶点遍历）             | 修改后代码（单元格遍历 + 转换）                 |
+| :---------- | :-------------------- | :-------------------------------- |
+| **数据定义位置**  | 格网顶点（Point Data）      | 格网单元格（Cell Data） → 转换为 Point Data |
+| **采样点数量**   | 1,000,000 个顶点         | 970,299 个单元格中心                    |
+| **最近点查询次数** | 1,000,000 次           | 970,299 次（略少）                     |
+| **距离场连续性**  | 顶点值可直接线性插值，连续性好       | 单元格中心值离散，转换后相当于一次平滑插值             |
+| **代码复杂度**   | 简单直接                  | 增加了边界获取、中心计算及属性转换步骤               |
+| **内存占用**    | 一个点属性数组               | 一个单元属性数组 + 一个转换后的点属性数组（临时）        |
+| **适用场景**    | 需要精确顶点距离值，后续直接体绘制或等值面 | 当距离场更适合定义在体素中心（如有限体积法）时，或作为属性转换练习 |
+
+> [!conclusion]
+> **结论**：
+> - 在格网分辨率相同的情况下，**两种方法得到的等值面在视觉上基本一致**，因为 `vtkCellDataToPointData` 本质上是邻域平均插值，相当于对单元格中心距离场进行了一次平滑。
+> - **顶点遍历法**更符合“距离场定义在格网点”的直觉，且省去转换步骤，效率稍高。
+> - **单元格遍历法**在科学计算中更贴近“体素中心值代表该体素物理量”的离散化思想，但需额外转换以适应可视化算法。
+> - 实际应用中，若仅需等值面可视化，**顶点遍历法更为便捷**；若需要同时保留单元格属性供其他计算使用，则单元格遍历法更具扩展性。
+
+---
+
+#### 3.4 问题解答
+
+> [!Q&A]
+> **（1）`img.GetCell(i).GetBounds()`，单元中心点坐标是？**
+> `img.GetCell(i).GetBounds()` 返回一个包含 6 个浮点数的元组或列表（取决于调用方式）：  
+> `(xmin, xmax, ymin, ymax, zmin, zmax)`，分别表示第 `i` 个体素在 X、Y、Z 轴上的最小值和最大值。
+> 
+> **单元中心点坐标**为包围盒的几何中心，计算公式如下：
+> ```python
+> center_x = (xmin + xmax) / 2.0
+> center_y = (ymin + ymax) / 2.0
+> center_z = (zmin + zmax) / 2.0
+> ```
+> 
+> 在代码中可直接写为：
+> ```python
+> bounds = img.GetCell(i).GetBounds()
+> center = [(bounds[0]+bounds[1])/2.0,
+>           (bounds[2]+bounds[3])/2.0,
+>           (bounds[4]+bounds[5])/2.0]
+> ```
+
+> [!Q&A]
+> **（2）`vtkCellDataToPointData()`，转换单元属性至点属性**
+> `vtkCellDataToPointData` 是 VTK 中的一个滤波器，其作用是将存储在**单元格**（Cells）上的属性数据转换为存储在**点**（Points）上的属性数据。
+> 
+> **工作原理**：
+> - 对于每个点，找出所有共享该点的单元格。
+> - 将这些单元格上对应属性的值进行**平均**（默认）或其他统计操作（如最大值、最小值）。
+> - 将计算结果作为该点的属性值。
+> 
+> **在课堂练习中的必要性**：
+> - 原代码中距离值直接赋予顶点，因此无需此滤波器。
+> - 修改后的代码中距离值赋予单元格，但后续的 `vtkContourFilter` 等值面提取需要点属性来插值确定等值面位置。若不进行转换，滤波器无法获取点上的标量值，将导致运行错误或无法生成等值面。
+> 
+> **调用示例**：
+> ```python
+> c2p = vtk.vtkCellDataToPointData()
+> c2p.SetInputData(img)      # 输入带有单元格属性的 ImageData
+> c2p.Update()
+> output = c2p.GetOutput()   # 输出带有转换后点属性的 ImageData
+> ```
+> 
+> **注意**：转换过程会**生成一个新的数据集**，原始 `img` 不受影响。转换后的点属性名称与单元格属性名称相同（如 `'distance_cell'`），可直接用于后续可视化。
+
+---
+[[2026-04-20]]
+## 13. 3D WebGIS
+### 13.1 Web革新和WebGIS
+#### 13.1.1 Web程序的优势
+
+>[!Advantages of web programs] Web程序优势
+> - 一般不需要安装
+> - 有网络就可以访问
+> - 通过统一的浏览器操作完成不同目标的任务，用户界面“标准化”
+
+#### 13.1.2 Web程序的基本结构
+
+>[!The basic structure of a web program] Web程序的基本结构
+> - 早期HTML( 及各种XML )主要是一个静态、文本描述结构；
+> - Web 2.0：
+> 	- 集中式，中心服务器
+> 	- 服务端 + 客户端，C / S，B / S
+> 	- Web GL / H5
+> 	- Model + View
+> 	- 各种JavaScript Framework
+> - Web 3.0：
+> 	- 去中心化
+
+#### 13.1.3 Web程序的主流技术
+
+>[!Mainstream technologies of web programs] Web程序的主流技术
+> - WebGL
+> 	- 基于OpenGL ES的JavaScript API，支持在浏览器中渲染3D图形，无需插件
+> - Three.js
+> 	- 基于WebGL的JavaScript库，简化了3D图形的创建和渲染。社区活跃
+> - Babylon.js
+> 	- 另一个基于WebGL的3D引擎，功能强大。有物理引擎、粒子系统等高级功能
+> - CesiumJS
+> 	- 流行的开源3D GIS JavaScript库，专注于地理空间数据的3D可视化
+> - Node.JS
+> 	- 开源、跨平台的JavaScript运行时环境
+> - iTowns
+> 	- 开源3D地理数据可视化框架。适合地形、建筑物、点云等数据的可视化，与Three.js集成良好
+> - WebAssembly( Wasm )
+> 	- 正如WebGL一样，许多传统的API框架都纷纷推出Web改造，这包括WebAssembly和WebSockets。WebAssembly是一种低级字节码格式，目的是提升3D GIS应用的性能
+
+### 13.2 Trame框架：基于VTK的3D WebGIS
+#### 13.2.1 名字空间
+
+>[!namespace] 名字空间
+> - trame.app
+> 	- 与应用程序相关，包括服务 / 客户端状态，单进程等
+> 	- get_server / get_clients / singleton
+> - trame.ui
+> 	- 与用户界面相关，包括内设的页面布局
+> 	- VAppLayout / VSinglePageLayout / VSinglePageWithDrawerLayout
+> - trame.widgets
+> 	- 与窗口小部件有关，包括vtk / router / vuetify
+
+---
+[[2026-04-22]]
+

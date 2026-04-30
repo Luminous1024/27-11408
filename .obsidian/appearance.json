@@ -2,9 +2,10 @@
   "cssTheme": "AnuPpuccin",
   "enabledCssSnippets": [
     "extended-colorschemes",
-    "center-tables",
     "Tree_Structure",
-    "Gantt"
+    "center-tables",
+    "mermaid-compact",
+    "mermaid-nord-dark"
   ],
   "theme": "obsidian"
 }

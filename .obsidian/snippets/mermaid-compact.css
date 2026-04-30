@@ -1,0 +1,24 @@
+/* === Mermaid 图表：消除上下空白，居中对齐 === */
+
+/* 1. 移除容器默认间距，设为块级元素 */
+.mermaid {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    /* 消除因行高产生的额外空白 */
+    text-align: center !important;
+}
+
+/* 2. SVG 设置为块级，自动居中，并限制最大宽度 */
+.mermaid svg {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* 3. 可选：若图表内部仍有垂直空隙，可微调 Mermaid 内部节点间距 */
+.mermaid .label {
+    padding: 1px 2px !important;
+}

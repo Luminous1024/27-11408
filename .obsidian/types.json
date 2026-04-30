@@ -11,6 +11,7 @@
     "结束日期": "date",
     "创建时间": "datetime",
     "categories": "multitext",
-    "DeadLine": "date"
+    "DeadLine": "date",
+    "updateTime": "datetime"
   }
 }

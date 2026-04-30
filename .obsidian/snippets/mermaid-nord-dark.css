@@ -1,0 +1,206 @@
+/* === Mermaid 全局 Nord Dark 配色（稳定版）=== */
+/* 仅强制文字颜色，不干预标签尺寸和背景 */
+/* 适用于 Obsidian AnuPpuccin 深色模式 */
+
+/* ----- 1. 画布基础背景 ----- */
+.theme-dark .mermaid svg {
+    background-color: #2e3440 !important;
+}
+
+/* ----- 2. 连线与箭头 ----- */
+.theme-dark .mermaid .edgePath .path,
+.theme-dark .mermaid .flowchart-link {
+    stroke: #d8dee9 !important;
+}
+
+.theme-dark .mermaid .arrowheadPath,
+.theme-dark .mermaid .marker {
+    fill: #d8dee9 !important;
+    stroke: #d8dee9 !important;
+}
+
+/* ----- 3. 连线标签：只强制文字颜色，不改变尺寸/背景 ----- */
+.theme-dark .mermaid .edgeLabel {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 4px #000000 !important;
+    /* 轻微阴影增强可读性 */
+}
+
+.theme-dark .mermaid .edgeLabel span,
+.theme-dark .mermaid .edgeLabel p,
+.theme-dark .mermaid .edgeLabel text,
+.theme-dark .mermaid .edgeLabel div {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: transparent !important;
+}
+
+/* 保留 Mermaid 默认的 rect 背景，但确保文字可见即可 */
+.theme-dark .mermaid .edgeLabel rect {
+    /* 不修改，维持原样 */
+}
+
+/* foreignObject 不做任何尺寸干预 */
+.theme-dark .mermaid .edgeLabel foreignObject {
+    /* 保持默认 */
+}
+
+/* ----- 4. 子图标题强制白色 ----- */
+.theme-dark .mermaid .cluster text,
+.theme-dark .mermaid .cluster .label text,
+.theme-dark .mermaid .cluster .label span,
+.theme-dark .mermaid .cluster .label tspan,
+.theme-dark .mermaid .cluster .label div,
+.theme-dark .mermaid .cluster p,
+.theme-dark .mermaid .title p,
+.theme-dark .mermaid .titleText p {
+    fill: #ffffff !important;
+    color: #ffffff !important;
+    background: transparent !important;
+}
+
+.theme-dark .mermaid .cluster rect {
+    fill: #2e3440 !important;
+    stroke: #4c566a !important;
+    stroke-dasharray: 5 3 !important;
+    stroke-width: 1.5px !important;
+}
+
+.theme-dark .mermaid .cluster .label rect {
+    fill: #3b4252 !important;
+    stroke: #4c566a !important;
+}
+
+/* ----- 5. 节点通用文字 ----- */
+.theme-dark .mermaid .node .label,
+.theme-dark .mermaid .node text {
+    fill: #eceff4 !important;
+    color: #eceff4 !important;
+    font-weight: 500 !important;
+}
+
+/* 节点默认背景 */
+.theme-dark .mermaid .node rect,
+.theme-dark .mermaid .node circle,
+.theme-dark .mermaid .node polygon {
+    fill: #3b4252 !important;
+    stroke: #4c566a !important;
+    stroke-width: 2px !important;
+}
+
+/* ----- 6. 预设节点配色（Nord 色系）----- */
+.theme-dark .mermaid .node.softwareNode rect,
+.theme-dark .mermaid .node.softwareNode polygon {
+    fill: #d08770 !important;
+    stroke: #e8a98b !important;
+}
+
+.theme-dark .mermaid .node.osNode rect,
+.theme-dark .mermaid .node.osNode polygon {
+    fill: #a3be8c !important;
+    stroke: #b9d9a5 !important;
+}
+
+.theme-dark .mermaid .node.hardwareNode rect,
+.theme-dark .mermaid .node.hardwareNode polygon {
+    fill: #5e81ac !important;
+    stroke: #81a1c1 !important;
+}
+
+.theme-dark .mermaid .node.computerNode rect,
+.theme-dark .mermaid .node.computerNode polygon {
+    fill: #b48ead !important;
+    stroke: #d5b9d2 !important;
+}
+
+.theme-dark .mermaid .node.dataRoot rect,
+.theme-dark .mermaid .node.dataRoot polygon {
+    fill: #5e81ac !important;
+    stroke: #81a1c1 !important;
+}
+
+.theme-dark .mermaid .node.dataObj rect,
+.theme-dark .mermaid .node.dataObj polygon {
+    fill: #a3be8c !important;
+    stroke: #b9d9a5 !important;
+}
+
+.theme-dark .mermaid .node.dataElem rect,
+.theme-dark .mermaid .node.dataElem polygon {
+    fill: #d08770 !important;
+    stroke: #e8a98b !important;
+}
+
+.theme-dark .mermaid .node.dataItem rect,
+.theme-dark .mermaid .node.dataItem polygon {
+    fill: #b48ead !important;
+    stroke: #d5b9d2 !important;
+}
+
+.theme-dark .mermaid .node.coreNode rect,
+.theme-dark .mermaid .node.coreNode polygon {
+    fill: #4c566a !important;
+    stroke: #6f7b8f !important;
+}
+
+.theme-dark .mermaid .node.warnNode rect,
+.theme-dark .mermaid .node.warnNode polygon {
+    fill: #bf616a !important;
+    stroke: #d16b76 !important;
+}
+
+/* 兼容早期命名 */
+.theme-dark .mermaid .node.dataNode rect {
+    fill: #5e81ac !important;
+    stroke: #81a1c1 !important;
+}
+
+.theme-dark .mermaid .node.dataNode2 rect {
+    fill: #a3be8c !important;
+    stroke: #b9d9a5 !important;
+}
+
+.theme-dark .mermaid .node.dataNode3 rect {
+    fill: #b48ead !important;
+    stroke: #d5b9d2 !important;
+}
+
+.theme-dark .mermaid .node.dataNode4 rect {
+    fill: #d08770 !important;
+    stroke: #e8a98b !important;
+}
+
+/* ----- 7. 圆角模拟 ----- */
+.theme-dark .mermaid .node.softwareNode rect,
+.theme-dark .mermaid .node.osNode rect,
+.theme-dark .mermaid .node.hardwareNode rect,
+.theme-dark .mermaid .node.computerNode rect,
+.theme-dark .mermaid .node.dataRoot rect,
+.theme-dark .mermaid .node.dataObj rect,
+.theme-dark .mermaid .node.dataElem rect,
+.theme-dark .mermaid .node.dataItem rect,
+.theme-dark .mermaid .node.coreNode rect,
+.theme-dark .mermaid .node.warnNode rect,
+.theme-dark .mermaid .node.dataNode rect,
+.theme-dark .mermaid .node.dataNode2 rect,
+.theme-dark .mermaid .node.dataNode3 rect,
+.theme-dark .mermaid .node.dataNode4 rect {
+    clip-path: inset(0% 0% 0% 0% round 6px) !important;
+}
+
+/* ----- 8. 容器居中 ----- */
+.theme-dark .mermaid {
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    line-height: 0 !important;
+}
+
+.theme-dark .mermaid svg {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+}

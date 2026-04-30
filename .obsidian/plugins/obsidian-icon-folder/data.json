@@ -6,11 +6,11 @@
     "emojiStyle": "native",
     "iconColor": null,
     "recentlyUsedIcons": [
-      "LiDatabase",
-      "⚽",
-      "📓",
-      "📷",
-      "LiCamera"
+      "LiTableOfContents",
+      "LiGraduationCap",
+      "LiUniversity",
+      "LiScale",
+      "RiEnglishInput"
     ],
     "recentlyUsedIconsSize": 5,
     "rules": [],
@@ -34,11 +34,21 @@
     "debugMode": false,
     "useInternalPlugins": false
   },
-  "乒乓球": "🏓",
   "健身": "🏋️‍♂️",
   "旅行": "📷",
-  "日记": "📓",
-  "足球": "⚽",
   "数据库": "LiDatabase",
-  "随笔": "📓"
+  "08_随笔": "📓",
+  "09_日记": "📓",
+  "10_阅读": "📓",
+  "11_足球": "⚽",
+  "12_乒乓球": "🏓",
+  "模板": "📝",
+  "07_GIS": "SiArcgis",
+  "06_408": "LiComputer",
+  "05_数学": "LiPi",
+  "04_英语": "RiEnglishInput",
+  "03_政治": "LiScale",
+  "02_择校": "LiUniversity",
+  "01_专业": "LiGraduationCap",
+  "00_目录": "LiTableOfContents"
 }
