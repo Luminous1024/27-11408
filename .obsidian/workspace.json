@@ -1,57 +1,42 @@
 {
   "main": {
-    "id": "4ad4a29c628453ce",
+    "id": "5ec863a620100bb1",
     "type": "split",
     "children": [
       {
-        "id": "a24854e4702ed352",
+        "id": "f952d425306e7eb6",
         "type": "tabs",
         "children": [
           {
-            "id": "ab2a3818e60f3c59",
+            "id": "9699419dc88e901a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "09_日记/2026-04-30.md",
+                "file": "09_日记/2026-05-06.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-04-30"
-            }
-          },
-          {
-            "id": "375258abe48f9fbd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "06_408/01_基础/数据结构.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "数据结构"
+              "title": "2026-05-06"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "6c7cc86ca9615fe1",
+    "id": "0bb3e68a427fa4c9",
     "type": "split",
     "children": [
       {
-        "id": "3515f90246d16b05",
+        "id": "d412d00951c50289",
         "type": "tabs",
-        "dimension": 54.442148760330575,
+        "dimension": 57.95454545454546,
         "children": [
           {
-            "id": "9b3350c2033b08aa",
+            "id": "e7ede2e47a09e765",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -64,13 +49,13 @@
             }
           },
           {
-            "id": "8631460d80c87ae3",
+            "id": "6b0afd700bbfbc85",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
                 "query": "",
-                "matchingCase": true,
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -81,7 +66,7 @@
             }
           },
           {
-            "id": "c15f0071b02eb228",
+            "id": "4a29969fa91cddf5",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -93,12 +78,12 @@
         ]
       },
       {
-        "id": "00350111bcf3cb27",
+        "id": "a5c86e9544fcfec6",
         "type": "tabs",
-        "dimension": 45.557851239669425,
+        "dimension": 42.04545454545455,
         "children": [
           {
-            "id": "c25b700e37a34e24",
+            "id": "d1c103a5935f7545",
             "type": "leaf",
             "state": {
               "type": "recent-files",
@@ -106,25 +91,38 @@
               "icon": "clock",
               "title": "Recent Files"
             }
+          },
+          {
+            "id": "e737be02a54822c6",
+            "type": "leaf",
+            "state": {
+              "type": "bases",
+              "state": {
+                "file": "TaskNotes/Views/mini-calendar-default.base",
+                "viewName": "Due"
+              },
+              "icon": "tasknotes-simple",
+              "title": "mini-calendar-default"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "62aabfd23b165e7a",
+    "id": "e8a4dce43b6c1b90",
     "type": "split",
     "children": [
       {
-        "id": "4c6650e63d96b04d",
+        "id": "d190b4ff3ee1c800",
         "type": "tabs",
-        "dimension": 32.15686274509804,
+        "dimension": 31.69774288518155,
         "children": [
           {
-            "id": "8fb154fdd5fa5a1e",
+            "id": "115e438cd390bafb",
             "type": "leaf",
             "state": {
               "type": "calendar",
@@ -134,48 +132,67 @@
             }
           },
           {
-            "id": "13b319f1262f4c05",
+            "id": "4a133c63b2c258dd",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "06_408/01_基础/数据结构.md",
-                "followCursor": true,
-                "showSearch": true,
+                "file": "09_日记/2026-05-06.md",
+                "followCursor": false,
+                "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "数据结构 的大纲"
+              "title": "2026-05-06 的大纲"
             }
           },
           {
-            "id": "13d12401d00e3a77",
+            "id": "10b6591c9b2d82c9",
             "type": "leaf",
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "07_GIS/三维GIS开发复习题纲.md"
+                "file": "09_日记/2026-05-06.md"
               },
               "icon": "lucide-info",
-              "title": "三维GIS开发复习题纲的笔记属性"
+              "title": "2026-05-06的笔记属性"
             }
           },
           {
-            "id": "7eb16e864c7719ce",
+            "id": "d8e337a517b8b19b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "06_408/01_基础/数据结构.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "数据结构 的反向链接列表"
+            }
+          },
+          {
+            "id": "93a0f133e76736f2",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "日记/2026-04-01.md",
+                "file": "06_408/01_基础/数据结构.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2026-04-01 的出链列表"
+              "title": "数据结构 的出链列表"
             }
           },
           {
-            "id": "017abe22bca975d1",
+            "id": "f38aa8b248ed8206",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -190,17 +207,7 @@
             }
           },
           {
-            "id": "1fa04566a3dbfde4",
-            "type": "leaf",
-            "state": {
-              "type": "Strange New Worlds",
-              "state": {},
-              "icon": "file-digit",
-              "title": "Strange New Worlds"
-            }
-          },
-          {
-            "id": "fe9947f2963d97f3",
+            "id": "c6b1d52ff091473d",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -212,26 +219,16 @@
               "icon": "lucide-archive",
               "title": "添加笔记属性"
             }
-          },
-          {
-            "id": "9a19c169c67e2529",
-            "type": "leaf",
-            "state": {
-              "type": "journal-calendar",
-              "state": {},
-              "icon": "calendar-days",
-              "title": "Calendar"
-            }
           }
         ]
       },
       {
-        "id": "e21fac3be92ccc06",
+        "id": "f85acb8dcb37d6df",
         "type": "tabs",
-        "dimension": 67.84313725490196,
+        "dimension": 68.30225711481846,
         "children": [
           {
-            "id": "acfbc74ea5ef31fd",
+            "id": "a46012b3a186fb5a",
             "type": "leaf",
             "state": {
               "type": "planner-timeline",
@@ -241,61 +238,30 @@
             }
           },
           {
-            "id": "12f57ee5eb54ec16",
+            "id": "306a6c00fa2d35ce",
             "type": "leaf",
             "state": {
-              "type": "planner-weekly",
+              "type": "tasknotes-pomodoro-view",
               "state": {},
-              "icon": "table-2",
-              "title": "4月, 18–4月, 20"
-            }
-          },
-          {
-            "id": "71737b915252256a",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "06_408/00_C语言/C语言入门课程.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "C语言入门课程 的反向链接列表"
-            }
-          },
-          {
-            "id": "7d5095a9ca58cd8f",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
+              "icon": "clock",
+              "title": "番茄钟"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 316,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
-      "canvas:新建白板": false,
       "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "media-extended:Open external media": false,
+      "bases:新建数据库": false,
       "pdf-plus:PDF++: Toggle auto-copy": false,
       "pdf-plus:PDF++: Toggle auto-focus": false,
       "pdf-plus:PDF++: Toggle auto-paste": false,
@@ -303,56 +269,43 @@
       "templater-obsidian:Templater": false,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "spreadsheets:New Spreadsheet": false
+      "spreadsheets:New Spreadsheet": false,
+      "media-extended:Open media library": false,
+      "media-extended:Open media quick switcher": false,
+      "tasknotes:打开迷你日历视图": false,
+      "tasknotes:打开日历视图": false,
+      "tasknotes:打开任务视图": false,
+      "tasknotes:打开议程视图": false,
+      "tasknotes:打开看板": false,
+      "tasknotes:打开番茄钟统计": false,
+      "tasknotes:打开番茄钟计时器": false,
+      "tasknotes:创建新任务": false
     }
   },
-  "active": "375258abe48f9fbd",
+  "active": "9699419dc88e901a",
   "lastOpenFiles": [
-    "09_日记/2026-04-30.md",
-    "Pasted image 20260430153518.png",
-    "Pasted image 20260416174423.png",
-    "06_408/01_基础/数据结构.md",
-    "Snipaste_2026-03-18_21-11-32.jpg",
-    "Snipaste_2026-03-18_21-07-20.jpg",
-    "Pasted image 20260416174343.png",
-    "Pasted image 20260430151731.png",
-    "06_408/01_基础/growth_0_100_with_labels.png",
-    "06_408/01_基础/time_complexity.png",
+    "09_日记/2026-02-06.md",
+    "09_日记/2026-05-06.md",
+    "TaskNotes/Views/tasks-default.base",
     "05_数学/01_基础/高等数学/第1章 函数 极限 连续.md",
-    "07_GIS/三维GIS开发.md",
-    "06_408/01_基础/Time_complexity_of_algorithm.py",
-    "09_日记/2026-04-29.md",
-    "09_日记/2026-04-28.md",
-    "06_408/01_基础/数据结构-mindmap.md",
-    "06_408/00_C语言/8.3 翻转整数解题思路.md",
-    "06_408/00_C语言/8.4 小写转大写解题思路.md",
-    "数据对象.md",
-    "第一章 函数 极限 连续.md",
-    "05_数学/01_基础/高等数学/第2章 导数与微分.md",
-    "05_数学/01_基础/高等数学/第1章 函数 极限 连续 1.md",
-    "09_日记/2026-04-27.md",
-    "05_数学/01_基础/高等数学/第一讲 函数极限与连续.xmind",
-    "06_408/00_C语言/C语言入门课程.md",
-    "06_408/00_C语言/C语言入门课程-mindmap.md",
-    "05_数学/01_基础/高等数学/第二讲 数列极限.md",
-    "07_GIS/三维GIS开发-mindmap.md",
-    "07_GIS/三维GIS开发简答题汇总.md",
-    "07_GIS/三维GIS开发课程实验与作业完整汇总（含代码+简答）.md",
-    "09_日记/2026-04-24.md",
-    "07_GIS/三维GIS开发复习题纲.md",
-    "07_GIS/三维GIS开发 专业英语名词缩写.md",
-    "07_GIS/三维GIS开发 代码中常见英文缩写.md",
-    "未命名.md",
-    "07_GIS/载波相位高次差法：周跳检测与计算.sheet",
-    "10_阅读",
-    "Pasted image 20260415093303.png",
-    "Pasted image 20260415093148.png",
-    "05_数学/01_基础/概率论与数理统计刷题",
-    "05_数学/01_基础/线性代数刷题",
-    "05_数学/01_基础/高等数学刷题",
-    "05_数学/01_基础/概率论与数理统计",
-    "05_数学/01_基础/线性代数",
-    "05_数学/01_基础/高等数学",
-    "未命名.canvas"
+    "健身/凯圣王-谭成义三分化① —— 训练计划.md",
+    "TaskNotes/Views/kanban-default.base",
+    "TaskNotes/Views/agenda-default.base",
+    "TaskNotes/Views/mini-calendar-default.base",
+    "TaskNotes/Views/calendar-default.base",
+    "TaskNotes/Tasks/今天中午11点40到12点30完成第一章 函数极限与连续.md",
+    "TaskNotes/Tasks/到1230第一章 函数极限与连续.md",
+    "TaskNotes/Tasks",
+    "09_日记/第一章 函数极限与连续.md",
+    "09_日记/2026-05-05.md",
+    "TaskNotes/Views/relationships.base",
+    "TaskNotes/Views",
+    "TaskNotes",
+    "1b69328adcc54a85a31e7df4ebb24966.jpg",
+    "06_408/01_基础/数据结构.md",
+    "09_日记/2026-05-04.md",
+    "09_日记/2026-05-03.md",
+    "09_日记/2026-05-01.md",
+    "Untitled.sheet"
   ]
 }

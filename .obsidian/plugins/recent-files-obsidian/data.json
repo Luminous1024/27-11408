@@ -1,8 +1,68 @@
 {
   "recentFiles": [
     {
+      "basename": "2026-05-06",
+      "path": "09_日记/2026-05-06.md"
+    },
+    {
+      "basename": "tasks-default",
+      "path": "TaskNotes/Views/tasks-default.base"
+    },
+    {
+      "basename": "第1章 函数 极限 连续",
+      "path": "05_数学/01_基础/高等数学/第1章 函数 极限 连续.md"
+    },
+    {
+      "basename": "凯圣王-谭成义三分化① —— 训练计划",
+      "path": "健身/凯圣王-谭成义三分化① —— 训练计划.md"
+    },
+    {
+      "basename": "kanban-default",
+      "path": "TaskNotes/Views/kanban-default.base"
+    },
+    {
+      "basename": "agenda-default",
+      "path": "TaskNotes/Views/agenda-default.base"
+    },
+    {
+      "basename": "mini-calendar-default",
+      "path": "TaskNotes/Views/mini-calendar-default.base"
+    },
+    {
+      "basename": "calendar-default",
+      "path": "TaskNotes/Views/calendar-default.base"
+    },
+    {
+      "basename": "2026-05-05",
+      "path": "09_日记/2026-05-05.md"
+    },
+    {
+      "basename": "1b69328adcc54a85a31e7df4ebb24966",
+      "path": "1b69328adcc54a85a31e7df4ebb24966.jpg"
+    },
+    {
       "basename": "数据结构",
       "path": "06_408/01_基础/数据结构.md"
+    },
+    {
+      "basename": "2026-05-04",
+      "path": "09_日记/2026-05-04.md"
+    },
+    {
+      "basename": "2026-05-03",
+      "path": "09_日记/2026-05-03.md"
+    },
+    {
+      "basename": "2026-05-01",
+      "path": "09_日记/2026-05-01.md"
+    },
+    {
+      "basename": "2026-05-02",
+      "path": "09_日记/2026-05-02.md"
+    },
+    {
+      "basename": "鹅鸭杀游戏须知及复盘",
+      "path": "08_随笔/鹅鸭杀游戏须知及复盘.md"
     },
     {
       "basename": "2026-04-30",
@@ -27,10 +87,6 @@
     {
       "basename": "Pasted image 20260416174343",
       "path": "Pasted image 20260416174343.png"
-    },
-    {
-      "basename": "第1章 函数 极限 连续",
-      "path": "05_数学/01_基础/高等数学/第1章 函数 极限 连续.md"
     },
     {
       "basename": "三维GIS开发",
@@ -143,62 +199,6 @@
     {
       "basename": "布尔运算代码对比分析（立方体与球体）",
       "path": "07_GIS/布尔运算代码对比分析（立方体与球体）.md"
-    },
-    {
-      "basename": "27考研深大人工智能140500学硕 全周期逐天逐时段备考规划",
-      "path": "08_随笔/27考研深大人工智能140500学硕 全周期逐天逐时段备考规划.md"
-    },
-    {
-      "basename": "2026-04-15",
-      "path": "09_日记/2026-04-15.md"
-    },
-    {
-      "basename": "2026-04-14",
-      "path": "09_日记/2026-04-14.md"
-    },
-    {
-      "basename": "2026-04-13",
-      "path": "09_日记/2026-04-13.md"
-    },
-    {
-      "basename": "2026-04-12",
-      "path": "09_日记/2026-04-12.md"
-    },
-    {
-      "basename": "2026-04-11",
-      "path": "09_日记/2026-04-11.md"
-    },
-    {
-      "basename": "函数调用的详细过程",
-      "path": "06_408/00_C语言/函数调用的详细过程.md"
-    },
-    {
-      "basename": "函数调用的内存原理",
-      "path": "06_408/00_C语言/函数调用的内存原理.md"
-    },
-    {
-      "basename": "数组元素的内存布局与越界问题",
-      "path": "06_408/00_C语言/数组元素的内存布局与越界问题.md"
-    },
-    {
-      "basename": "局部数组的长度限制与栈溢出",
-      "path": "06_408/00_C语言/局部数组的长度限制与栈溢出.md"
-    },
-    {
-      "basename": "值传递",
-      "path": "06_408/00_C语言/值传递.md"
-    },
-    {
-      "basename": "考研单词乱序背诵",
-      "path": "04_英语/00_单词/考研单词乱序背诵.md"
-    },
-    {
-      "basename": "第四讲 一元函数微分学的计算",
-      "path": "05_数学/01_基础/高等数学/第四讲 一元函数微分学的计算.md"
-    },
-    {
-      "basename": "考研数学",
-      "path": "00_目录/考研数学.md"
     }
   ],
   "omittedPaths": [],
